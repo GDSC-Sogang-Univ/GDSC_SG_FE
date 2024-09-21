@@ -1,4 +1,5 @@
 import type { Metadata } from 'next';
+import ClientProvider from './_ClientProvider';
 import '@/styles/globals.css';
 
 export const metadata: Metadata = {
@@ -13,7 +14,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang='ko'>
-      <body>{children}</body>
+      <body>
+        <ClientProvider>{children}</ClientProvider>
+      </body>
     </html>
   );
 }
