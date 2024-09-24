@@ -96,7 +96,7 @@ jobs:
           aws_session_token : ${{ steps.aws-creds.outputs.aws-session-token }}
           application_name: ${{ secrets.AWS_APPLICATION_NAME }}
           environment_name: ${{ secrets.AWS_ENVIRONMENT_NAME }}
-          version_label: ${{ github.sha }}
+          version_label: ${{ github.sha }}-${{ github.run_attempt }}
           use_existing_version_if_available: true
           wait_for_deployment: false
           region: ${{ secrets.AWS_REGION }}
