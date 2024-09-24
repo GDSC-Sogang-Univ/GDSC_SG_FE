@@ -67,11 +67,10 @@ jobs:
 
       - name: Generate Dockerrun.aws.json file
         run: |
-          IMAGE_URI=${{ env.REGISTRY }}/${{ env.REPOSITORY }}
           echo '{
             "AWSEBDockerrunVersion": "1",
             "Image": {
-              "Name": "'$IMAGE_URI:latest'",
+              "Name": "${{ env.REGISTRY }}/${{ env.REPOSITORY }}:latest",
               "Update": "true"
             },
             "Ports": [
