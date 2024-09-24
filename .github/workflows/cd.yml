@@ -74,6 +74,13 @@ jobs:
               "Name": "${{ env.REGISTRY }}/${{ env.REPOSITORY }}:latest",
               "Update": "true"
             },
+            "OptionSettings": [
+              {
+                "Namespace": "elasticbeanstalk:application",
+                "OptionName": "Application Healthcheck URL",
+                "Value": "/"
+              }
+            ],
             "Ports": [
               {
                 "ContainerPort": "3000"
