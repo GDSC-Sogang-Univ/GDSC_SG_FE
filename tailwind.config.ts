@@ -9,53 +9,81 @@ const config: Config = {
   theme: {
     fontFamily: {
       en: ['Google Sans Display', 'sans-serif'],
+      noto: ['Noto Sans', 'sans-serif'],
     },
     colors: {
       gdsc: {
         Blue: {
-          900: '#3842AD',
-          700: '#3F74E0',
-          500: '#4295FF',
-          300: '#6DB5FF',
+          900: '#3743AD',
+          800: '#3C63CD',
+          700: '#3F75E0',
+          600: '#4287F4',
+          500: '#4296FF',
+          400: '#53A5FF',
+          300: '#6EB6FF',
+          200: '#96CBFF',
           100: '#BFDEFF',
+          50: '#E4F2FF',
         },
         Green: {
+          900: '#096529',
           800: '#1F843C',
+          700: '#299647',
           600: '#34A853',
+          500: '#3DB75D',
           400: '#5CC275',
+          300: '#7BCE8E',
           200: '#A2DBAE',
+          100: '#C6E9CD',
           50: '#E7F6EB',
         },
         Yellow: {
-          800: '#F9AB00',
+          900: '#F88000',
+          800: '#F9AA00',
+          700: '#F9C312',
           600: '#FADB1F',
+          500: '#F4E91E',
           400: '#F7EE4A',
+          300: '#FAF26E',
           200: '#FCF699',
+          100: '#FDFAC2',
           50: '#FEFEE6',
         },
         Red: {
           900: '#AD211C',
+          800: '#BC2B27',
           700: '#C9312E',
+          600: '#DB3B34',
           500: '#EA4435',
+          400: '#E6534E',
           300: '#DD7271',
+          200: '#E99998',
           100: '#FCCCD1',
+          50: '#FEEBED',
         },
         Black: {
-          DEFAULT: '#111',
+          DEFAULT: '#000000',
         },
         Grey: {
+          900: '#3E4A4F',
           800: '#506067',
+          700: '#5F747C',
           600: '#6F8A94',
+          500: '#7C9BA6',
           400: '#91AAB4',
+          300: '#A7BBC3',
           200: '#C1CFD4',
+          100: '#DAE2E5',
+          50: '#F1F3F4',
         },
         White: {
-          DEFAULT: '#FFF',
+          DEFAULT: '#FFFFFF',
         },
       },
       transparent: 'transparent',
     },
     fontSize: {
+      120: '7.5rem',
       72: '4.5rem',
       48: '3rem',
       32: '2rem',
@@ -65,12 +93,25 @@ const config: Config = {
       14: '0.875rem',
       12: '0.75rem',
     },
+    fontWeight: {
+      bold: 700,
+      regular: 400,
+    },
     extend: {
-      screens:{
-        mobile: {max: '480px'}
+      screens: {
+        mobile: { max: '480px' },
       },
       spacing: {
         content: '90rem',
+      },
+      leading: {
+        '120': '120%',
+        '140': '140%',
+        '160': '160%',
+        '180': '180%',
+      },
+      tracking: {
+        '0': '0%',
       },
       keyframes: {
         'slide-right': {
@@ -199,6 +240,44 @@ const config: Config = {
         },
         '.text-P5_KR': {
           '@apply text-P_KR text-12': {},
+        },
+
+        // Display Styles
+        '.text-display-l': {
+          '@apply font-en font-bold text-120 leading-120 tracking-0': {},
+        },
+        '.text-display-m': {
+          '@apply font-en font-bold text-72 leading-140 tracking-0': {},
+        },
+        '.text-display-s': {
+          '@apply font-en font-bold text-48 leading-140 tracking-0': {},
+        },
+        // Title Styles
+        '.text-title-l': {
+          '@apply font-en font-bold text-32 leading-160 tracking-0': {},
+        },
+        '.text-title-m': {
+          '@apply font-en font-regular text-24 leading-160 tracking-0': {},
+        },
+        '.text-title-s': {
+          '@apply font-en font-regular text-18 leading-160 tracking-0': {},
+        },
+        // Paragraph Styles
+        '.text-paragraph-l': {
+          '@apply font-noto font-regular text-24 leading-180 tracking-0': {},
+        },
+        '.text-paragraph-m': {
+          '@apply font-noto font-regular text-18 leading-180 tracking-0': {},
+        },
+        '.text-paragraph-s': {
+          '@apply font-noto font-regular text-16 leading-180 tracking-0': {},
+        },
+        // Caption Styles
+        '.text-caption-l': {
+          '@apply font-noto font-regular text-14 leading-180 tracking-0': {},
+        },
+        '.text-caption-s': {
+          '@apply font-noto font-regular text-12 leading-180 tracking-0': {},
         },
       });
     },

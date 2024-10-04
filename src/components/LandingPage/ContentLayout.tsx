@@ -65,12 +65,12 @@ const ContentLayout = (props: Props) => {
         <div ref={targetRef}></div>
         <section
           ref={sectionRef}
-          className={`flex w-full flex-col gap-16 mobile:gap-10 pl-9 mobile:pl-4 mobile:pr-8 ${!isVisible && 'animate-content-out opacity-0'}`}
+          className={`flex w-full flex-col gap-16 pl-9 mobile:gap-10 mobile:pl-4 mobile:pr-8 ${!isVisible && 'animate-content-out opacity-0'}`}
         >
           <span className='flex flex-col gap-3'>
             <span className='flex flex-col'>
               <h3 className={`text-H1_EN ${isVisible && 'animate-content-in'}`}>{title}</h3>
-              <h2 className={`${isVisible && 'animate-content-in'} text-h2_EN text-gdsc-Black -mt-6`}>{subtitle}</h2>
+              <h2 className={`${isVisible && 'animate-content-in'} text-h2_EN -mt-6 text-gdsc-Black`}>{subtitle}</h2>
             </span>
             <div className={`${isVisible && 'animate-content-in-slow'} mobile:text-P4_KR`}>{children}</div>
           </span>
@@ -88,19 +88,20 @@ const ContentLayout = (props: Props) => {
       <div ref={targetRef}></div>
       <section
         ref={sectionRef}
-        className={`flex w-full flex-col gap-10 mobile:gap-7 mx-5 mobile:mx-4 ${!isVisible && 'animate-content-out opacity-0'}`}
+        className={`mx-5 flex w-full flex-col gap-10 mobile:mx-4 mobile:gap-7 ${!isVisible && 'animate-content-out opacity-0'}`}
       >
         <h3 className={`text-H1_EN ${isVisible && 'animate-content-in'} mobile:text-H3_EN`}>{title}</h3>
         {subtitle && (
-          <h2 className={`${isVisible && 'animate-content-in'} text-h2_EN text-gdsc-Black -mt-16`}>{subtitle}</h2>
+          <h2 className={`${isVisible && 'animate-content-in'} text-h2_EN -mt-16 text-gdsc-Black`}>{subtitle}</h2>
         )}
         <div className={`px-11 mobile:px-4 ${isVisible && 'animate-content-in-slow'}`}>{children}</div>
         <div className={`${isVisible && 'animate-content-in-more-slow'} pl-5 mobile:pl-2`}>
-          <ButtonWithHrefLink
-          className={`${props.hoverColor} mobile:!px-7`}
-          hrefLink={props.btnClickLink}
-          >
-            Learn more<span className='mobile:hidden'> about <span className='font-bold'>{props.btnBoldText}</span></span>
+          <ButtonWithHrefLink className={`${props.hoverColor} mobile:!px-7`} hrefLink={props.btnClickLink}>
+            Learn more
+            <span className='mobile:hidden'>
+              {' '}
+              about <span className='font-bold'>{props.btnBoldText}</span>
+            </span>
           </ButtonWithHrefLink>
         </div>
       </section>

@@ -13,9 +13,9 @@ env:
   AWS_REGION: ap-northeast-2
   AWS_ROLE: ${{ secrets.AWS_ROLE }}
   REGISTRY: ${{ secrets.AWS_REGISTRY }}
-  REPOSITORY: "next-production-image"
-  EB_ENVIRONMENT_NAME: "GDG-NextJs-Environment"
-  EB_APPLICATION_NAME: "GDG-WebApp"
+  REPOSITORY: 'next-production-image'
+  EB_ENVIRONMENT_NAME: 'GDG-NextJs-Environment'
+  EB_APPLICATION_NAME: 'GDG-WebApp'
   NEXT_PUBLIC_GA_ID: ${{ secrets.NEXT_PUBLIC_GA_ID }}
 
 jobs:
@@ -104,7 +104,7 @@ jobs:
         with:
           aws_access_key: ${{ steps.aws-creds.outputs.aws-access-key-id }}
           aws_secret_key: ${{ steps.aws-creds.outputs.aws-secret-access-key }}
-          aws_session_token : ${{ steps.aws-creds.outputs.aws-session-token }}
+          aws_session_token: ${{ steps.aws-creds.outputs.aws-session-token }}
           application_name: ${{ env.EB_APPLICATION_NAME }}
           environment_name: ${{ env.EB_ENVIRONMENT_NAME }}
           version_label: ${{ steps.prepare.outputs.version }}-${{ github.run_attempt }}
@@ -112,4 +112,3 @@ jobs:
           wait_for_deployment: false
           region: ${{ env.AWS_REGION }}
           deployment_package: deploy.zip
-  
