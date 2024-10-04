@@ -16,6 +16,7 @@ env:
   REPOSITORY: "next-production-image"
   EB_ENVIRONMENT_NAME: "GDG-NextJs-Environment"
   EB_APPLICATION_NAME: "GDG-WebApp"
+  NEXT_PUBLIC_GA_ID: ${{ secrets.NEXT_PUBLIC_GA_ID }}
 
 jobs:
   deploy:
@@ -68,6 +69,8 @@ jobs:
             linux/arm64
           tags: ${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}
+          build-args: |
+            NEXT_PUBLIC_GA_ID=${{ env.NEXT_PUBLIC_GA_ID }}
           cache-from: type=registry,ref=${{ env.REGISTRY }}/${{ env.REPOSITORY }}:cache
           cache-to: type=registry,mode=max,image-manifest=true,oci-mediatypes=true,ref=${{ env.REGISTRY }}/${{ env.REPOSITORY }}:cache
 
