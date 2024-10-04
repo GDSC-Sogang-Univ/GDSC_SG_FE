@@ -8,5 +8,5 @@
   "typescript.enablePromptUseWorkspaceTsdk": true,
   "prettier.prettierPath": ".yarn/sdks/prettier/index.cjs",
   "editor.formatOnSave": true,
-  "editor.defaultFormatter": "esbenp.prettier-vscode"         
+  "editor.defaultFormatter": "esbenp.prettier-vscode"
 }

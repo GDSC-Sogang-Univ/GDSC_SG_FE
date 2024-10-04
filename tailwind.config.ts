@@ -94,12 +94,12 @@ const config: Config = {
       12: '0.75rem',
     },
     fontWeight: {
-      bold: '700',
-      regular: '400',
+      bold: 700,
+      regular: 400,
     },
     extend: {
-      screens:{
-        mobile: {max: '480px'}
+      screens: {
+        mobile: { max: '480px' },
       },
       spacing: {
         content: '90rem',
@@ -112,7 +112,7 @@ const config: Config = {
       },
       tracking: {
         '0': '0%',
-      },      
+      },
       keyframes: {
         'slide-right': {
           '0%': { transform: 'translateX(-50%) translateY(0)', opacity: '0' },
@@ -241,7 +241,7 @@ const config: Config = {
         '.text-P5_KR': {
           '@apply text-P_KR text-12': {},
         },
-      
+
         // Display Styles
         '.text-display-l': {
           '@apply font-en font-bold text-120 leading-120 tracking-0': {},
@@ -260,24 +260,24 @@ const config: Config = {
           '@apply font-en font-regular text-24 leading-160 tracking-0': {},
         },
         '.text-title-s': {
-          '@apply font-en font-regular text-18 leading-160 tracking-0': {}, 
+          '@apply font-en font-regular text-18 leading-160 tracking-0': {},
         },
         // Paragraph Styles
         '.text-paragraph-l': {
-          '@apply font-noto font-regular text-24 leading-180 tracking-0': {}, 
+          '@apply font-noto font-regular text-24 leading-180 tracking-0': {},
         },
         '.text-paragraph-m': {
-          '@apply font-noto font-regular text-18 leading-180 tracking-0': {}, 
+          '@apply font-noto font-regular text-18 leading-180 tracking-0': {},
         },
         '.text-paragraph-s': {
-          '@apply font-noto font-regular text-16 leading-180 tracking-0': {}, 
+          '@apply font-noto font-regular text-16 leading-180 tracking-0': {},
         },
         // Caption Styles
         '.text-caption-l': {
-          '@apply font-noto font-regular text-14 leading-180 tracking-0': {}, 
+          '@apply font-noto font-regular text-14 leading-180 tracking-0': {},
         },
         '.text-caption-s': {
-          '@apply font-noto font-regular text-12 leading-180 tracking-0': {}, 
+          '@apply font-noto font-regular text-12 leading-180 tracking-0': {},
         },
       });
     },

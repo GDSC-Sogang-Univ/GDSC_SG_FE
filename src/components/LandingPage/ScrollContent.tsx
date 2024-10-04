@@ -18,7 +18,7 @@ const LogoTitle = ({ icon, iconSizeStyle, title, titleCustomStyle }: LogoTitlePr
   return (
     <div className='relative'>
       <div className={iconStyle}>
-        <Image alt={`${title} icon`} className='w-full h-full' src={icon} />
+        <Image alt={`${title} icon`} className='h-full w-full' src={icon} />
       </div>
       <div className={titleStyle}>
         <span className='text-gdsc-White'>{title.slice(0, 1)}</span>
@@ -33,14 +33,14 @@ const GFDTitle = () => {
     <>
       <div className='relative'>
         <div className='relative h-[95px] w-[95px] mobile:h-10 mobile:w-10'>
-          <Image alt={`Google For Developers icon1`} className='w-full h-full' src={gfdIcon} />
+          <Image alt={`Google For Developers icon1`} className='h-full w-full' src={gfdIcon} />
         </div>
         <div className='absolute -bottom-6 left-[34px] z-10 mobile:-bottom-[10px] mobile:left-[13px]'>
           <span className='text-gdsc-White'>G</span>
           oogle
           <br />
-          <div className='absolute -right-12 bottom-5 h-[41px] w-[41px] rotate-6 mobile:h-[22px] mobile:w-[22px] mobile:-right-7 mobile:bottom-3'>
-            <Image alt={`Google For Developers icon2`} className='w-full h-full' src={gfdStarIcon} />
+          <div className='absolute -right-12 bottom-5 h-[41px] w-[41px] rotate-6 mobile:-right-7 mobile:bottom-3 mobile:h-[22px] mobile:w-[22px]'>
+            <Image alt={`Google For Developers icon2`} className='h-full w-full' src={gfdStarIcon} />
           </div>
         </div>
       </div>
@@ -61,8 +61,8 @@ const TitleDetailBody = ({ data }: TitleDetailBodyProps) => {
     <div className='flex flex-col gap-8'>
       {data.map(({ title, detail }) => (
         <div key={title} className='flex flex-col gap-1'>
-          <h6 className='text-gdsc-Grey-800 text-H3_KR mobile:text-H5_KR mobile:whitespace-pre-wrap'>{title}</h6>
-          <p className='whitespace-pre-wrap break-keep text-gdsc-Grey-600 text-P3_KR mobile:text-P4_KR mobile:max-w-[291px]'>
+          <h6 className='text-gdsc-Grey-800 text-H3_KR mobile:whitespace-pre-wrap mobile:text-H5_KR'>{title}</h6>
+          <p className='whitespace-pre-wrap break-keep text-gdsc-Grey-600 text-P3_KR mobile:max-w-[291px] mobile:text-P4_KR'>
             {detail}
           </p>
         </div>
@@ -124,11 +124,11 @@ export const SCROLL_CONTENT_LIST = [
     ),
     body: (
       <>
-        <span className='whitespace-pre-wrap text-P3_KR text-gdsc-Grey-600 mobile:hidden'>
+        <span className='whitespace-pre-wrap text-gdsc-Grey-600 text-P3_KR mobile:hidden'>
           GDG on Campus Sogang은 2024년 10월 정식으로 출범할 서강대학교 IT 커뮤니티입니다. {'\n'}서강대학교 재학생 중
           IT에 관심이 있는 학생들의 오아시스가 되기 위한 커뮤니티를 만들어나가고 있습니다.
         </span>
-        <span className='hidden mobile:block whitespace-pre-wrap text-P4_KR text-gdsc-Grey-600'>
+        <span className='hidden whitespace-pre-wrap text-gdsc-Grey-600 text-P4_KR mobile:block'>
           GDG on Campus Sogang은 2024년 10월
           <br /> 정식으로 출범할 서강대학교 IT 커뮤니티입니다.
           <br /> 서강대학교 재학생 중 IT에 관심이 있는 학생들의
