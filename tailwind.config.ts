@@ -244,41 +244,41 @@ const config: Config = {
       
         // Display Styles
         '.text-display-l': {
-        '@apply font-en font-bold text-120 leading-120 tracking-0': {},
-      },
-      '.text-display-m': {
-        '@apply font-en font-bold text-72 leading-140 tracking-0': {},
-      },
-      '.text-display-s': {
-        '@apply font-en font-bold text-48 leading-140 tracking-0': {},
-      },
-      // Title Styles
-      '.text-title-l': {
-        '@apply font-en font-bold text-32 leading-160 tracking-0': {},
-      },
-      '.text-title-m': {
-        '@apply font-en font-regular text-24 leading-160 tracking-0': {},
-      },
-      '.text-title-s': {
-        '@apply font-en font-regular text-18 leading-160 tracking-0': {}, 
-      },
-      // Paragraph Styles
-      '.text-paragraph-l': {
-        '@apply font-noto font-regular text-24 leading-180 tracking-0': {}, 
-      },
-      '.text-paragraph-m': {
-        '@apply font-noto font-regular text-18 leading-180 tracking-0': {}, 
-      },
-      '.text-paragraph-s': {
-        '@apply font-noto font-regular text-16 leading-180 tracking-0': {}, 
-      },
-      // Caption Styles
-      '.text-caption-l': {
-        '@apply font-noto font-regular text-14 leading-180 tracking-0': {}, 
-      },
-      '.text-caption-s': {
-        '@apply font-noto font-regular text-12 leading-180 tracking-0': {}, 
-      },
+          '@apply font-en font-bold text-120 leading-120 tracking-0': {},
+        },
+        '.text-display-m': {
+          '@apply font-en font-bold text-72 leading-140 tracking-0': {},
+        },
+        '.text-display-s': {
+          '@apply font-en font-bold text-48 leading-140 tracking-0': {},
+        },
+        // Title Styles
+        '.text-title-l': {
+          '@apply font-en font-bold text-32 leading-160 tracking-0': {},
+        },
+        '.text-title-m': {
+          '@apply font-en font-regular text-24 leading-160 tracking-0': {},
+        },
+        '.text-title-s': {
+          '@apply font-en font-regular text-18 leading-160 tracking-0': {}, 
+        },
+        // Paragraph Styles
+        '.text-paragraph-l': {
+          '@apply font-noto font-regular text-24 leading-180 tracking-0': {}, 
+        },
+        '.text-paragraph-m': {
+          '@apply font-noto font-regular text-18 leading-180 tracking-0': {}, 
+        },
+        '.text-paragraph-s': {
+          '@apply font-noto font-regular text-16 leading-180 tracking-0': {}, 
+        },
+        // Caption Styles
+        '.text-caption-l': {
+          '@apply font-noto font-regular text-14 leading-180 tracking-0': {}, 
+        },
+        '.text-caption-s': {
+          '@apply font-noto font-regular text-12 leading-180 tracking-0': {}, 
+        },
       });
     },
   ],
