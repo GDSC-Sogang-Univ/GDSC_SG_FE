@@ -18,6 +18,7 @@ html {
 
 * {
   user-select: none;
+  overscroll-behavior: none;
 }
 
 img {
