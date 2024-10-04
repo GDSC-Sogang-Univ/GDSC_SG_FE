@@ -2,7 +2,7 @@ services:
   web:
     container_name: GDSC_FE
     env_file:
-      - .env.local
+      - .env
     build:
       context: .
       dockerfile: Dockerfile
