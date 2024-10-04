@@ -66,6 +66,9 @@ const config: Config = {
       12: '0.75rem',
     },
     extend: {
+      screens:{
+        mobile: {max: '480px'}
+      },
       spacing: {
         content: '90rem',
       },
