@@ -98,6 +98,9 @@ const config: Config = {
       regular: '400',
     },
     extend: {
+      screens:{
+        mobile: {max: '480px'}
+      },
       spacing: {
         content: '90rem',
       },
