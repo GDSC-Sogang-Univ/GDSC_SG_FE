@@ -10,7 +10,7 @@ const LandingPageFooter = () => {
       <div className='flex flex-col items-start justify-end h-full mb-20 w-content mobile:w-full mobile:px-4 mobile:mb-3 mobile:pt-5'>
         <span className='flex flex-col gap-12 mobile:gap-3'>
           <span className='text-H4_KR text-gdsc-Black mobile:text-H_KR mobile:text-14'>
-            GDSC Sogang은 개발자부터 기획자, 디자이너까지
+            GDG on Campus Sogang은 개발자부터 기획자, 디자이너까지
             <br />
             IT 제품과 서비스를 만들고자 하는 모든 서강대학교 학생들을 환영합니다.
           </span>
