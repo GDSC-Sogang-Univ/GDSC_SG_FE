@@ -134,7 +134,7 @@ jobs:
           elif [[ "${{ needs.build.result }}" == "failure" ]]; then
             echo "EMOJI=:failed:" >> "$GITHUB_OUTPUT"
           else
-            echo "EMOJI=:white_check_mark:" >> "$GITHUB_OUTPUT"
+            echo "EMOJI=:green_check:" >> "$GITHUB_OUTPUT"
           fi
 
       - name: Set Message
@@ -271,7 +271,7 @@ jobs:
                   "type": "section",
                   "text": {
                     "type": "mrkdwn",
-                    "text": ":rocket: <https://github.com/${{ github.repository }}|${{ github.repository }}> `${{ needs.prepare.outputs.version_name }}` 버전 배포를 시작합니다 (<${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}|링크>)\n:white_check_mark: 빌드\n${{ steps.set-emoji.outputs.EMOJI }} 배포"
+                    "text": ":rocket: <https://github.com/${{ github.repository }}|${{ github.repository }}> `${{ needs.prepare.outputs.version_name }}` 버전 배포를 시작합니다 (<${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}|링크>)\n:green_check: 빌드\n${{ steps.set-emoji.outputs.EMOJI }} 배포"
                   }
                 }
               ]
