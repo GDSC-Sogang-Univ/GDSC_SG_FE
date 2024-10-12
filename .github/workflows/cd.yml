@@ -5,6 +5,7 @@ on:
   push:
     branches:
       - main
+      - feature/cloudfront
 
   # 수동으로 워크플로를 트리거할 때
   workflow_dispatch:
