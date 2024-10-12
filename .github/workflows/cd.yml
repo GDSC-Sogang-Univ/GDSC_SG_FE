@@ -119,7 +119,7 @@ jobs:
               ]
             }
 
-  notify-build-and-push-result:
+  notify-build--result:
     needs: [prepare, notify-start, build]
     if: ${{ always() }}
 
@@ -129,9 +129,9 @@ jobs:
       - name: Set Emoji
         id: set-emoji
         run: |
-          if [[ "${{ needs.build-and-push.result }}" == "cancelled" ]]; then
+          if [[ "${{ needs.build.result }}" == "cancelled" ]]; then
             echo "EMOJI=:failed:" >> "$GITHUB_OUTPUT"
-          elif [[ "${{ needs.build-and-push.result }}" == "failure" ]]; then
+          elif [[ "${{ needs.build.result }}" == "failure" ]]; then
             echo "EMOJI=:failed:" >> "$GITHUB_OUTPUT"
           else
             echo "EMOJI=:white_check_mark:" >> "$GITHUB_OUTPUT"
@@ -140,16 +140,16 @@ jobs:
       - name: Set Message
         id: set-message
         run: |
-          if [[ "${{ needs.build-and-push.result }}" == "cancelled" ]]; then
+          if [[ "${{ needs.build.result }}" == "cancelled" ]]; then
             echo "MESSAGE=빌드가 취소되었습니다" >> "$GITHUB_OUTPUT"
-          elif [[ "${{ needs.build-and-push.result }}" == "failure" ]]; then
+          elif [[ "${{ needs.build.result }}" == "failure" ]]; then
             echo "MESSAGE=빌드에 실패했습니다" >> "$GITHUB_OUTPUT"
           else
             echo "MESSAGE=빌드가 성공했습니다" >> "$GITHUB_OUTPUT"
           fi
 
       - name: Notify Overall Result if Failed
-        if: ${{ needs.build-and-push.result == 'cancelled' || needs.build-and-push.result == 'failure' }}
+        if: ${{ needs.build.result == 'cancelled' || needs.build.result == 'failure' }}
         uses: slackapi/slack-github-action@v1.26.0
         with:
           channel-id: ${{ env.DEPLOY_ALERT_CHANNEL }}
@@ -169,7 +169,7 @@ jobs:
             }
 
       - name: Notify Overall Result if Succeeded
-        if: ${{ needs.build-and-push.result == 'success' }}
+        if: ${{ needs.build.result == 'success' }}
         uses: slackapi/slack-github-action@v1.26.0
         with:
           channel-id: ${{ env.DEPLOY_ALERT_CHANNEL }}
@@ -190,7 +190,7 @@ jobs:
 
 
       - name: Notify failed
-        if: ${{ needs.build-and-push.result == 'cancelled' || needs.build-and-push.result == 'failure' }}
+        if: ${{ needs.build.result == 'cancelled' || needs.build.result == 'failure' }}
         uses: slackapi/slack-github-action@v1.26.0
         with:
           channel-id: ${{ env.DEPLOY_ALERT_CHANNEL }}
@@ -210,7 +210,7 @@ jobs:
             }
 
       - name: Notify Succeeded
-        if: ${{ needs.build-and-push.result == 'success' }}
+        if: ${{ needs.build.result == 'success' }}
         uses: slackapi/slack-github-action@v1.26.0
         with:
           channel-id: ${{ env.DEPLOY_ALERT_CHANNEL }}
@@ -231,7 +231,7 @@ jobs:
 
   notify-deploy-result:
     needs: [prepare, notify-start, build, deploy]
-    if: ${{ always() && needs.build-and-push.result == 'success' && needs.deploy.result != 'skipped'  }}
+    if: ${{ always() && needs.build.result == 'success' && needs.deploy.result != 'skipped'  }}
 
     runs-on: ubuntu-latest
 
