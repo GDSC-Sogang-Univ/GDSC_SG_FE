@@ -108,6 +108,7 @@ jobs:
           payload: |
             {
               "unfurl_links": false,
+              "unfurl_media": false,
               "blocks": [
                 {
                   "type": "section",
@@ -157,6 +158,7 @@ jobs:
           payload: |
             {
               "unfurl_links": false,
+              "unfurl_media": false,
               "blocks": [
                 {
                   "type": "section",
@@ -177,6 +179,7 @@ jobs:
           payload: |
             {
               "unfurl_links": false,
+              "unfurl_media": false,
               "blocks": [
                 {
                   "type": "section",
@@ -198,6 +201,7 @@ jobs:
             {
               "thread_ts": "${{ needs.notify-start.outputs.thread_ts }}",
               "unfurl_links": false,
+              "unfurl_media": false,
               "blocks": [
                 {
                   "type": "section",
@@ -218,6 +222,7 @@ jobs:
             {
               "thread_ts": "${{ needs.notify-start.outputs.thread_ts }}",
               "unfurl_links": false,
+              "unfurl_media": false,
               "blocks": [
                 {
                   "type": "section",
@@ -266,6 +271,7 @@ jobs:
           payload: |
             {
               "unfurl_links": false,
+              "unfurl_media": false,
               "blocks": [
                 {
                   "type": "section",
@@ -286,6 +292,7 @@ jobs:
             {
               "thread_ts": "${{ needs.notify-start.outputs.thread_ts }}",
               "unfurl_links": false,
+              "unfurl_media": false,
               "blocks": [
                 {
                   "type": "section",
@@ -306,6 +313,7 @@ jobs:
             {
               "thread_ts": "${{ needs.notify-start.outputs.thread_ts }}",
               "unfurl_links": false,
+              "unfurl_media": false,
               "blocks": [
                 {
                   "type": "section",
