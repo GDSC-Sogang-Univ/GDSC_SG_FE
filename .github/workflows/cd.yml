@@ -15,27 +15,32 @@ env:
   S3_BUCKET_NAME: "gdg-web-static"
   CLOUDFRONT_DISTRIBUTION_ID: ${{ secrets.CLOUDFRONT_DISTRIBUTION_ID }}
   NEXT_PUBLIC_GA_ID: ${{ secrets.NEXT_PUBLIC_GA_ID }}
+  DEPLOY_ALERT_CHANNEL: "C07RE3K83GW"
+  SLACK_BOT_TOKEN: ${{ secrets.SLACK_BOT_TOKEN }}
 
 jobs:
-  deploy:
+  prepare:
     runs-on: ubuntu-latest
+    outputs:
+      version_name: ${{ steps.get_sha.outputs.SHA }}
 
-    permissions:
-      contents: 'read'
-      id-token: 'write'
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 1
+
+      - name: Get short SHA
+        id: get_sha
+        run: echo "SHA=$(git rev-parse --short HEAD)" >> "$GITHUB_OUTPUT"
+
+  build:
+    needs: [prepare]
+    runs-on: ubuntu-latest
 
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
-
-      - name: Configure AWS Credentials
-        id: aws-creds
-        uses: aws-actions/configure-aws-credentials@v4
-        with:
-          aws-region: ${{ env.AWS_REGION }}
-          role-to-assume: ${{ env.AWS_ROLE }}
-          role-session-name: gharolesession
-          output-credentials: true
 
       - name: Setup Node
         uses: actions/setup-node@v4
@@ -52,9 +57,269 @@ jobs:
           NEXT_PUBLIC_GA_ID: ${{ env.NEXT_PUBLIC_GA_ID }}
         run: yarn build
 
+      - uses: actions/upload-artifact@v4
+        with:
+          name: build-${{ needs.prepare.outputs.version_name }}
+          path: out/
+
+  deploy:
+    runs-on: ubuntu-latest
+    needs: [prepare, build]
+
+    permissions:
+      contents: 'read'
+      id-token: 'write'
+
+    steps:
+      - uses: actions/download-artifact@v4
+        with:
+          name: build-${{ needs.prepare.outputs.version_name }}
+          path: out/
+
+      - name: Configure AWS Credentials
+        id: aws-creds
+        uses: aws-actions/configure-aws-credentials@v4
+        with:
+          aws-region: ${{ env.AWS_REGION }}
+          role-to-assume: ${{ env.AWS_ROLE }}
+          role-session-name: gharolesession
+          output-credentials: true
+
       - name: Upload to S3
         run: aws s3 sync ./out s3://${{ env.S3_BUCKET_NAME }}
 
       - name: Invalidate Cloudfront
         run: |
           aws cloudfront create-invalidation --distribution-id ${{ env.CLOUDFRONT_DISTRIBUTION_ID }} --paths '/*'
+
+  notify-start:
+    needs: [prepare]
+    runs-on: ubuntu-latest
+    outputs:
+      thread_ts: ${{ steps.send_start_notification.outputs.ts }}
+
+    steps:
+      - name: Send start notification
+        id: send_start_notification
+        uses: slackapi/slack-github-action@v1.26.0
+        with:
+          channel-id: ${{ env.DEPLOY_ALERT_CHANNEL }}
+          payload: |
+            {
+              "unfurl_links": false,
+              "unfurl_media": false,
+              "blocks": [
+                {
+                  "type": "section",
+                  "text": {
+                    "type": "mrkdwn",
+                    "text": ":rocket: <https://github.com/${{ github.repository }}|${{ github.repository }}> `${{ needs.prepare.outputs.version_name }}` 버전 배포를 시작합니다 (<${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}|링크>)\n:loading: 빌드\n:loading: 배포"
+                  }
+                }
+              ]
+            }
+
+  notify-build--result:
+    needs: [prepare, notify-start, build]
+    if: ${{ always() }}
+
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Set Emoji
+        id: set-emoji
+        run: |
+          if [[ "${{ needs.build.result }}" == "cancelled" ]]; then
+            echo "EMOJI=:failed:" >> "$GITHUB_OUTPUT"
+          elif [[ "${{ needs.build.result }}" == "failure" ]]; then
+            echo "EMOJI=:failed:" >> "$GITHUB_OUTPUT"
+          else
+            echo "EMOJI=:green_check:" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: Set Message
+        id: set-message
+        run: |
+          if [[ "${{ needs.build.result }}" == "cancelled" ]]; then
+            echo "MESSAGE=빌드가 취소되었습니다" >> "$GITHUB_OUTPUT"
+          elif [[ "${{ needs.build.result }}" == "failure" ]]; then
+            echo "MESSAGE=빌드에 실패했습니다" >> "$GITHUB_OUTPUT"
+          else
+            echo "MESSAGE=빌드가 성공했습니다" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: Notify Overall Result if Failed
+        if: ${{ needs.build.result == 'cancelled' || needs.build.result == 'failure' }}
+        uses: slackapi/slack-github-action@v1.26.0
+        with:
+          channel-id: ${{ env.DEPLOY_ALERT_CHANNEL }}
+          update-ts: ${{ needs.notify-start.outputs.thread_ts }}
+          payload: |
+            {
+              "unfurl_links": false,
+              "unfurl_media": false,
+              "blocks": [
+                {
+                  "type": "section",
+                  "text": {
+                    "type": "mrkdwn",
+                    "text": ":rocket: <https://github.com/${{ github.repository }}|${{ github.repository }}> `${{ needs.prepare.outputs.version_name }}` 버전 배포를 시작합니다 (<${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}|링크>)\n${{ steps.set-emoji.outputs.EMOJI }} 빌드\n:no_entry_sign: 배포"
+                  }
+                }
+              ]
+            }
+
+      - name: Notify Overall Result if Succeeded
+        if: ${{ needs.build.result == 'success' }}
+        uses: slackapi/slack-github-action@v1.26.0
+        with:
+          channel-id: ${{ env.DEPLOY_ALERT_CHANNEL }}
+          update-ts: ${{ needs.notify-start.outputs.thread_ts }}
+          payload: |
+            {
+              "unfurl_links": false,
+              "unfurl_media": false,
+              "blocks": [
+                {
+                  "type": "section",
+                  "text": {
+                    "type": "mrkdwn",
+                    "text": ":rocket: <https://github.com/${{ github.repository }}|${{ github.repository }}> `${{ needs.prepare.outputs.version_name }}` 버전 배포를 시작합니다 (<${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}|링크>)\n${{ steps.set-emoji.outputs.EMOJI }} 빌드\n:loading: 배포"
+                  }
+                }
+              ]
+            }
+
+
+      - name: Notify failed
+        if: ${{ needs.build.result == 'cancelled' || needs.build.result == 'failure' }}
+        uses: slackapi/slack-github-action@v1.26.0
+        with:
+          channel-id: ${{ env.DEPLOY_ALERT_CHANNEL }}
+          payload: |
+            {
+              "thread_ts": "${{ needs.notify-start.outputs.thread_ts }}",
+              "unfurl_links": false,
+              "unfurl_media": false,
+              "blocks": [
+                {
+                  "type": "section",
+                  "text": {
+                    "type": "mrkdwn",
+                    "text": "${{ steps.set-emoji.outputs.EMOJI }} <https://github.com/${{ github.repository }}|${{ github.repository }}> `${{ needs.prepare.outputs.version_name }}` ${{ steps.set-message.outputs.MESSAGE }}"
+                  }
+                }
+              ]
+            }
+
+      - name: Notify Succeeded
+        if: ${{ needs.build.result == 'success' }}
+        uses: slackapi/slack-github-action@v1.26.0
+        with:
+          channel-id: ${{ env.DEPLOY_ALERT_CHANNEL }}
+          payload: |
+            {
+              "thread_ts": "${{ needs.notify-start.outputs.thread_ts }}",
+              "unfurl_links": false,
+              "unfurl_media": false,
+              "blocks": [
+                {
+                  "type": "section",
+                  "text": {
+                    "type": "mrkdwn",
+                    "text": "${{ steps.set-emoji.outputs.EMOJI }} <https://github.com/${{ github.repository }}|${{ github.repository }}> `${{ needs.prepare.outputs.version_name }}` ${{ steps.set-message.outputs.MESSAGE }}"
+                  }
+                }
+              ]
+            }
+
+  notify-deploy-result:
+    needs: [prepare, notify-start, build, deploy]
+    if: ${{ always() && needs.build.result == 'success' && needs.deploy.result != 'skipped'  }}
+
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Set Emoji
+        id: set-emoji
+        run: |
+          if [[ "${{ needs.deploy.result }}" == "cancelled" ]]; then
+            echo "EMOJI=:no_entry_sign:" >> "$GITHUB_OUTPUT"
+          elif [[ "${{ needs.deploy.result }}" == "failure" ]]; then
+            echo "EMOJI=:failed:" >> "$GITHUB_OUTPUT"
+          else
+            echo "EMOJI=:rocket_animated:" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: Set Message
+        id: set-message
+        run: |
+          if [[ "${{ needs.deploy.result }}" == "cancelled" ]]; then
+            echo "MESSAGE=배포가 취소되었습니다" >> "$GITHUB_OUTPUT"
+          elif [[ "${{ needs.deploy.result }}" == "failure" ]]; then
+            echo "MESSAGE=배포에 실패했습니다" >> "$GITHUB_OUTPUT"
+          else
+            echo "MESSAGE=배포에 성공했습니다" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: Notify Overall Result
+        uses: slackapi/slack-github-action@v1.26.0
+        with:
+          channel-id: ${{ env.DEPLOY_ALERT_CHANNEL }}
+          update-ts: ${{ needs.notify-start.outputs.thread_ts }}
+          payload: |
+            {
+              "unfurl_links": false,
+              "unfurl_media": false,
+              "blocks": [
+                {
+                  "type": "section",
+                  "text": {
+                    "type": "mrkdwn",
+                    "text": ":rocket: <https://github.com/${{ github.repository }}|${{ github.repository }}> `${{ needs.prepare.outputs.version_name }}` 버전 배포를 시작합니다 (<${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}|링크>)\n:green_check: 빌드\n${{ steps.set-emoji.outputs.EMOJI }} 배포"
+                  }
+                }
+              ]
+            }
+
+      - name: Notify failed
+        if: ${{ needs.deploy.result == 'cancelled' || needs.deploy.result == 'failure' }}
+        uses: slackapi/slack-github-action@v1.26.0
+        with:
+          channel-id: ${{ env.DEPLOY_ALERT_CHANNEL }}
+          payload: |
+            {
+              "thread_ts": "${{ needs.notify-start.outputs.thread_ts }}",
+              "unfurl_links": false,
+              "unfurl_media": false,
+              "blocks": [
+                {
+                  "type": "section",
+                  "text": {
+                    "type": "mrkdwn",
+                    "text": "${{ steps.set-emoji.outputs.EMOJI }} <https://github.com/${{ github.repository }}|${{ github.repository }}> `${{ needs.prepare.outputs.version_name }}` ${{ steps.set-message.outputs.MESSAGE }}"
+                  }
+                }
+              ]
+            }
+
+      - name: Notify Succeeded
+        if: ${{ needs.deploy.result == 'success' }}
+        uses: slackapi/slack-github-action@v1.26.0
+        with:
+          channel-id: ${{ env.DEPLOY_ALERT_CHANNEL }}
+          payload: |
+            {
+              "thread_ts": "${{ needs.notify-start.outputs.thread_ts }}",
+              "unfurl_links": false,
+              "unfurl_media": false,
+              "blocks": [
+                {
+                  "type": "section",
+                  "text": {
+                    "type": "mrkdwn",
+                    "text": "${{ steps.set-emoji.outputs.EMOJI }} <https://github.com/${{ github.repository }}|${{ github.repository }}> `${{ needs.prepare.outputs.version_name }}` ${{ steps.set-message.outputs.MESSAGE }}"
+                  }
+                }
+              ]
+            }
