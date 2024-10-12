@@ -107,6 +107,7 @@ jobs:
           channel-id: ${{ env.DEPLOY_ALERT_CHANNEL }}
           payload: |
             {
+              "unfurl_links": false,
               "blocks": [
                 {
                   "type": "section",
