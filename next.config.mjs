@@ -27,7 +27,6 @@ const nextConfig = {
   eslint: {
     ignoreDuringBuilds: true,
   },
-  output: 'export',
   webpack: (config, options) => { // nextra 에서 빌드 캐시 충돌함
     config.cache = false;
     return config;
