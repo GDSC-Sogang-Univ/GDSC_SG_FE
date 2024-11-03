@@ -2,9 +2,9 @@ import type { Config } from 'tailwindcss';
 
 const config: Config = {
   content: [
-    './src/components/**/*.{js,ts,jsx,tsx,mdx}',
-    './src/app/**/*.{js,ts,jsx,tsx,mdx}',
-    './src/**/*.{js,ts,jsx,tsx,mdx}',
+    './components/**/*.{js,ts,jsx,tsx,mdx}',
+    './app/**/*.{js,ts,jsx,tsx,mdx}',
+    './**/*.{js,ts,jsx,tsx,mdx}',
   ],
   theme: {
     fontFamily: {
@@ -66,8 +66,8 @@ const config: Config = {
       12: '0.75rem',
     },
     extend: {
-      screens:{
-        mobile: {max: '480px'}
+      screens: {
+        mobile: { max: '480px' },
       },
       spacing: {
         content: '90rem',

@@ -3,12 +3,29 @@ import BackgroundContent from '@/components/LandingPage/BackgroundContent';
 import ContentLayout from '@/components/LandingPage/ContentLayout';
 import PageWrapper from '@/components/LandingPage/PageWrapper';
 import { SCROLL_CONTENT_LIST } from '@/components/LandingPage/ScrollContent';
+import '@/styles/mainpage.css';
+
+export const metadata = {
+  title: 'GDG on Campus Sogang',
+  description: 'Google Developer Groups on Sogang University',
+};
 
 export default function Home() {
   return (
-    <main className='flex flex-col h-dvh overflow-x-hidden overflow-y-auto'>
-      {SCROLL_CONTENT_LIST.map(({ type, title, subtitle, isDoubleBtn, btn1, btn2, btnClickLink, body, btnText, hoverColor }) => (
-        <PageWrapper key={type} className='relative flex justify-center items-ceneter'>
+    <main className="flex flex-col h-dvh overflow-x-hidden overflow-y-auto">
+      {SCROLL_CONTENT_LIST.map(({
+                                  type,
+                                  title,
+                                  subtitle,
+                                  isDoubleBtn,
+                                  btn1,
+                                  btn2,
+                                  btnClickLink,
+                                  body,
+                                  btnText,
+                                  hoverColor,
+                                }) => (
+        <PageWrapper key={type} className="relative flex justify-center items-ceneter">
           {isDoubleBtn ? (
             <ContentLayout title={title} subtitle={subtitle} isDoubleBtn btn1={btn1} btn2={btn2}>
               {body}

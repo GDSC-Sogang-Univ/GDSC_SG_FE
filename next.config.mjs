@@ -1,18 +1,37 @@
+import nextra from 'nextra';
+
+const withNextra = nextra({
+  latex: true,
+  search: {
+    codeblocks: false,
+  },
+  mdxOptions: {},
+  defaultShowCopyCode: true,
+});
+
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   reactStrictMode: true,
+  cleanDistDir: true,
   images: {
     remotePatterns: [
       {
-        protocol: "https",
-        hostname: "**",
+        protocol: 'https',
+        hostname: '**',
       },
     ],
+  },
+  experimental: {
+    optimizePackageImports: ['nextra/components', 'nextra-theme-blog'],
   },
   eslint: {
     ignoreDuringBuilds: true,
   },
   output: 'export',
+  webpack: (config, options) => { // nextra 에서 빌드 캐시 충돌함
+    config.cache = false;
+    return config;
+  },
 };
 
-export default nextConfig;
+export default withNextra(nextConfig);

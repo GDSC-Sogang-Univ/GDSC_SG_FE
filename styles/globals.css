@@ -1,0 +1,22 @@
+@font-face {
+    font-family: 'Google Sans Display';
+    src: url('/font/Google-Sans/GoogleSans-Regular.ttf');
+}
+
+@font-face {
+    font-family: 'Noto Sans KR';
+    src: url('/font/Noto-Sans-KR/noto-sans-kr-v36-korean_latin-regular.woff2');
+}
+
+html {
+    font-family: 'Noto Sans KR', 'Google Sans Display', sans-serif;
+}
+
+* {
+    user-select: none;
+    overscroll-behavior: none;
+}
+
+img {
+    -webkit-user-drag: none;
+}

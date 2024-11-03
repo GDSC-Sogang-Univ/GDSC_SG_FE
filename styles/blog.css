@@ -1,0 +1,3 @@
+@import 'nextra-theme-blog/dist/style.css' layer(nextra-base);
+
+@tailwind utilities;
