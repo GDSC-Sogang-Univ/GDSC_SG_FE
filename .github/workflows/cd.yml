@@ -1,4 +1,4 @@
-name: Deploy to Elastic Beanstalk
+name: Deploy to CloudFront
 
 on:
   # main 브랜치에 PR이 머지될 때 트리거
@@ -17,6 +17,7 @@ env:
   NEXT_PUBLIC_GA_ID: ${{ secrets.NEXT_PUBLIC_GA_ID }}
   DEPLOY_ALERT_CHANNEL: "C07RE3K83GW"
   SLACK_BOT_TOKEN: ${{ secrets.SLACK_BOT_TOKEN }}
+  SITE_URL: "{{ secrets.SITE_URL }}"
 
 jobs:
   prepare:
@@ -56,6 +57,11 @@ jobs:
         env:
           NEXT_PUBLIC_GA_ID: ${{ env.NEXT_PUBLIC_GA_ID }}
         run: yarn build
+      
+      - name: Run Post Build
+        env:
+          NEXT_PUBLIC_GA_ID: ${{ env.SITE_URL }}
+        run: yarn postbuild
 
       - uses: actions/upload-artifact@v4
         with:
