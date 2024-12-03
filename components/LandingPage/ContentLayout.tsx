@@ -96,11 +96,12 @@ const ContentLayout = (props: Props) => {
         )}
         <div className={`px-11 mobile:px-4 ${isVisible && 'animate-content-in-slow'}`}>{children}</div>
         <div className={`${isVisible && 'animate-content-in-more-slow'} pl-5 mobile:pl-2`}>
-          <ButtonWithHrefLink
-          className={`${props.hoverColor} mobile:!px-7`}
-          hrefLink={props.btnClickLink}
-          >
-            Learn more<span className='mobile:hidden'> about <span className='font-bold'>{props.btnBoldText}</span></span>
+          <ButtonWithHrefLink className={`${props.hoverColor} mobile:!px-7`} hrefLink={props.btnClickLink}>
+            Learn more
+            <span className='mobile:hidden'>
+              {' '}
+              about <span className='font-bold'>{props.btnBoldText}</span>
+            </span>
           </ButtonWithHrefLink>
         </div>
       </section>

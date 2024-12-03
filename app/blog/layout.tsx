@@ -16,24 +16,22 @@ export const metadata: Metadata = {
 
 export default async function RootLayout({ children }: PropsWithChildren) {
   return (
-    <html lang="ko" suppressHydrationWarning>
-    <Head backgroundColor={{ light: '#ffffff' }}>
-    </Head>
-    <body>
-    <Layout nextThemes={{ forcedTheme: 'light' }}>
-      <Navbar
-        navs={[
-          { url: '/blog/', name: '블로그' },
-          { url: '/', name: '홈페이지' },
-        ]}
-      />
-      {children}
-      <Footer>
-        <time>{new Date().getFullYear()}</time>
-        © GDG on Sogang.
-      </Footer>
-    </Layout>
-    </body>
+    <html lang='ko' suppressHydrationWarning>
+      <Head backgroundColor={{ light: '#ffffff' }}></Head>
+      <body>
+        <Layout nextThemes={{ forcedTheme: 'light' }}>
+          <Navbar
+            navs={[
+              { url: '/blog/', name: '블로그' },
+              { url: '/', name: '홈페이지' },
+            ]}
+          />
+          {children}
+          <Footer>
+            <time>{new Date().getFullYear()}</time>© GDG on Sogang.
+          </Footer>
+        </Layout>
+      </body>
     </html>
   );
 }
