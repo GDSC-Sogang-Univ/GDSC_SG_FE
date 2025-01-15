@@ -15,6 +15,7 @@ interface DoubleButtonProps {
   isDoubleBtn: true;
   btn1: ReactNode;
   btn2: ReactNode;
+  btn3: ReactNode;
 }
 
 interface CommonProps extends React.PropsWithChildren {
@@ -77,6 +78,7 @@ const ContentLayout = (props: Props) => {
           <div className={`flex gap-5 ${isVisible && 'animate-content-in-more-slow'}`}>
             {props.btn1}
             {props.btn2}
+            {props.btn3}
           </div>
         </section>
       </div>

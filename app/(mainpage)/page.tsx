@@ -20,6 +20,7 @@ export default function Home() {
                                   isDoubleBtn,
                                   btn1,
                                   btn2,
+                                  btn3,
                                   btnClickLink,
                                   body,
                                   btnText,
@@ -27,7 +28,7 @@ export default function Home() {
                                 }) => (
         <PageWrapper key={type} className="relative flex justify-center items-ceneter">
           {isDoubleBtn ? (
-            <ContentLayout title={title} subtitle={subtitle} isDoubleBtn btn1={btn1} btn2={btn2}>
+            <ContentLayout title={title} subtitle={subtitle} isDoubleBtn btn1={btn1} btn2={btn2} btn3={btn3}>
               {body}
             </ContentLayout>
           ) : (
