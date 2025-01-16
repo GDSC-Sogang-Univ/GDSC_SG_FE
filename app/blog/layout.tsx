@@ -1,5 +1,6 @@
 import { Footer, Layout, Navbar } from 'nextra-theme-blog';
 import { Head } from 'nextra/components';
+import BlogHeader from '@/components/Blog/BlogHeader';
 import type { PropsWithChildren } from 'react';
 import type { Metadata } from 'next';
 import 'nextra-theme-blog/style.css';
@@ -20,13 +21,14 @@ export default async function RootLayout({ children }: PropsWithChildren) {
     <Head backgroundColor={{ light: '#ffffff' }}>
     </Head>
     <body>
+    <BlogHeader />
     <Layout nextThemes={{ forcedTheme: 'light' }}>
-      <Navbar
+      {/* <Navbar
         navs={[
           { url: '/blog/', name: '블로그' },
           { url: '/', name: '홈페이지' },
         ]}
-      />
+      /> */}
       {children}
       <Footer>
         <time>{new Date().getFullYear()}</time>
