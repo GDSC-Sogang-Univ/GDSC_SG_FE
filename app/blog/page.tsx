@@ -23,7 +23,7 @@ export default async function PostsPage() {
       <h1>GDG on Sogang 공식 블로그</h1>
       <div className='_not-prose' style={{ display: 'flex', flexWrap: 'wrap', gap: '.5rem' }}>
         {Object.entries(allTagsCount).map(([tag, count]) => (
-          <Link key={tag} href={`/tags/${tag}`} className='nextra-tag'>
+          <Link key={tag} href={`/blog/tags/${tag}`} className='nextra-tag'>
             {tag} ({count})
           </Link>
         ))}

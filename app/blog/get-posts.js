@@ -11,3 +11,6 @@ export async function getPosts() {
 
 export const getTags = async () =>
   (await getPosts()).flatMap(post => post.frontMatter.tags);
+
+export const getPostsForTag = async (keyword) =>
+  (await getPosts()).filter(post => post.frontMatter.tags.includes(keyword));
