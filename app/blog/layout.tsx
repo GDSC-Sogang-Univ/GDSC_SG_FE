@@ -1,6 +1,6 @@
 import { Footer, Layout, Navbar } from 'nextra-theme-blog';
 import { Head } from 'nextra/components';
-import BlogHeader from '@/components/Blog/BlogHeader';
+import BlogHeader from '@/app/blog/(components)/BlogHeader';
 import type { PropsWithChildren } from 'react';
 import type { Metadata } from 'next';
 import 'nextra-theme-blog/style.css';
@@ -21,8 +21,7 @@ export default async function RootLayout({ children }: PropsWithChildren) {
     <Head backgroundColor={{ light: '#ffffff' }}>
     </Head>
     <body>
-    <BlogHeader />
-    <Layout nextThemes={{ forcedTheme: 'light' }}>
+    <Layout nextThemes={{ forcedTheme: 'light' }} banner={<BlogHeader/>}>
       {/* <Navbar
         navs={[
           { url: '/blog/', name: '블로그' },

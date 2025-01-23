@@ -1,9 +1,9 @@
 import Link from 'next/link';
 import Image from 'next/image';
-import HeaderLogo from '../../assets/icon/blog_gdgsogang_logo.svg';
-import LoginButton from './LoginButton';
-import HomepageButton from './HompageButton';
-import SearchIcon from '../../assets/icon/blog_search.svg';
+import HeaderLogo from '../../../assets/icon/blog_gdgsogang_logo.svg';
+import LoginButton from '../../../components/Blog/LoginButton';
+import HomepageButton from '../../../components/Blog/HompageButton';
+import SearchIcon from '../../../assets/icon/blog_search.svg';
 
 const BlogHeader = () => {
   return (
@@ -33,7 +33,7 @@ const BlogHeader = () => {
         {/* 네비게이션 */}
         <nav className="flex items-center gap-4">
           <HomepageButton hrefLink="/"/>
-          <LoginButton hrefLink="/blog/login"/>
+          <LoginButton hrefLink="/blog"/>
         </nav>
       </div>
     </header>
