@@ -5,6 +5,7 @@ import gfdIcon from '../../assets/icon/landing_gfd.svg';
 import gfdStarIcon from '../../assets/icon/landing_gfd_star.svg';
 import studyIcon from '../../assets/icon/landing_study.svg';
 import ButtonWithHrefLink from '../ButtonWithHrefLink';
+import RedButtonWithHrefLink from '../RedButtonWithHrefLink';
 
 interface LogoTitleProps {
   icon: any;
@@ -142,6 +143,7 @@ export const SCROLL_CONTENT_LIST = [
     isDoubleBtn: true,
     btn1: <ButtonWithHrefLink hrefLink="https://forms.gle/FBV1BLGTHjgKdH1y9">Join Now</ButtonWithHrefLink>,
     btn2: <ButtonWithHrefLink hrefLink="https://gdgoncampus-sg.oopy.io/">Learn More</ButtonWithHrefLink>,
+    btn3: <RedButtonWithHrefLink hrefLink="/blog/">GDGoC Sogang 공식 블로그</RedButtonWithHrefLink>,
   },
   {
     type: 'Study',

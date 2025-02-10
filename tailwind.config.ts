@@ -48,6 +48,8 @@ const config: Config = {
           600: '#6F8A94',
           400: '#91AAB4',
           200: '#C1CFD4',
+          100: '#DAE2E5',
+          50: '#F1F3F4',
         },
         White: {
           DEFAULT: '#FFF',
