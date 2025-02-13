@@ -7,7 +7,7 @@ import WhiteHeaderLogo from '../../../assets/icon/blog_gdgsogang_logo_white.svg'
 import LoginButton from '../../../components/Blog/LoginButton';
 import HomepageButton from '../../../components/Blog/HompageButton';
 import SearchIcon from '../../../assets/icon/blog_search.svg';
-import { Search } from 'nextra/components'
+import { Search } from 'nextra/components';
 import { useState } from 'react';
 
 interface Props {
@@ -35,12 +35,12 @@ const BlogHeader = ({tagList}: Props) => {
               <div className="absolute top-1/2 left-3 transform -translate-y-1/2">
                 <Image src={SearchIcon} alt="Search Icon" className="w-5 h-5" />
               </div>
-              {/* <Search placeholder='검색하기' className='focus:bg-gdsc-White pl-[40px] py-[8px] border border-gdsc-Grey-200 rounded-full w-full' /> */}
-              <input
+              <Search placeholder='검색하기' className='focus:outline-none focus:bg-gdsc-White pl-[40px] py-[8px] border border-gdsc-Grey-200 rounded-full w-full' />
+              {/* <input
                 type="text"
                 placeholder={isFocus ? "검색어를 입력해주세요" : "검색하기"}
                 className="focus:outline-none pl-[40px] py-[8px] border border-gdsc-Grey-200 rounded-full w-full"
-              />
+              /> */}
           </form>
           {isFocus && 
             <div className='flex flex-wrap gap-5'>
@@ -48,7 +48,7 @@ const BlogHeader = ({tagList}: Props) => {
                 <Link 
                   onClick={() => {
                     setIsFocus(false);
-                    document.activeElement?.blur();
+                    (document.activeElement as HTMLElement)?.blur();
                   }} 
                   onMouseDown={(e) => e.preventDefault()}
                   key={tag}
