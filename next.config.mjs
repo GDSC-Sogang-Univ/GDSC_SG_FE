@@ -24,7 +24,7 @@ const nextConfig = {
     ],
   },
   experimental: {
-    optimizePackageImports: ['nextra/components', 'nextra-theme-blog'],
+    optimizePackageImports: ['nextra/components', 'nextra-theme-blog', 'pagefind'],
   },
   eslint: {
     ignoreDuringBuilds: true,
