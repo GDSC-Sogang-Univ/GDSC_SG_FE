@@ -1,27 +1,35 @@
-import { getPostsForTag, getTags } from "../../get-posts";
-import { PostCard } from 'nextra-theme-blog';
-
-/**
- * 빌드 시 미리 태그를 가져와 페이지 생성하는 함수
- */
+import { PostCard } from 'nextra-theme-blog'
+import { getPosts, getTags } from '../../get-posts'
+ 
+export async function generateMetadata(props: any) {
+  const params = await props.params
+  return {
+    title: `Posts Tagged with “${decodeURIComponent(params.tag)}”`
+  }
+}
+ 
 export async function generateStaticParams() {
-  const tagList = await getTags();
+  const allTags = await getTags()
 
-  return tagList.map((tag: string) => ({
+  return allTags.map((tag: string) => ({
     tag: encodeURIComponent(tag),
   }));
 }
-
-async function TagListPage({params}: {params: {tag: string}}) {
-  const tagName = decodeURIComponent(params.tag);
-
+ 
+export default async function TagPage(props: any) {
+  const params = await props.params
+  const { title } = await generateMetadata({ params })
+  const posts = await getPosts()
   return (
-    <div>
-      {(await getPostsForTag(tagName)).map((post: any) => 
-          <PostCard key={post.route} post={post} readMore='' />
-      )}
-    </div>
-  );
+    <>
+      <h1>{title}</h1>
+      {posts
+        .filter((post: any) =>
+          post.frontMatter.tags.includes(decodeURIComponent(params.tag))
+        )
+        .map((post: any) => (
+          <PostCard key={post.route} post={post} />
+        ))}
+    </>
+  )
 }
-
-export default TagListPage;
