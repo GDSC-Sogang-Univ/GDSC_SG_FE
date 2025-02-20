@@ -1,9 +1,12 @@
-import SideWrapper from "./(components)/SideWrapper"
+import { getPostList } from "@/utils/blog/getPostList"
+import BlogPostList from "./(components)/BlogPostList";
 
-function BlogMainPage() {
+async function BlogMainPage() {
+  const posts = await getPostList();
+
   return (
-    <div className="flex">
-      <SideWrapper />
+    <div>
+      <BlogPostList data={posts} />
     </div>
   )
 }
