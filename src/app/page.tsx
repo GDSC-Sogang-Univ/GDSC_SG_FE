@@ -7,10 +7,10 @@ import { SCROLL_CONTENT_LIST } from '@/components/LandingPage/ScrollContent';
 export default function Home() {
   return (
     <main className='flex flex-col h-dvh overflow-x-hidden overflow-y-auto'>
-      {SCROLL_CONTENT_LIST.map(({ type, title, subtitle, isDoubleBtn, btn1, btn2, btnClickLink, body, btnText, hoverColor }) => (
+      {SCROLL_CONTENT_LIST.map(({ type, title, subtitle, isDoubleBtn, btn1, btn2, btn3, btnClickLink, body, btnText, hoverColor }) => (
         <PageWrapper key={type} className='relative flex justify-center items-ceneter'>
           {isDoubleBtn ? (
-            <ContentLayout title={title} subtitle={subtitle} isDoubleBtn btn1={btn1} btn2={btn2}>
+            <ContentLayout title={title} subtitle={subtitle} isDoubleBtn btn1={btn1} btn2={btn2} btn3={btn3}>
               {body}
             </ContentLayout>
           ) : (
