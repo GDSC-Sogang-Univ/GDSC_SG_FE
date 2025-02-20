@@ -10,10 +10,15 @@ export const metadata: Metadata = {
   robots: 'follow, index',
 };
 
-function BlogLayout() {
+function BlogLayout({
+  children,
+}: Readonly<{
+  children: React.ReactNode;
+}>) {
   return (
     <div>
       <BlogHeader />
+      {children}
     </div>
   )
 }
