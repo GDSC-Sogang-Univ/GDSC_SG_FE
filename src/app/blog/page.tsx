@@ -1,5 +1,5 @@
-import { getPostList } from "@/utils/blog/getPostList"
-import BlogPostList from "./(components)/BlogPostList";
+import { getPostList } from '@/utils/blog/getPostList';
+import BlogPostList from './(components)/BlogPostList';
 
 async function BlogMainPage() {
   const posts = await getPostList();
@@ -8,7 +8,7 @@ async function BlogMainPage() {
     <div>
       <BlogPostList data={posts} />
     </div>
-  )
+  );
 }
 
-export default BlogMainPage
+export default BlogMainPage;
