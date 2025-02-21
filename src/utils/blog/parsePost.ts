@@ -2,15 +2,16 @@ import fs from 'fs';
 import path from 'path';
 import dayjs from 'dayjs';
 import matter from 'gray-matter';
+import { PostType } from '@/types/blog';
 
 const BASE_PATH = '/src/posts';
 const POSTS_PATH = path.join(process.cwd(), BASE_PATH);
 
 // MDX 파일 파싱 : abstract / detail 구분
-export const parsePost = async (postPath: string): Promise<any> => {
+export const parsePost = async (postPath: string): Promise<PostType> => {
   const postAbstract = parsePostAbstract(postPath);
   const postDetail = await parsePostDetail(postPath);
-  return { ...postAbstract, ...postDetail };
+  return { ...postAbstract, ...postDetail } as PostType;
 };
 
 // MDX Abstract
@@ -36,6 +37,5 @@ export const parsePostDetail = async (postPath: string) => {
   const file = fs.readFileSync(postPath, 'utf8');
   const { data, content } = matter(file);
   const grayMatter = data;
-  const dateString = dayjs(grayMatter.date).locale('ko').format('YYYY년 MM월 DD일');
-  return { ...grayMatter, dateString, content };
+  return { ...grayMatter, content };
 };
