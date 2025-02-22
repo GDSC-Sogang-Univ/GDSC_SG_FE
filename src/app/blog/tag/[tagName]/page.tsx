@@ -24,7 +24,7 @@ const TagPage = async ({ params }: { params: any }) => {
 
   return (
     <>
-      <h1 className='text-center text-48 font-bold'>#{tagName}</h1>
+      <h1 className='text-center text-48 font-bold'># {tagName}</h1>
       <BlogPostList data={filteredPost} />
     </>
   );
