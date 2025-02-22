@@ -3,12 +3,13 @@
 import xIcon from '@/assets/icon/blog_search_x.svg';
 import Image from 'next/image';
 import Link from 'next/link';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import HeaderLogo from '../../assets/icon/blog_gdgsogang_logo.svg';
 import WhiteHeaderLogo from '../../assets/icon/blog_gdgsogang_logo_white.svg';
 import SearchIcon from '../../assets/icon/blog_search.svg';
 import HomepageButton from './HomepageButton';
 import LoginButton from './LoginButton';
+import { useSearchParams } from 'next/navigation';
 
 interface Props {
   tagList: string[];
@@ -16,6 +17,15 @@ interface Props {
 
 const BlogHeader = ({ tagList }: Props) => {
   const [isFocus, setIsFocus] = useState(false);
+  const [keyword, setKeyword] = useState('');
+  const searchParams = useSearchParams();
+  const searchKeyword = searchParams.get('q');
+
+  useEffect(() => {
+    if (searchKeyword) {
+      setKeyword(searchKeyword);
+    } else setKeyword('');
+  }, [searchKeyword]);
 
   return (
     <section className={`${isFocus && 'bg-gdsc-Black/60 w-full h-full fixed top-0 left-0 z-50'}`}>
@@ -36,14 +46,25 @@ const BlogHeader = ({ tagList }: Props) => {
         <div className={`flex items-center gap-14 justify-end ${isFocus && 'w-full !items-start'}`}>
           {/* 검색창 */}
           <div className={`flex flex-col gap-6 ${isFocus ? 'w-full' : 'w-[242px]'}`}>
-            <form onBlur={() => setIsFocus(false)} onFocus={() => setIsFocus(true)} className='relative w-full'>
+            <form
+              onSubmit={e => {
+                e.preventDefault();
+                window.location.href = `/blog/search?q=${keyword}`;
+              }}
+              onBlur={() => setIsFocus(false)}
+              onFocus={() => setIsFocus(true)}
+              className='relative w-full'
+            >
               <div className='absolute top-1/2 left-3 transform -translate-y-1/2'>
                 <Image src={SearchIcon} alt='Search Icon' className='w-5 h-5' />
               </div>
               <input
                 type='text'
+                value={keyword}
+                onChange={e => setKeyword(e.target.value)}
                 placeholder={isFocus ? '검색어를 입력해주세요' : '검색하기'}
                 className='focus:outline-none pl-[40px] py-[8px] border border-gdsc-Grey-200 rounded-full w-full'
+                required
               />
               {isFocus && (
                 <div
