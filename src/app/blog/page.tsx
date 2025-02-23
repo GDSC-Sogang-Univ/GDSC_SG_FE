@@ -1,10 +1,14 @@
+import { getPostList } from '@/utils/blog/getPostList';
+import BlogPostList from './(components)/BlogPostList';
 
-function BlogMainPage() {
+async function BlogMainPage() {
+  const posts = await getPostList();
+
   return (
     <div>
-      
+      <BlogPostList data={posts} />
     </div>
-  )
+  );
 }
 
-export default BlogMainPage
+export default BlogMainPage;

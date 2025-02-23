@@ -1,5 +1,6 @@
-import BlogHeader from "@/components/Blog/BlogHeader";
-import { Metadata } from "next";
+import BlogHeader from '@/components/Blog/BlogHeader';
+import { getPostTagList } from '@/utils/blog/getPostTagList';
+import { Metadata } from 'next';
 
 export const metadata: Metadata = {
   title: 'GDG on Sogang 공식 블로그',
@@ -10,12 +11,19 @@ export const metadata: Metadata = {
   robots: 'follow, index',
 };
 
-function BlogLayout() {
+async function BlogLayout({
+  children,
+}: Readonly<{
+  children: React.ReactNode;
+}>) {
+  const tags = await getPostTagList();
+
   return (
     <div>
-      <BlogHeader />
+      <BlogHeader tagList={tags} />
+      {children}
     </div>
-  )
+  );
 }
 
-export default BlogLayout
+export default BlogLayout;
