@@ -1,8 +1,9 @@
+import SideWrapper from "./(components)/SideWrapper"
 
 function BlogMainPage() {
   return (
-    <div>
-      
+    <div className="flex">
+      <SideWrapper />
     </div>
   )
 }
