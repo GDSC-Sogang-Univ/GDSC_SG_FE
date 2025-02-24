@@ -44,10 +44,12 @@ const config: Config = {
           DEFAULT: '#111',
         },
         Grey: {
+          900: '#3E4A4F',
           800: '#506067',
           600: '#6F8A94',
           400: '#91AAB4',
           200: '#C1CFD4',
+          100: '#DAE2E5'
         },
         White: {
           DEFAULT: '#FFF',
@@ -60,6 +62,7 @@ const config: Config = {
       48: '3rem',
       32: '2rem',
       24: '1.5rem',
+      20: '1.25rem',
       18: '1.125rem',
       16: '1rem',
       14: '0.875rem',

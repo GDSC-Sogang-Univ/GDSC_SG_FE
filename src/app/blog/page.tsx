@@ -1,11 +1,16 @@
+import { getPostList } from '@/utils/blog/getPostList';
+import BlogPostList from './(components)/BlogPostList';
 import SideWrapper from "./(components)/SideWrapper"
 
-function BlogMainPage() {
+async function BlogMainPage() {
+  const posts = await getPostList();
+
   return (
     <div className="flex">
       <SideWrapper />
+      <BlogPostList data={posts} />
     </div>
-  )
+  );
 }
 
-export default BlogMainPage
+export default BlogMainPage;
