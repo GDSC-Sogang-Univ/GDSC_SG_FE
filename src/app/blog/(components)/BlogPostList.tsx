@@ -19,7 +19,7 @@ const BlogPostList = ({ data }: Props) => {
   const [sortType, setSortType] = useState<'latest' | 'popular'>('latest');
 
   return (
-    <main className='flex flex-col gap-6 pt-9 px-[76px] w-full tablet_h:px-7 mobile:px-5'>
+    <main className='flex flex-col gap-6 w-full'>
       {/* btn control bar */}
       <section className='flex gap-6 items-center tablet_h:justify-end'>
         {/* view */}
@@ -31,7 +31,7 @@ const BlogPostList = ({ data }: Props) => {
         <div className='bg-gdsc-Grey-200 w-[1px] h-5 tablet_h:hidden' />
 
         {/* sort */}
-        <div className='flex gap-3 text-gdsc-Grey-400'>
+        <div className='flex gap-3 text-gdsc-Grey-400 tablet_h:text-14'>
           <button onClick={() => setSortType('latest')} className={sortType === 'latest' ? 'text-gdsc-Grey-700' : ''}>
             최신순
           </button>
