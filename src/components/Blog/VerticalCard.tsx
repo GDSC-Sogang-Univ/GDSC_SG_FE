@@ -1,5 +1,5 @@
-import dayjs from "dayjs";
-import Image from "next/image";
+import dayjs from 'dayjs';
+import Image from 'next/image';
 import heartIcon from '@/assets/icon/blog_card_heart.svg';
 import commentIcon from '@/assets/icon/blog_card_comment.svg';
 
@@ -13,34 +13,36 @@ interface Props {
   thumbnail: string;
 }
 
-const VerticalCard = ({category, title, date, author, hearts, comments, thumbnail}: Props) => {
+/**
+ * 블로그 카드형 목록 post card
+ */
+const VerticalCard = ({ category, title, date, author, hearts, comments, thumbnail }: Props) => {
   return (
-    <div className="w-[403px] h-[350px] rounded-[18px] bg-gdsc-White overflow-hidden border border-gdsc-Grey-100">
-      
+    <div className='rounded-[18px] bg-gdsc-White overflow-hidden border border-gdsc-Grey-100'>
       {/* 정보 영역 */}
-      <div className="py-[18px] pl-6 pr-2 flex flex-col justify-between h-[198px]">
+      <div className='py-[18px] px-6 flex flex-col gap-5 max-h-[198px]'>
         {/* 포스트 타이틀 */}
-        <div className="flex flex-col gap-2 pr-4">
-          <p className="text-12">{category.toLocaleUpperCase()}</p>
-          <h6 className="text-20 font-bold line-clamp-3">{title}</h6>
+        <div className='flex flex-col gap-2'>
+          <p className='text-12'>{category.toLocaleUpperCase()}</p>
+          <h6 className='text-20 font-bold line-clamp-3 min-h-[90px]'>{title}</h6>
         </div>
 
         {/* 포스트 디테일 */}
-        <div className="text-14 flex justify-between items-center">
-          <div className="flex gap-1 items-center text-gdsc-Grey-900">
-            <p>{dayjs(date).format("YYYY.MM.DD")}</p>
-            <div className="bg-gdsc-Grey-200 w-[1px] h-3"/>
-            <p>{author}</p>
+        <div className='text-14 flex justify-between items-center'>
+          <div className='flex gap-1 items-center text-gdsc-Grey-900'>
+            <p>{dayjs(date).format('YYYY.MM.DD')}</p>
+            <div className='bg-gdsc-Grey-200 w-[1px] h-3' />
+            <p className='line-clamp-1'>{author}</p>
           </div>
 
-          <div className="text-gdsc-Grey-800 flex items-center gap-2">
-            <div className="flex gap-[2px] items-center">
-              <Image src={heartIcon} alt="좋아요 아이콘"/>
+          <div className='text-gdsc-Grey-800 flex items-center gap-2'>
+            <div className='flex gap-[2px] items-center'>
+              <Image src={heartIcon} alt='좋아요 아이콘' />
               <p>{hearts}</p>
             </div>
-            <div className="bg-gdsc-Grey-200 w-[1px] h-3"/>
-            <div className="flex gap-[2px] items-center">
-              <Image src={commentIcon} alt="댓글 아이콘"/>
+            <div className='bg-gdsc-Grey-200 w-[1px] h-3' />
+            <div className='flex gap-[2px] items-center'>
+              <Image src={commentIcon} alt='댓글 아이콘' />
               <p>{comments}</p>
             </div>
           </div>
@@ -48,9 +50,9 @@ const VerticalCard = ({category, title, date, author, hearts, comments, thumbnai
       </div>
 
       {/* 이미지 영역 */}
-      <Image src={thumbnail} alt={title} width={403} height={152}/>
+      <Image src={thumbnail} alt={title} width={403} height={152} className='max-h-[152px] h-full object-cover' />
     </div>
-  )
-}
+  );
+};
 
-export default VerticalCard
+export default VerticalCard;
