@@ -4,6 +4,7 @@ import createMDX from '@next/mdx'
 const nextConfig = {
   reactStrictMode: true,
   images: {
+    unoptimized: true,
     remotePatterns: [
       {
         protocol: "https",

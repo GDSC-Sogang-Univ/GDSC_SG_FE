@@ -6,7 +6,7 @@ export const metadata: Metadata = {
   title: 'GDG on Campus Sogang',
   description: 'Google Developer Groups on Sogang University',
   icons: {
-    icon: 'favicon.ico',
+    icon: '/favicon.ico',
   },
   openGraph: {
     url: 'https://gdg-campus-sg.com/',
