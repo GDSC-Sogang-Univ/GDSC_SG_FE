@@ -1,17 +1,20 @@
-import VerticalCard from "@/components/Blog/VerticalCard";
+import VerticalCard from '@/components/Blog/VerticalCard';
 
 interface Props {
   data: any[];
 }
 
-const BlogPostList = ({data}: Props) => {
+/**
+ * post 레이아웃
+ */
+const BlogPostList = ({ data }: Props) => {
   return (
-    <div className="flex flex-col gap-6 pt-9 px-[76px]">
+    <main className='flex flex-col gap-6 pt-9 px-[76px] w-full'>
       <div>위에 버튼들</div>
-      <div className="">
-        {data.map((post) => (
+      <ul className='grid grid-cols-3 gap-10 w-full'>
+        {data.map(post => (
+          <li key={post.slug}>
             <VerticalCard
-              key={post.slug}
               category={post.category}
               title={post.title}
               date={post.date}
@@ -20,10 +23,11 @@ const BlogPostList = ({data}: Props) => {
               comments={14}
               thumbnail={'/og-image.png'}
             />
+          </li>
         ))}
-      </div>
-    </div>
-  )
-}
+      </ul>
+    </main>
+  );
+};
 
-export default BlogPostList
+export default BlogPostList;
