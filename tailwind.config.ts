@@ -46,6 +46,7 @@ const config: Config = {
         Grey: {
           900: '#3E4A4F',
           800: '#506067',
+          700: '#5F747C',
           600: '#6F8A94',
           400: '#91AAB4',
           200: '#C1CFD4',
@@ -70,7 +71,9 @@ const config: Config = {
     },
     extend: {
       screens:{
-        mobile: {max: '480px'}
+        mobile: {max: '480px'},
+        tablet_v: {max: '834px'},
+        tablet_h: {max: '1200px'},
       },
       spacing: {
         content: '90rem',
