@@ -21,14 +21,14 @@ const BlogPostList = ({ data }: Props) => {
   return (
     <main className='flex flex-col gap-6 pt-9 px-[76px] w-full tablet_h:px-7 mobile:px-5'>
       {/* btn control bar */}
-      <section className='flex gap-6 items-center'>
+      <section className='flex gap-6 items-center tablet_h:justify-end'>
         {/* view */}
-        <div className='flex gap-6'>
+        <div className='flex gap-6 tablet_h:hidden'>
           <CardIconBtn onClick={() => setViewType('card')} isSelected={viewType === 'card'} />
           <ListIconBtn onClick={() => setViewType('list')} isSelected={viewType === 'list'} />
         </div>
 
-        <div className='bg-gdsc-Grey-200 w-[1px] h-5' />
+        <div className='bg-gdsc-Grey-200 w-[1px] h-5 tablet_h:hidden' />
 
         {/* sort */}
         <div className='flex gap-3 text-gdsc-Grey-400'>
@@ -46,7 +46,6 @@ const BlogPostList = ({ data }: Props) => {
       </section>
 
       {/* card list */}
-
       <ul
         className={`w-full ${viewType === 'card' && 'grid grid-cols-3 gap-10'} ${viewType === 'list' && 'flex flex-col gap-12 mobile:gap-5'}`}
       >
