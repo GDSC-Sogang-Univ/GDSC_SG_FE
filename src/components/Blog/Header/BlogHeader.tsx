@@ -12,6 +12,8 @@ import LoginButton from '../LoginButton';
 import { useSearchParams } from 'next/navigation';
 import MenuIcon from '@/assets/icon/blog_header_menu.svg';
 import CloseIcon from '@/assets/icon/blog_search_x.svg';
+import MenuIcon from '@/assets/icon/blog_header_menu.svg';
+import CloseIcon from '@/assets/icon/blog_search_x.svg';
 
 interface Props {
   tagList: string[];
@@ -90,7 +92,7 @@ const BlogHeader = ({ tagList }: Props) => {
               />
               {keyword && (
                 <div
-                  onClick={(e) => {
+                  onClick={e => {
                     e.preventDefault();
                     e.stopPropagation();
                     setKeyword('');

@@ -50,7 +50,7 @@ const config: Config = {
           600: '#6F8A94',
           400: '#91AAB4',
           200: '#C1CFD4',
-          100: '#DAE2E5'
+          100: '#DAE2E5',
         },
         White: {
           DEFAULT: '#FFF',
@@ -70,12 +70,12 @@ const config: Config = {
       12: '0.75rem',
     },
     extend: {
-      screens:{
-        mobile: {max: '480px'},
-        tablet: {max: '768px'},
-        cp_mobile: {max: '800px'},
-        tablet_v: {max: '1000px'},
-        tablet_h: {max: '1300px'},
+      screens: {
+        mobile: { max: '480px' },
+        tablet: { max: '768px' },
+        cp_mobile: { max: '800px' },
+        tablet_v: { max: '1000px' },
+        tablet_h: { max: '1300px' },
       },
       spacing: {
         content: '90rem',
