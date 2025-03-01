@@ -23,7 +23,7 @@ async function BlogLayout({
     <div>
       <BlogHeader tagList={tags} />
       {children}
-      <SimpleFooter />
+      {/* <SimpleFooter /> */}
     </div>
   );
 }
