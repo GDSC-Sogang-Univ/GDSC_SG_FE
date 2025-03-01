@@ -10,6 +10,8 @@ import SearchIcon from '../../assets/icon/blog_search.svg';
 import HomepageButton from './HomepageButton';
 import LoginButton from './LoginButton';
 import { useSearchParams } from 'next/navigation';
+import MenuIcon from '@/assets/icon/blog_header_menu.svg';
+import CloseIcon from '@/assets/icon/blog_search_x.svg';
 
 interface Props {
   tagList: string[];
@@ -18,6 +20,8 @@ interface Props {
 const BlogHeader = ({ tagList }: Props) => {
   const [isFocus, setIsFocus] = useState(false);
   const [keyword, setKeyword] = useState('');
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+
   const searchParams = useSearchParams();
   const searchKeyword = searchParams.get('q');
 
@@ -30,22 +34,40 @@ const BlogHeader = ({ tagList }: Props) => {
   return (
     <section className={`${isFocus && 'bg-gdsc-Black/60 w-full h-full fixed top-0 left-0 z-50'}`}>
       <header
-        className={`${isFocus ? '!bg-gdsc-Red-500 !justify-start !items-start' : 'border-b'} flex items-center gap-14 justify-between px-14 py-3.5 bg-white border-gdsc-Grey-200`}
+        className={`${isFocus ? '!bg-gdsc-Red-500 !justify-start !items-start' : 'border-b'} flex items-center gap-14 justify-between px-16 py-4 bg-white border-gdsc-Grey-200 tablet_h:px-7 tablet_h:py-5 tablet_h:flex-col tablet_h:justify-normal tablet_h:gap-6`}
       >
-        {/* 로고 및 제목 */}
-        <div className='flex items-center gap-4 w-[358px] shrink-0'>
-          <Link href='/blog/' className='flex items-center gap-2'>
-            <Image src={isFocus ? WhiteHeaderLogo : HeaderLogo} alt='GDGoC Sogang logo' className='h-5.5' />
-            <span className={`${isFocus ? 'text-gdsc-White' : 'text-gdsc-Grey-800'} text-[21px] font-medium`}>
+        <div className='tablet_h:w-full tablet_h:flex items-center justify-between'>
+          {/* 로고 및 제목 */}
+          <Link href='/blog/' className='flex items-center gap-3 mobile:gap-2'>
+            <Image
+              src={isFocus ? WhiteHeaderLogo : HeaderLogo}
+              alt='GDGoC Sogang logo'
+              className='w-[230px] mobile:w-[164px]'
+            />
+            <span
+              className={`${isFocus ? 'text-gdsc-White' : 'text-gdsc-Grey-800'} whitespace-nowrap text-24 tablet_h:text-16 tablet_h:font-normal`}
+            >
               공식 블로그
             </span>
           </Link>
+
+          {/* 모바일용 네비게이션 닫기 버튼 */}
+          <button onClick={() => setIsMobileMenuOpen(prev => !prev)} className={`hidden tablet_h:!block`}>
+            <Image
+              src={isMobileMenuOpen ? CloseIcon : MenuIcon}
+              alt={isMobileMenuOpen ? '메뉴 열기' : '메뉴 닫기'}
+              className='w-6 h-6'
+            />
+          </button>
         </div>
 
         {/* 검색창 및 네비게이션 */}
-        <div className={`flex items-center gap-14 justify-end ${isFocus && 'w-full !items-start'}`}>
-          {/* 검색창 */}
-          <div className={`flex flex-col gap-6 ${isFocus ? 'w-full' : 'w-[242px]'}`}>
+        <div
+          className={`flex items-center gap-14 justify-end ${isFocus && 'w-full !items-start ml-14'} ${isMobileMenuOpen ? 'tablet_h:!block w-full' : 'tablet_h:hidden'}`}
+        >
+          {/* 검색창 & 태그 리스트 */}
+          <div className={`flex flex-col gap-6 ${isFocus ? 'w-full' : 'w-[242px]'} tablet_h:hidden`}>
+            {/* 검색창 */}
             <form
               onSubmit={e => {
                 e.preventDefault();
@@ -63,7 +85,7 @@ const BlogHeader = ({ tagList }: Props) => {
                 value={keyword}
                 onChange={e => setKeyword(e.target.value)}
                 placeholder={isFocus ? '검색어를 입력해주세요' : '검색하기'}
-                className='focus:outline-none pl-[40px] py-[8px] border border-gdsc-Grey-200 rounded-full w-full'
+                className='focus:outline-none pl-[40px] py-[8px] border border-gdsc-Grey-200 rounded-full w-full h-12'
                 required
               />
               {isFocus && (
@@ -96,7 +118,7 @@ const BlogHeader = ({ tagList }: Props) => {
           </div>
 
           {/* 네비게이션 */}
-          <nav className={`flex items-center gap-4`}>
+          <nav className={`flex items-center gap-4 ${isMobileMenuOpen ? 'flex-col' : 'tablet_h:hidden'}`}>
             <HomepageButton
               hrefLink='/'
               className={
