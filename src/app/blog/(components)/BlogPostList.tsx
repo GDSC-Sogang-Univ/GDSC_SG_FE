@@ -2,11 +2,13 @@
 
 import CardIconBtn from '@/components/Blog/PostList/CardIconBtn';
 import ListIconBtn from '@/components/Blog/PostList/ListIconBtn';
-import VerticalCard from '@/components/Blog/VerticalCard';
+import VerticalCard from '@/components/Blog/PostCard/VerticalCard';
 import { useState } from 'react';
+import HorizonCard from '@/components/Blog/PostCard/HorizonCard';
+import { PostType } from '@/types/blog';
 
 interface Props {
-  data: any[];
+  data: PostType[];
 }
 
 /**
@@ -17,7 +19,7 @@ const BlogPostList = ({ data }: Props) => {
   const [sortType, setSortType] = useState<'latest' | 'popular'>('latest');
 
   return (
-    <main className='flex flex-col gap-6 pt-9 px-[76px] w-full'>
+    <main className='flex flex-col gap-6 pt-9 px-[76px] w-full tablet_h:px-7 mobile:px-5'>
       {/* btn control bar */}
       <section className='flex gap-6 items-center'>
         {/* view */}
@@ -33,17 +35,24 @@ const BlogPostList = ({ data }: Props) => {
           <button onClick={() => setSortType('latest')} className={sortType === 'latest' ? 'text-gdsc-Grey-700' : ''}>
             최신순
           </button>
-          <button onClick={() => setSortType('popular')} className={sortType === 'popular' ? 'text-gdsc-Grey-700' : ''}>
+          <button
+            disabled
+            onClick={() => setSortType('popular')}
+            className={`cursor-not-allowed ${sortType === 'popular' ? 'text-gdsc-Grey-700' : ''}`}
+          >
             인기순
           </button>
         </div>
       </section>
 
       {/* card list */}
-      {viewType === 'card' && (
-        <ul className='grid grid-cols-3 gap-10 w-full'>
-          {data.map(post => (
-            <li key={post.slug}>
+
+      <ul
+        className={`w-full ${viewType === 'card' && 'grid grid-cols-3 gap-10'} ${viewType === 'list' && 'flex flex-col gap-12 mobile:gap-5'}`}
+      >
+        {data.map(post => (
+          <li key={post.slug}>
+            {viewType === 'card' && (
               <VerticalCard
                 category={post.category}
                 title={post.title}
@@ -51,12 +60,29 @@ const BlogPostList = ({ data }: Props) => {
                 author={post.author}
                 hearts={6}
                 comments={14}
-                thumbnail={'/og-image.png'}
+                thumbnail={
+                  'https://encrypted-tbn1.gstatic.com/images?q=tbn:ANd9GcT-nkpZ6mzVDnmyfZkwRMRnrl2sUNxpX23a73sX6ZjEF82YVog7XZfu-k4TqGl3fQLMZRCe_AoWs5HPo__ktt4Ei_I8K-_wwftNhwNxbw'
+                }
               />
-            </li>
-          ))}
-        </ul>
-      )}
+            )}
+
+            {viewType === 'list' && (
+              <HorizonCard
+                category={post.category}
+                title={post.title}
+                date={post.date}
+                author={post.author}
+                hearts={6}
+                comments={14}
+                thumbnail={
+                  'https://encrypted-tbn1.gstatic.com/images?q=tbn:ANd9GcT-nkpZ6mzVDnmyfZkwRMRnrl2sUNxpX23a73sX6ZjEF82YVog7XZfu-k4TqGl3fQLMZRCe_AoWs5HPo__ktt4Ei_I8K-_wwftNhwNxbw'
+                }
+                description={post.description}
+              />
+            )}
+          </li>
+        ))}
+      </ul>
     </main>
   );
 };
