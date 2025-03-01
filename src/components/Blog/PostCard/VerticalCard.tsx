@@ -2,21 +2,12 @@ import dayjs from 'dayjs';
 import Image from 'next/image';
 import heartIcon from '@/assets/icon/blog_card_heart.svg';
 import commentIcon from '@/assets/icon/blog_card_comment.svg';
-
-interface Props {
-  category: string;
-  title: string;
-  date: string;
-  author: string;
-  hearts: number;
-  comments: number;
-  thumbnail: string;
-}
+import { PostCardProps } from '@/types/blog';
 
 /**
  * 블로그 카드형 목록 post card
  */
-const VerticalCard = ({ category, title, date, author, hearts, comments, thumbnail }: Props) => {
+const VerticalCard = ({ category, title, date, author, hearts, comments, thumbnail }: PostCardProps) => {
   return (
     <div className='rounded-[18px] bg-gdsc-White overflow-hidden border border-gdsc-Grey-100'>
       {/* 정보 영역 */}
