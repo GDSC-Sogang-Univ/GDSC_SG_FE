@@ -99,7 +99,11 @@ const BlogHeader = ({ tagList }: Props) => {
           <nav className={`flex items-center gap-4`}>
             <HomepageButton
               hrefLink='/'
-              className={isFocus ? '!text-gdsc-White !bg-opacity-0 hover:!bg-gdsc-White/30 hover:!text-gdsc-White' : ''}
+              className={
+                isFocus
+                  ? '!border !border-gdsc-White !text-gdsc-White !bg-opacity-0 hover:!bg-gdsc-White/30 hover:!text-gdsc-White'
+                  : ''
+              }
             />
             <LoginButton
               hrefLink='/blog'
