@@ -25,7 +25,7 @@ const HorizonCard = ({ category, title, date, author, hearts, comments, thumbnai
         </div>
 
         {/* 포스트 디테일 */}
-        <div className='text-14 flex justify-between items-center'>
+        <div className='text-14 flex justify-between items-center tablet_h:text-12'>
           <div className='flex gap-1 items-center text-gdsc-Grey-900'>
             <p>{dayjs(date).format('YYYY.MM.DD')}</p>
             <div className='bg-gdsc-Grey-200 w-[1px] h-3' />
@@ -34,12 +34,12 @@ const HorizonCard = ({ category, title, date, author, hearts, comments, thumbnai
 
           <div className='text-gdsc-Grey-800 flex items-center gap-2'>
             <div className='flex gap-[2px] items-center'>
-              <Image src={heartIcon} alt='좋아요 아이콘' />
+              <Image src={heartIcon} alt='좋아요 아이콘' className='tablet_h:w-4 tablet_h:h-4' />
               <p>{hearts}</p>
             </div>
             <div className='bg-gdsc-Grey-200 w-[1px] h-3' />
             <div className='flex gap-[2px] items-center'>
-              <Image src={commentIcon} alt='댓글 아이콘' />
+              <Image src={commentIcon} alt='댓글 아이콘' className='tablet_h:w-4 tablet_h:h-4' />
               <p>{comments}</p>
             </div>
           </div>
