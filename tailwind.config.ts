@@ -67,7 +67,8 @@ const config: Config = {
     },
     extend: {
       screens:{
-        mobile: {max: '480px'}
+        mobile: {max: '480px'},
+        tablet: {max: '768px'}
       },
       spacing: {
         content: '90rem',
