@@ -3,6 +3,7 @@ import Link from 'next/link';
 import FooterIcon from '@/assets/icon/landing_gdg_footer.svg';
 import InstagramIcon from '@/assets/icon/Logo_Instagram.svg';
 import ButtonWithHrefLink from '../ButtonWithHrefLink';
+import { JOIN_LINK } from '@/const/landing/link';
 
 const LandingPageFooter = () => {
   return (
@@ -14,7 +15,7 @@ const LandingPageFooter = () => {
             <br />
             IT 제품과 서비스를 만들고자 하는 모든 서강대학교 학생들을 환영합니다.
           </span>
-          <ButtonWithHrefLink hrefLink='https://forms.gle/FBV1BLGTHjgKdH1y9'>Join Now</ButtonWithHrefLink>
+          <ButtonWithHrefLink hrefLink={JOIN_LINK}>Join Now</ButtonWithHrefLink>
         </span>
       </div>
       <div className='w-full border-t-[#767676] h-0.5 border-t' />
