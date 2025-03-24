@@ -5,6 +5,7 @@ import gfdIcon from '@/assets/icon/landing_gfd.svg';
 import gfdStarIcon from '@/assets/icon/landing_gfd_star.svg';
 import studyIcon from '@/assets/icon/landing_study.svg';
 import ButtonWithHrefLink from '../ButtonWithHrefLink';
+import { JOIN_LINK } from '@/const/landing/link';
 interface LogoTitleProps {
   icon: any;
   iconSizeStyle: string;
@@ -137,8 +138,8 @@ export const SCROLL_CONTENT_LIST = [
       </>
     ),
     isDoubleBtn: true,
-    btn1: <ButtonWithHrefLink hrefLink='https://forms.gle/FBV1BLGTHjgKdH1y9'>Join Now</ButtonWithHrefLink>,
-    btn2: <ButtonWithHrefLink hrefLink='https://gdgoncampus-sg.oopy.io/'>Learn More</ButtonWithHrefLink>,
+    btn1: <ButtonWithHrefLink hrefLink={JOIN_LINK}>Join Now</ButtonWithHrefLink>,
+    btn2: <ButtonWithHrefLink hrefLink='https://almond-humor-471.notion.site/'>Learn More</ButtonWithHrefLink>,
   },
   {
     type: 'Study',
