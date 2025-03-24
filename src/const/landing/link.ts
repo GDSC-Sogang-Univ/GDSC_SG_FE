@@ -1,1 +1,0 @@
-export const JOIN_LINK = "https://forms.gle/cb3bkKr3cva38ujc9";

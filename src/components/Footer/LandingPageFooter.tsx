@@ -3,7 +3,7 @@ import Link from 'next/link';
 import FooterIcon from '@/assets/icon/landing_gdg_footer.svg';
 import InstagramIcon from '@/assets/icon/Logo_Instagram.svg';
 import ButtonWithHrefLink from '../ButtonWithHrefLink';
-import { JOIN_LINK } from '@/const/landing/link';
+import { JOIN_LINK } from '@/const/landing/btnLink';
 
 const LandingPageFooter = () => {
   return (
