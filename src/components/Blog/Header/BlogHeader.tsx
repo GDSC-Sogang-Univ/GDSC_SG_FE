@@ -38,11 +38,11 @@ const BlogHeader = ({ tagList }: Props) => {
       >
         <div className='tablet_h:w-full tablet_h:flex items-center justify-between'>
           {/* 로고 및 제목 */}
-          <Link href='/blog/' className='flex items-center gap-3 mobile:gap-2'>
+          <Link href='/blog/' className='flex items-center gap-3 cp_mobile:gap-2'>
             <Image
               src={isFocus ? WhiteHeaderLogo : HeaderLogo}
               alt='GDGoC Sogang logo'
-              className='w-[230px] mobile:w-[164px]'
+              className='w-[230px] cp_mobile:w-[164px]'
             />
             <span
               className={`${isFocus ? 'text-gdsc-White' : 'text-gdsc-Grey-800'} whitespace-nowrap text-24 tablet_h:text-16 tablet_h:font-normal`}
