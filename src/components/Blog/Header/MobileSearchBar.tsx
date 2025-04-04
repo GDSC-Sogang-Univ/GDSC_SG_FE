@@ -21,11 +21,12 @@ const MobileSearchBar = ({ tagList }: Props) => {
   const searchParams = useSearchParams();
   const searchKeyword = searchParams.get('q');
 
-  useEffect(() => {
-    if (searchKeyword) {
-      setKeyword(searchKeyword);
-    } else setKeyword('');
-  }, [searchKeyword]);
+  // useEffect(() => {
+  //   if (searchKeyword) {
+  //     setKeyword(searchKeyword);
+  //   } else setKeyword('');
+  // }, [searchKeyword]);
+
 
   return (
     <div className={`flex-col gap-4 hidden tablet_h:flex mb-5`}>
@@ -47,12 +48,14 @@ const MobileSearchBar = ({ tagList }: Props) => {
           value={keyword}
           onChange={e => setKeyword(e.target.value)}
           placeholder={'검색어를 입력해주세요'}
-          className='focus:outline-none pl-[40px] py-[8px] border border-gdsc-Grey-200 rounded-full w-full h-12'
+          className='focus:outline-none px-[40px] py-[8px] border border-gdsc-Grey-200 rounded-full w-full h-12'
           required
         />
-        {isFocus && (
+        {keyword && (
           <div
-            onClick={() => setIsFocus(false)}
+            onClick={(e) => {
+              setKeyword('');
+            }}
             className='cursor-pointer absolute top-1/2 right-4 transform -translate-y-1/2'
           >
             <Image src={xIcon} alt='Search Icon' className='w-5 h-5' />

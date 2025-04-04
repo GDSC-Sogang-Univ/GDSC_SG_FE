@@ -65,7 +65,7 @@ const BlogPostList = ({ data }: Props) => {
           <Fragment key={post.slug}>
             {/* pc ver. */}
             <li className='tablet_h:hidden'>
-              {viewType === 'card' && (
+              {viewType === 'card' ? (
                 <VerticalCard
                   category={post.category}
                   title={post.title}
@@ -77,9 +77,9 @@ const BlogPostList = ({ data }: Props) => {
                     'https://encrypted-tbn1.gstatic.com/images?q=tbn:ANd9GcT-nkpZ6mzVDnmyfZkwRMRnrl2sUNxpX23a73sX6ZjEF82YVog7XZfu-k4TqGl3fQLMZRCe_AoWs5HPo__ktt4Ei_I8K-_wwftNhwNxbw'
                   }
                 />
-              )}
+              ) : null}
 
-              {viewType === 'list' && (
+              {viewType === 'list' ? (
                 <HorizonCard
                   category={post.category}
                   title={post.title}
@@ -92,7 +92,7 @@ const BlogPostList = ({ data }: Props) => {
                   }
                   description={post.description}
                 />
-              )}
+              ) : null}
             </li>
 
             {/* mobile ver. */}

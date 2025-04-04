@@ -25,11 +25,11 @@ const BlogHeader = ({ tagList }: Props) => {
   const searchParams = useSearchParams();
   const searchKeyword = searchParams.get('q');
 
-  useEffect(() => {
-    if (searchKeyword) {
-      setKeyword(searchKeyword);
-    } else setKeyword('');
-  }, [searchKeyword]);
+  // useEffect(() => {
+  //   if (searchKeyword) {
+  //     setKeyword(searchKeyword);
+  //   } else setKeyword('');
+  // }, [searchKeyword]);
 
   return (
     <section className={`${isFocus && 'bg-gdsc-Black/60 w-full h-full fixed top-0 left-0 z-50'}`}>
@@ -85,12 +85,16 @@ const BlogHeader = ({ tagList }: Props) => {
                 value={keyword}
                 onChange={e => setKeyword(e.target.value)}
                 placeholder={isFocus ? '검색어를 입력해주세요' : '검색하기'}
-                className='focus:outline-none pl-[40px] py-[8px] border border-gdsc-Grey-200 rounded-full w-full h-12'
+                className='focus:outline-none px-[40px] py-[8px] border border-gdsc-Grey-200 rounded-full w-full h-12'
                 required
               />
-              {isFocus && (
+              {keyword && (
                 <div
-                  onClick={() => setIsFocus(false)}
+                  onClick={(e) => {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    setKeyword('');
+                  }}
                   className='cursor-pointer absolute top-1/2 right-4 transform -translate-y-1/2'
                 >
                   <Image src={xIcon} alt='Search Icon' className='w-5 h-5' />
