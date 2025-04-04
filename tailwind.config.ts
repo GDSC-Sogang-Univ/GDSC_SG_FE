@@ -73,8 +73,9 @@ const config: Config = {
       screens:{
         mobile: {max: '480px'},
         tablet: {max: '768px'},
-        tablet_v: {max: '834px'},
-        tablet_h: {max: '1200px'},
+        cp_mobile: {max: '800px'},
+        tablet_v: {max: '1000px'},
+        tablet_h: {max: '1300px'},
       },
       spacing: {
         content: '90rem',

@@ -11,7 +11,7 @@ async function BlogMainPage() {
   return (
     <div className='flex'>
       <SideWrapper />
-      <div className='w-full tablet_v:w-full !max-w-[1440px] py-9 px-[76px] tablet_h:px-7 tablet_h:py-6 mobile:px-5 mobile:py-5'>
+      <div className='w-full tablet_v:w-full !max-w-[1440px] py-9 px-[76px] tablet_h:px-7 tablet_h:py-6 cp_mobile:px-5 cp_mobile:py-5'>
         <MobileSearchBar tagList={tags} />
         <BlogPostList data={posts} />
       </div>

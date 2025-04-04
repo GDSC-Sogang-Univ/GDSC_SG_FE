@@ -6,22 +6,22 @@ import { PostCardProps } from '@/types/blog';
 
 const HorizonCard = ({ category, title, date, author, hearts, comments, thumbnail, description }: PostCardProps) => {
   return (
-    <div className='bg-gdsc-White overflow-hidden flex gap-3 mobile:flex-col mobile:gap-0'>
+    <div className='bg-gdsc-White overflow-hidden flex gap-3 cp_mobile:flex-col cp_mobile:gap-0'>
       {/* 이미지 영역 */}
       <Image
         src={thumbnail}
         alt={title}
         width={426}
         height={222}
-        className='max-h-[222px] max-w-[426px] w-1/3 object-cover rounded-3xl mobile:w-full mobile:max-h-[146px]'
+        className='max-h-[222px] max-w-[426px] w-1/3 object-cover rounded-3xl cp_mobile:max-w-full cp_mobile:w-full cp_mobile:max-h-[146px]'
       />
 
       {/* 정보 영역 */}
-      <div className='py-5 px-6 flex flex-col gap-3 max-h-[222px] w-2/3 mobile:w-full mobile:py-3 mobile:px-3 mobile:gap-1'>
+      <div className='py-5 px-6 flex flex-col gap-3 max-h-[222px] w-2/3 cp_mobile:w-full cp_mobile:py-3 cp_mobile:px-3 cp_mobile:gap-1'>
         {/* 포스트 타이틀 & 소주제 */}
-        <div className='flex flex-col gap-2 h-[147px] mobile:h-[76px]'>
-          <h6 className='text-20 font-bold line-clamp-2 mobile:text-16 mobile:line-clamp-3'>{title}</h6>
-          <p className='text-14 text-gdsc-Grey-900 mobile:hidden'>{description}</p>
+        <div className='flex flex-col gap-2 h-[147px] cp_mobile:h-[76px]'>
+          <h6 className='text-20 font-bold line-clamp-2 cp_mobile:text-16 cp_mobile:line-clamp-3'>{title}</h6>
+          <p className='text-14 text-gdsc-Grey-900 cp_mobile:hidden'>{description}</p>
         </div>
 
         {/* 포스트 디테일 */}
