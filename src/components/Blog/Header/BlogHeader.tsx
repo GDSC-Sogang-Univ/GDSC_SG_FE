@@ -90,7 +90,7 @@ const BlogHeader = ({ tagList }: Props) => {
               />
               {keyword && (
                 <div
-                  onClick={(e) => {
+                  onClick={e => {
                     e.preventDefault();
                     e.stopPropagation();
                     setKeyword('');

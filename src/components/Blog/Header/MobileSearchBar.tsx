@@ -27,7 +27,6 @@ const MobileSearchBar = ({ tagList }: Props) => {
   //   } else setKeyword('');
   // }, [searchKeyword]);
 
-
   return (
     <div className={`flex-col gap-4 hidden tablet_h:flex mb-5`}>
       {/* 검색창 */}
@@ -53,7 +52,7 @@ const MobileSearchBar = ({ tagList }: Props) => {
         />
         {keyword && (
           <div
-            onClick={(e) => {
+            onClick={e => {
               setKeyword('');
             }}
             className='cursor-pointer absolute top-1/2 right-4 transform -translate-y-1/2'

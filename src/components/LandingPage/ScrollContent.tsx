@@ -137,7 +137,7 @@ export const SCROLL_CONTENT_LIST = [
     isDoubleBtn: true,
     btn1: <ButtonWithHrefLink hrefLink={JOIN_LINK}>Join Now</ButtonWithHrefLink>,
     btn2: <ButtonWithHrefLink hrefLink={LEARN_MORE_LINK}>Learn More</ButtonWithHrefLink>,
-    btn3: <RedButtonWithHrefLink hrefLink="/blog/">GDGoC Sogang 공식 블로그</RedButtonWithHrefLink>
+    btn3: <RedButtonWithHrefLink hrefLink='/blog/'>GDGoC Sogang 공식 블로그</RedButtonWithHrefLink>,
   },
   {
     type: 'Seminar',
@@ -169,7 +169,7 @@ export const SCROLL_CONTENT_LIST = [
     btnClickLink: CONTENT_BTN_LINK.saint_study,
     hoverColor: 'hover:bg-[#3F74E0]',
   },
-  
+
   {
     type: 'Hackaton',
     title: (
