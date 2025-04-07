@@ -1,10 +1,10 @@
-name: Deploy to Elastic Beanstalk
+name: Deploy to Stage CloudFront
 
 on:
-  # main 브랜치에 PR이 머지될 때 트리거
+  # stage 브랜치에 PR이 머지될 때 트리거
   push:
     branches:
-      - alpha
+      - stage
 
   # 수동으로 워크플로를 트리거할 때
   workflow_dispatch:
@@ -12,30 +12,98 @@ on:
 env:
   AWS_REGION: ap-northeast-2
   AWS_ROLE: ${{ secrets.AWS_ROLE }}
-  REGISTRY: ${{ secrets.AWS_REGISTRY }}
-  REPOSITORY: "next-production-image"
-  EB_ENVIRONMENT_NAME: "GDG-NextJs-Environment"
-  EB_APPLICATION_NAME: "GDG-WebApp"
-  NEXT_PUBLIC_GA_ID: ${{ secrets.NEXT_PUBLIC_GA_ID }}
+  S3_BUCKET_NAME: "gdg-web-static-stage"
+  S3_POST_BUCKET_NAME: "postuploadstack-postuploadbucket7b742dca-7ubgt0k1invx"
+  CLOUDFRONT_DISTRIBUTION_ID: ${{ secrets.CLOUDFRONT_STAGE_DISTRIBUTION_ID }}
+  SITE_URL: "{{ secrets.SITE_URL }}"
+
 
 jobs:
-  deploy:
+  prepare:
     runs-on: ubuntu-latest
+    outputs:
+      version_name: ${{ steps.get_sha.outputs.SHA }}
 
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 1
+
+      - name: Get short SHA
+        id: get_sha
+        run: echo "SHA=$(git rev-parse --short HEAD)" >> "$GITHUB_OUTPUT"
+
+  build:
+    needs: [prepare]
+    runs-on: ubuntu-latest
     permissions:
-      contents: 'read'
       id-token: 'write'
 
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
 
-      - name: Prepare Deployment
-        id: prepare
-        run: echo "version=$(git rev-parse --short HEAD)" >> "$GITHUB_OUTPUT"
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+          cache: 'yarn'
+          cache-dependency-path: '**/yarn.lock'
+          
+      - name: Get yarn cache directory path
+        id: yarn-cache-dir-path
+        run: | 
+          dir=$(yarn config get cacheFolder || echo "${HOME}/.yarn/cache")
+          echo "dir=$dir" >> $GITHUB_OUTPUT
+        
+      - uses: actions/cache@v4
+        id: yarn-cache # use this to check for `cache-hit` (`steps.yarn-cache.outputs.cache-hit != 'true'`)
+        with:
+          path: ${{ steps.yarn-cache-dir-path.outputs.dir }}
+          key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-yarn-
+            ${{ runner.os }}-
+      
+      - name: Configure AWS Credentials
+        id: aws-creds
+        uses: aws-actions/configure-aws-credentials@v4
+        with:
+          aws-region: ${{ env.AWS_REGION }}
+          role-to-assume: ${{ env.AWS_ROLE }}
+          role-session-name: gharolesession
+          output-credentials: true
 
-      - name: Set up Docker Buildx
-        uses: docker/setup-buildx-action@v3
+    #   기존 nextra 블로그를 사용할 때 사용, 이후 file기반 mdx 블로그 사용시 사용
+    #   - name: Download blog content from S3
+    #     run: |
+    #       aws s3 sync s3://${{ env.S3_POST_BUCKET_NAME }} ./app/blog
+    
+      - name: Install Dependencies
+        run: yarn install
+
+      - name: Run Build
+        run: yarn build
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: build-stage-${{ needs.prepare.outputs.version_name }}
+          path: out/
+
+  deploy:
+    runs-on: ubuntu-latest
+    needs: [prepare, build]
+
+    permissions:
+      contents: 'read'
+      id-token: 'write'
+
+    steps:
+      - uses: actions/download-artifact@v4
+        with:
+          name: build-stage-${{ needs.prepare.outputs.version_name }}
+          path: out/
 
       - name: Configure AWS Credentials
         id: aws-creds
@@ -46,70 +114,9 @@ jobs:
           role-session-name: gharolesession
           output-credentials: true
 
-      - name: Log in to Amazon ECR
-        id: ecr-login
-        uses: aws-actions/amazon-ecr-login@v2
+      - name: Upload to S3
+        run: aws s3 sync ./out s3://${{ env.S3_BUCKET_NAME }}
 
-      - name: Extract metadata (tags, labels) for Docker
-        id: meta
-        uses: docker/metadata-action@v5
-        with:
-          images: ${{ env.REGISTRY }}/${{ env.REPOSITORY }}
-          tags: |
-            ${{ steps.prepare.outputs.version }}
-            latest
-
-      - name: Build and push
-        uses: docker/build-push-action@v6
-        with:
-          context: .
-          file: Dockerfile
-          push: true
-          platforms: |
-            linux/arm64
-          tags: ${{ steps.meta.outputs.tags }}
-          labels: ${{ steps.meta.outputs.labels }}
-          cache-from: type=registry,ref=${{ env.REGISTRY }}/${{ env.REPOSITORY }}:cache
-          cache-to: type=registry,mode=max,image-manifest=true,oci-mediatypes=true,ref=${{ env.REGISTRY }}/${{ env.REPOSITORY }}:cache
-          build-args: |
-            NEXT_PUBLIC_GA_ID=${{ env.NEXT_PUBLIC_GA_ID }}
-
-      - name: Generate Dockerrun.aws.json file
+      - name: Invalidate Cloudfront
         run: |
-          echo '{
-            "AWSEBDockerrunVersion": "1",
-            "Image": {
-              "Name": "${{ env.REGISTRY }}/${{ env.REPOSITORY }}:${{ steps.prepare.outputs.version }}",
-              "Update": "true"
-            },
-            "OptionSettings": [
-              {
-                "Namespace": "elasticbeanstalk:application",
-                "OptionName": "Application Healthcheck URL",
-                "Value": "/"
-              }
-            ],
-            "Ports": [
-              {
-                "ContainerPort": "3000"
-              }
-            ]
-          }' > Dockerrun.aws.json
-
-      - name: Generate deploy file
-        run: zip deploy.zip Dockerrun.aws.json
-
-      - name: Beanstalk Deploy
-        uses: einaregilsson/beanstalk-deploy@v20
-        with:
-          aws_access_key: ${{ steps.aws-creds.outputs.aws-access-key-id }}
-          aws_secret_key: ${{ steps.aws-creds.outputs.aws-secret-access-key }}
-          aws_session_token : ${{ steps.aws-creds.outputs.aws-session-token }}
-          application_name: ${{ env.EB_APPLICATION_NAME }}
-          environment_name: ${{ env.EB_ENVIRONMENT_NAME }}
-          version_label: ${{ steps.prepare.outputs.version }}-${{ github.run_attempt }}
-          use_existing_version_if_available: true
-          wait_for_deployment: false
-          region: ${{ env.AWS_REGION }}
-          deployment_package: deploy.zip
-  
+          aws cloudfront create-invalidation --distribution-id ${{ env.CLOUDFRONT_DISTRIBUTION_ID }} --paths '/*'

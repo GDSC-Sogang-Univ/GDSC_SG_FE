@@ -5,8 +5,8 @@ import gfdIcon from '@/assets/icon/landing_gfd.svg';
 import gfdStarIcon from '@/assets/icon/landing_gfd_star.svg';
 import studyIcon from '@/assets/icon/landing_study.svg';
 import ButtonWithHrefLink from '../ButtonWithHrefLink';
+import { CONTENT_BTN_LINK, JOIN_LINK, LEARN_MORE_LINK } from '@/const/landing/btnLink';
 import RedButtonWithHrefLink from './RedButtonWithHrefLink';
-
 interface LogoTitleProps {
   icon: any;
   iconSizeStyle: string;
@@ -97,14 +97,10 @@ const GFDBody = () => {
 };
 
 // 세미나 내용
-const SEMINAR_TYPE = [
+const REGULAR_STUDY_TYPE = [
   {
-    title: '파트별 세미나 (TBD)',
-    detail: '월마다 각자의 인사이트를 공유하는 자리입니다.',
-  },
-  {
-    title: 'Career Seminar',
-    detail: '파트별 현직자를 모셔서 커리어에 대해 공유하는 자리입니다.',
+    title: 'Core Member와 함께하는 스터디에 참여해보세요',
+    detail: '실력있는 운영진들과 함께 다양한 IT 분야를 학습할 수 있습니다.',
   },
 ];
 
@@ -139,9 +135,24 @@ export const SCROLL_CONTENT_LIST = [
       </>
     ),
     isDoubleBtn: true,
-    btn1: <ButtonWithHrefLink hrefLink='https://forms.gle/FBV1BLGTHjgKdH1y9'>Join Now</ButtonWithHrefLink>,
-    btn2: <ButtonWithHrefLink hrefLink='https://gdgoncampus-sg.oopy.io/'>Learn More</ButtonWithHrefLink>,
-    btn3: <RedButtonWithHrefLink hrefLink="/blog/">GDGoC Sogang 공식 블로그</RedButtonWithHrefLink>,
+    btn1: <ButtonWithHrefLink hrefLink={JOIN_LINK}>Join Now</ButtonWithHrefLink>,
+    btn2: <ButtonWithHrefLink hrefLink={LEARN_MORE_LINK}>Learn More</ButtonWithHrefLink>,
+    btn3: <RedButtonWithHrefLink hrefLink='/blog/'>GDGoC Sogang 공식 블로그</RedButtonWithHrefLink>,
+  },
+  {
+    type: 'Seminar',
+    title: (
+      <LogoTitle
+        title='Regular Study'
+        icon={seminarIcon}
+        iconSizeStyle='w-[68px] h-[82px] mobile:w-[30px] mobile:h-9'
+        titleCustomStyle='-bottom-8 left-7 mobile:-bottom-[14px] mobile:left-[13px]'
+      />
+    ),
+    body: <TitleDetailBody data={REGULAR_STUDY_TYPE} />,
+    btnText: 'Regular Study',
+    btnClickLink: CONTENT_BTN_LINK.regular_study,
+    hoverColor: 'hover:bg-[#EA4435]',
   },
   {
     type: 'Study',
@@ -155,24 +166,10 @@ export const SCROLL_CONTENT_LIST = [
     ),
     body: <TitleDetailBody data={STUDY_BODY} />,
     btnText: 'Saint Study',
-    btnClickLink: 'https://gdgoncampus-sg.oopy.io/saintstu',
+    btnClickLink: CONTENT_BTN_LINK.saint_study,
     hoverColor: 'hover:bg-[#3F74E0]',
   },
-  {
-    type: 'Seminar',
-    title: (
-      <LogoTitle
-        title='Seminar'
-        icon={seminarIcon}
-        iconSizeStyle='w-[68px] h-[82px] mobile:w-[30px] mobile:h-9'
-        titleCustomStyle='-bottom-8 left-8 mobile:-bottom-[14px] mobile:left-[13px]'
-      />
-    ),
-    body: <TitleDetailBody data={SEMINAR_TYPE} />,
-    btnText: 'Seminar',
-    btnClickLink: 'https://gdgoncampus-sg.oopy.io/seminar',
-    hoverColor: 'hover:bg-[#EA4435]',
-  },
+
   {
     type: 'Hackaton',
     title: (
@@ -185,7 +182,7 @@ export const SCROLL_CONTENT_LIST = [
     ),
     body: <HackatonBody />,
     btnText: 'Hackaton',
-    btnClickLink: 'https://gdgoncampus-sg.oopy.io/9244d2cd-ef8f-408c-b54a-a7faef2e6140',
+    btnClickLink: CONTENT_BTN_LINK.hackaton,
     hoverColor: 'hover:bg-[#F9AB00]',
   },
   {

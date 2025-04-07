@@ -1,4 +1,4 @@
-import BlogHeader from '@/components/Blog/BlogHeader';
+import BlogHeader from '@/components/Blog/Header/BlogHeader';
 import SimpleFooter from '@/components/Footer/SimpleFooter';
 import { getPostTagList } from '@/utils/blog/getPostTagList';
 import { Metadata } from 'next';
@@ -23,7 +23,7 @@ async function BlogLayout({
     <div>
       <BlogHeader tagList={tags} />
       {children}
-      <SimpleFooter />
+      {/* <SimpleFooter /> */}
     </div>
   );
 }
