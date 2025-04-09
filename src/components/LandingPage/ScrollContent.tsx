@@ -169,7 +169,6 @@ export const SCROLL_CONTENT_LIST = [
     btnClickLink: CONTENT_BTN_LINK.saint_study,
     hoverColor: 'hover:bg-[#3F74E0]',
   },
-
   {
     type: 'Hackaton',
     title: (

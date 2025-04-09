@@ -16,6 +16,12 @@ export const getPostPaths = (category?: string) => {
 // 모든 포스트 목록 조회
 export const getPostList = async (category?: string): Promise<PostType[]> => {
   const paths: string[] = getPostPaths(category);
-  const posts = await Promise.all(paths.map((postPath) => parsePost(postPath)));
+  const posts = await Promise.all(paths.map(postPath => parsePost(postPath)));
   return posts;
+};
+
+export const getPostDetail = async (category: string, slug: string): Promise<PostType | undefined> => {
+  const postPath = path.join(POSTS_PATH, category, `${slug}/page.mdx`);
+  const post = await parsePost(postPath);
+  return post;
 };
