@@ -32,8 +32,8 @@ const BlogHeader = ({ tagList }: Props) => {
   // }, [searchKeyword]);
 
   return (
-    <section className={`${isFocus && 'bg-gdsc-Black/60 w-full h-full fixed top-0 left-0 z-50'}`}>
-      <header
+    <header className={`${isFocus ? 'bg-gdsc-Black/60 w-full h-full fixed top-0 left-0 z-50' : ''}`}>
+      <div
         className={`${isFocus ? '!bg-gdsc-Red-500 !justify-start !items-start' : 'border-b'} flex items-center gap-14 justify-between px-16 py-4 bg-white border-gdsc-Grey-200 tablet_h:px-7 tablet_h:py-5 tablet_h:flex-col tablet_h:justify-normal tablet_h:gap-6`}
       >
         <div className='tablet_h:w-full tablet_h:flex items-center justify-between'>
@@ -137,8 +137,8 @@ const BlogHeader = ({ tagList }: Props) => {
             />
           </nav>
         </div>
-      </header>
-    </section>
+      </div>
+    </header>
   );
 };
 

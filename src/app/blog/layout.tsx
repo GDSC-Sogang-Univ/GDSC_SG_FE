@@ -1,13 +1,14 @@
+import BlogFooter from '@/components/Blog/Footer';
 import BlogHeader from '@/components/Blog/Header/BlogHeader';
-import SimpleFooter from '@/components/Footer/SimpleFooter';
 import { getPostTagList } from '@/utils/blog/getPostTagList';
 import { Metadata } from 'next';
 
 export const metadata: Metadata = {
   title: 'GDG on Sogang 공식 블로그',
   openGraph: {
+    title: 'GDG on Sogang 공식 블로그',
     siteName: 'GDG on Sogang 공식 블로그',
-    // images: ['/assets/og-image.png'],
+    images: ['/og-image.png'],
   },
   robots: 'follow, index',
 };
@@ -20,11 +21,11 @@ async function BlogLayout({
   const tags = await getPostTagList();
 
   return (
-    <div>
+    <>
       <BlogHeader tagList={tags} />
-      {children}
-      {/* <SimpleFooter /> */}
-    </div>
+      <main className='min-h-dvh'>{children}</main>
+      <BlogFooter />
+    </>
   );
 }
 

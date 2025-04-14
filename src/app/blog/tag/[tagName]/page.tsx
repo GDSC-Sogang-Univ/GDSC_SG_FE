@@ -6,7 +6,8 @@ import MobileSearchBar from '@/components/Blog/Header/MobileSearchBar';
 export async function generateMetadata(props: any) {
   const params = await props.params;
   return {
-    title: `#${decodeURIComponent(params.tagName)} - GDG on Sogang 공식 블로그`,
+    title: `#${decodeURIComponent(params.tagName)} | GDG on Sogang 공식 블로그`,
+    description: `#${decodeURIComponent(params.tagName)}에 대한 태그 검색 결과입니다.`,
   };
 }
 
