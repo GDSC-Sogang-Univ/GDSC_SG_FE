@@ -4,11 +4,11 @@ export default function DetailPageHeader({ post }: { post: PostType }) {
   return (
     <div className='flex flex-col gap-3'>
       <p className='text-[24px] text-gdsc-Red-500'>{post.category}</p>
-      <p className='text-[48px] font-bold text-gdsc-Black mobile:text-[32px]'>{post.title}</p>
+      <p className='text-[48px] font-bold text-gdsc-Black cp_mobile:text-[32px]'>{post.title}</p>
       <div className='flex gap-3'>
         {post.tags.map(tag => (
           <div
-            className='px-6 py-2 rounded-full flex items-center justify-center text-gdsc-Red-300 border border-gdsc-Red-300 mobile:text-[12px] mobile:px-[14px] mobile:py-[6px]'
+            className='px-6 py-2 rounded-full flex items-center justify-center text-gdsc-Red-300 border border-gdsc-Red-300 cp_mobile:text-[12px] cp_mobile:px-[14px] cp_mobile:py-[6px]'
             key={tag}
           >
             {tag}
