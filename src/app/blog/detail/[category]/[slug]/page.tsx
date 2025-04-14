@@ -2,6 +2,11 @@ import { getPostDetail, getPostList } from '@/utils/blog/getPostList';
 import PostBody from './(components)/PostBody';
 import VerticalCard from '@/components/Blog/PostCard/VerticalCard';
 import HorizonCard from '@/components/Blog/PostCard/HorizonCard';
+import { Metadata, ResolvingMetadata } from 'next';
+
+type Props = {
+  params: Promise<{ category: string; slug: string }>;
+};
 
 export async function generateStaticParams() {
   const allPost = await getPostList();
@@ -10,6 +15,17 @@ export async function generateStaticParams() {
     category: post.category,
     slug: post.slug,
   }));
+}
+
+export async function generateMetadata({ params }: Props, parent: ResolvingMetadata): Promise<Metadata> {
+  // read route params
+  const { category, slug } = await params;
+  const postInfo = await getPostDetail(category, slug);
+
+  return {
+    title: `${postInfo?.title} | GDGoC Sogang 공식 블로그`,
+    description: postInfo?.description,
+  };
 }
 
 const PostDetailPage = async ({ params }: { params: { category: string; slug: string } }) => {

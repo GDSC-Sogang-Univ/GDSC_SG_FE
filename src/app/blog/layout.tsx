@@ -6,8 +6,9 @@ import { Metadata } from 'next';
 export const metadata: Metadata = {
   title: 'GDG on Sogang 공식 블로그',
   openGraph: {
+    title: 'GDG on Sogang 공식 블로그',
     siteName: 'GDG on Sogang 공식 블로그',
-    // images: ['/assets/og-image.png'],
+    images: ['/og-image.png'],
   },
   robots: 'follow, index',
 };
