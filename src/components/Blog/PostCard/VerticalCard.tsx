@@ -15,11 +15,11 @@ const VerticalCard = ({ href, category, title, date, author, hearts, comments, t
     <Link href={href}>
       <div className='rounded-[18px] bg-gdsc-White overflow-hidden border border-gdsc-Grey-100 '>
         {/* 정보 영역 */}
-        <div className='py-[18px] px-6 flex flex-col gap-5 max-h-[198px]'>
+        <div className='py-[18px] px-6 flex flex-col gap-5'>
           {/* 포스트 타이틀 */}
           <div className='flex flex-col gap-2'>
             <p className='text-12'>{category.toLocaleUpperCase()}</p>
-            <h6 className='text-20 font-bold line-clamp-3 min-h-[90px]'>{title}</h6>
+            <h6 className='text-20 font-bold overflow-hidden line-clamp-3 min-h-[80px] text-ellipsis'>{title}</h6>
           </div>
 
           {/* 포스트 디테일 */}

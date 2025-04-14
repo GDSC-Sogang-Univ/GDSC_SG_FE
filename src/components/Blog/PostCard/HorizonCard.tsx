@@ -34,7 +34,7 @@ const HorizonCard = ({
         {/* 정보 영역 */}
         <div className='py-5 px-6 flex flex-col gap-3 max-h-[222px] w-2/3 tablet_h:w-1/2 cp_mobile:!w-full cp_mobile:py-3 cp_mobile:px-3 cp_mobile:gap-1'>
           {/* 포스트 타이틀 & 소주제 */}
-          <div className='flex flex-col gap-2 h-[147px] cp_mobile:h-[76px]'>
+          <div className='flex flex-col gap-2 h-[147px] cp_mobile:h-[80px]'>
             <h6 className='text-20 font-bold line-clamp-2 cp_mobile:text-16 cp_mobile:line-clamp-3'>{title}</h6>
             <p className='text-14 text-gdsc-Grey-900 cp_mobile:hidden'>{description}</p>
           </div>
