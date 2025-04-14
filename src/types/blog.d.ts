@@ -18,5 +18,6 @@ export interface PostCardProps {
   hearts: number;
   comments: number;
   thumbnail: string;
+  href: string;
   description?: string;
 }

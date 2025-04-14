@@ -22,17 +22,17 @@ const BlogPostList = ({ data }: Props) => {
   const router = useRouter();
 
   return (
-    <main className='flex flex-col gap-6 w-full'>
+    <div className='flex flex-col gap-6 w-full'>
       {/* btn control bar */}
       <section className='flex gap-6 items-center tablet_h:justify-end'>
         {/* view */}
         <div className='flex gap-6 tablet_h:hidden'>
           <CardIconBtn
-            onClick={() => router.push(`/blog?view=card&sort=${sortType}`)}
+            onClick={() => router.push(`${window.location.pathname}?view=card&sort=${sortType}`)}
             isSelected={viewType === 'card'}
           />
           <ListIconBtn
-            onClick={() => router.push(`/blog?view=list&sort=${sortType}`)}
+            onClick={() => router.push(`${window.location.pathname}?view=list&sort=${sortType}`)}
             isSelected={viewType === 'list'}
           />
         </div>
@@ -67,12 +67,13 @@ const BlogPostList = ({ data }: Props) => {
             <li className='tablet_h:hidden'>
               {viewType === 'card' ? (
                 <VerticalCard
+                  href={`/blog/detail/${post.category}/${post.slug}`}
                   category={post.category}
                   title={post.title}
                   date={post.date}
                   author={post.author}
-                  hearts={6}
-                  comments={14}
+                  hearts={0}
+                  comments={0}
                   thumbnail={
                     'https://encrypted-tbn1.gstatic.com/images?q=tbn:ANd9GcT-nkpZ6mzVDnmyfZkwRMRnrl2sUNxpX23a73sX6ZjEF82YVog7XZfu-k4TqGl3fQLMZRCe_AoWs5HPo__ktt4Ei_I8K-_wwftNhwNxbw'
                   }
@@ -81,12 +82,13 @@ const BlogPostList = ({ data }: Props) => {
 
               {viewType === 'list' ? (
                 <HorizonCard
+                  href={`/blog/detail/${post.category}/${post.slug}`}
                   category={post.category}
                   title={post.title}
                   date={post.date}
                   author={post.author}
-                  hearts={6}
-                  comments={14}
+                  hearts={0}
+                  comments={0}
                   thumbnail={
                     'https://encrypted-tbn1.gstatic.com/images?q=tbn:ANd9GcT-nkpZ6mzVDnmyfZkwRMRnrl2sUNxpX23a73sX6ZjEF82YVog7XZfu-k4TqGl3fQLMZRCe_AoWs5HPo__ktt4Ei_I8K-_wwftNhwNxbw'
                   }
@@ -98,6 +100,7 @@ const BlogPostList = ({ data }: Props) => {
             {/* mobile ver. */}
             <li className='hidden tablet_h:block'>
               <HorizonCard
+                href={`/blog/detail/${post.category}/${post.slug}`}
                 category={post.category}
                 title={post.title}
                 date={post.date}
@@ -113,7 +116,7 @@ const BlogPostList = ({ data }: Props) => {
           </Fragment>
         ))}
       </ul>
-    </main>
+    </div>
   );
 };
 
