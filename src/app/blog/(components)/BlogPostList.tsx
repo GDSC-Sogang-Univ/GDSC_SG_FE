@@ -22,7 +22,7 @@ const BlogPostList = ({ data }: Props) => {
   const router = useRouter();
 
   return (
-    <main className='flex flex-col gap-6 w-full'>
+    <div className='flex flex-col gap-6 w-full'>
       {/* btn control bar */}
       <section className='flex gap-6 items-center tablet_h:justify-end'>
         {/* view */}
@@ -113,7 +113,7 @@ const BlogPostList = ({ data }: Props) => {
           </Fragment>
         ))}
       </ul>
-    </main>
+    </div>
   );
 };
 

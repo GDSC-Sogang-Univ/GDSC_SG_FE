@@ -20,11 +20,11 @@ async function BlogLayout({
   const tags = await getPostTagList();
 
   return (
-    <div>
+    <>
       <BlogHeader tagList={tags} />
-      <main>{children}</main>
+      <main className='min-h-dvh'>{children}</main>
       <BlogFooter />
-    </div>
+    </>
   );
 }
 
