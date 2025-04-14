@@ -143,62 +143,64 @@ const PostDetailPage = async ({ params }: { params: { category: string; slug: st
         <DetailPageComment />
         <DetailPageCommentList comments={DUMMYCOMMENT} />
 
-      <section className='flex flex-col gap-6 cp_mobile:gap-4'>
-        <p className='text-gdsc-Grey-900 text-24'>추천 게시물</p>
-        {/* pc ver. */}
-        <div className='grid grid-cols-2 gap-8 w-full cp_mobile:hidden'>
-          <VerticalCard
-            thumbnail={
-              'https://encrypted-tbn1.gstatic.com/images?q=tbn:ANd9GcT-nkpZ6mzVDnmyfZkwRMRnrl2sUNxpX23a73sX6ZjEF82YVog7XZfu-k4TqGl3fQLMZRCe_AoWs5HPo__ktt4Ei_I8K-_wwftNhwNxbw'
-            }
-            title={allPost[randomInt1].title}
-            author={allPost[randomInt1].author}
-            category={allPost[randomInt1].category}
-            comments={0}
-            date={allPost[randomInt1].date}
-            hearts={0}
-            href={`/blog/detail/${allPost[randomInt1].category}/${allPost[randomInt1].slug}`}
-          />
-          <VerticalCard
-            thumbnail={
-              'https://encrypted-tbn1.gstatic.com/images?q=tbn:ANd9GcT-nkpZ6mzVDnmyfZkwRMRnrl2sUNxpX23a73sX6ZjEF82YVog7XZfu-k4TqGl3fQLMZRCe_AoWs5HPo__ktt4Ei_I8K-_wwftNhwNxbw'
-            }
-            title={allPost[randomInt2].title}
-            author={allPost[randomInt2].author}
-            category={allPost[randomInt2].category}
-            comments={0}
-            date={allPost[randomInt2].date}
-            hearts={0}
-            href={`/blog/detail/${allPost[randomInt2].category}/${allPost[randomInt2].slug}`}
-          />
-        </div>
+        <section className='flex flex-col gap-6 cp_mobile:gap-4'>
+          <p className='text-gdsc-Grey-900 text-24'>추천 게시물</p>
+          {/* pc ver. */}
+          <div className='grid grid-cols-2 gap-8 w-full cp_mobile:hidden'>
+            <VerticalCard
+              thumbnail={
+                'https://encrypted-tbn1.gstatic.com/images?q=tbn:ANd9GcT-nkpZ6mzVDnmyfZkwRMRnrl2sUNxpX23a73sX6ZjEF82YVog7XZfu-k4TqGl3fQLMZRCe_AoWs5HPo__ktt4Ei_I8K-_wwftNhwNxbw'
+              }
+              title={allPost[randomInt1].title}
+              author={allPost[randomInt1].author}
+              category={allPost[randomInt1].category}
+              comments={0}
+              date={allPost[randomInt1].date}
+              hearts={0}
+              href={`/blog/detail/${allPost[randomInt1].category}/${allPost[randomInt1].slug}`}
+            />
+            <VerticalCard
+              thumbnail={
+                'https://encrypted-tbn1.gstatic.com/images?q=tbn:ANd9GcT-nkpZ6mzVDnmyfZkwRMRnrl2sUNxpX23a73sX6ZjEF82YVog7XZfu-k4TqGl3fQLMZRCe_AoWs5HPo__ktt4Ei_I8K-_wwftNhwNxbw'
+              }
+              title={allPost[randomInt2].title}
+              author={allPost[randomInt2].author}
+              category={allPost[randomInt2].category}
+              comments={0}
+              date={allPost[randomInt2].date}
+              hearts={0}
+              href={`/blog/detail/${allPost[randomInt2].category}/${allPost[randomInt2].slug}`}
+            />
+          </div>
 
-        {/* mobile ver. */}
-        <div className='hidden cp_mobile:flex flex-col gap-4'>
-          <HorizonCard
-            thumbnail={
-              'https://encrypted-tbn1.gstatic.com/images?q=tbn:ANd9GcT-nkpZ6mzVDnmyfZkwRMRnrl2sUNxpX23a73sX6ZjEF82YVog7XZfu-k4TqGl3fQLMZRCe_AoWs5HPo__ktt4Ei_I8K-_wwftNhwNxbw'
-            }
-            title={allPost[randomInt1].title}
-            author={allPost[randomInt1].author}
-            category={allPost[randomInt1].category}
-            comments={0}
-            date={allPost[randomInt1].date}
-            hearts={0}
-            href={`/blog/detail/${allPost[randomInt1].category}/${allPost[randomInt1].slug}`}
-          />
-          <HorizonCard
-            thumbnail={
-              'https://encrypted-tbn1.gstatic.com/images?q=tbn:ANd9GcT-nkpZ6mzVDnmyfZkwRMRnrl2sUNxpX23a73sX6ZjEF82YVog7XZfu-k4TqGl3fQLMZRCe_AoWs5HPo__ktt4Ei_I8K-_wwftNhwNxbw'
-            }
-            title={allPost[randomInt2].title}
-            author={allPost[randomInt2].author}
-            category={allPost[randomInt2].category}
-            comments={0}
-            date={allPost[randomInt2].date}
-            hearts={0}
-            href={`/blog/detail/${allPost[randomInt2].category}/${allPost[randomInt2].slug}`}
-          />
+          {/* mobile ver. */}
+          <div className='hidden cp_mobile:flex flex-col gap-4'>
+            <HorizonCard
+              thumbnail={
+                'https://encrypted-tbn1.gstatic.com/images?q=tbn:ANd9GcT-nkpZ6mzVDnmyfZkwRMRnrl2sUNxpX23a73sX6ZjEF82YVog7XZfu-k4TqGl3fQLMZRCe_AoWs5HPo__ktt4Ei_I8K-_wwftNhwNxbw'
+              }
+              title={allPost[randomInt1].title}
+              author={allPost[randomInt1].author}
+              category={allPost[randomInt1].category}
+              comments={0}
+              date={allPost[randomInt1].date}
+              hearts={0}
+              href={`/blog/detail/${allPost[randomInt1].category}/${allPost[randomInt1].slug}`}
+            />
+            <HorizonCard
+              thumbnail={
+                'https://encrypted-tbn1.gstatic.com/images?q=tbn:ANd9GcT-nkpZ6mzVDnmyfZkwRMRnrl2sUNxpX23a73sX6ZjEF82YVog7XZfu-k4TqGl3fQLMZRCe_AoWs5HPo__ktt4Ei_I8K-_wwftNhwNxbw'
+              }
+              title={allPost[randomInt2].title}
+              author={allPost[randomInt2].author}
+              category={allPost[randomInt2].category}
+              comments={0}
+              date={allPost[randomInt2].date}
+              hearts={0}
+              href={`/blog/detail/${allPost[randomInt2].category}/${allPost[randomInt2].slug}`}
+            />
+          </div>
+        </section>
       </section>
     </div>
   );
