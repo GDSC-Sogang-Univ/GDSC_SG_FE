@@ -13,7 +13,7 @@ import Link from 'next/link';
 const VerticalCard = ({ href, category, title, date, author, hearts, comments, thumbnail }: PostCardProps) => {
   return (
     <Link href={href}>
-      <div className='rounded-[18px] bg-gdsc-White overflow-hidden border border-gdsc-Grey-100'>
+      <div className='rounded-[18px] bg-gdsc-White overflow-hidden border border-gdsc-Grey-100 '>
         {/* 정보 영역 */}
         <div className='py-[18px] px-6 flex flex-col gap-5 max-h-[198px]'>
           {/* 포스트 타이틀 */}
@@ -45,7 +45,13 @@ const VerticalCard = ({ href, category, title, date, author, hearts, comments, t
         </div>
 
         {/* 이미지 영역 */}
-        <Image src={thumbnail} alt={title} width={403} height={152} className='max-h-[152px] h-full object-cover' />
+        <Image
+          src={thumbnail}
+          alt={title}
+          width={403}
+          height={152}
+          className='max-h-[152px] w-full h-full object-cover'
+        />
       </div>
     </Link>
   );
