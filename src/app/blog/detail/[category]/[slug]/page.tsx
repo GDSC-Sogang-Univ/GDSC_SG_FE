@@ -107,7 +107,7 @@ const PostDetailPage = async ({ params }: { params: { category: string; slug: st
   }
   return (
     <div className='flex w-full justify-center'>
-      <section className='w-[1000px] flex p-[56px] flex-col gap-[64px]'>
+      <section className='w-[1000px] flex p-[56px] flex-col gap-[64px] mobile:p-5'>
         <DetailPageHeader post={post} />
         <DetailPageContents post={post} />
         <DetailPageComment />
