@@ -67,6 +67,7 @@ const BlogPostList = ({ data }: Props) => {
             <li className='tablet_h:hidden'>
               {viewType === 'card' ? (
                 <VerticalCard
+                  href={`/blog/detail/${post.category}/${post.slug}`}
                   category={post.category}
                   title={post.title}
                   date={post.date}
@@ -81,6 +82,7 @@ const BlogPostList = ({ data }: Props) => {
 
               {viewType === 'list' ? (
                 <HorizonCard
+                  href={`/blog/detail/${post.category}/${post.slug}`}
                   category={post.category}
                   title={post.title}
                   date={post.date}
@@ -98,6 +100,7 @@ const BlogPostList = ({ data }: Props) => {
             {/* mobile ver. */}
             <li className='hidden tablet_h:block'>
               <HorizonCard
+                href={`/blog/detail/${post.category}/${post.slug}`}
                 category={post.category}
                 title={post.title}
                 date={post.date}

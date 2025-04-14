@@ -5,10 +5,10 @@ import InstagramIcon from '@/assets/icon/Logo_Instagram.svg';
 
 const SimpleFooter = () => {
   return (
-    <div className='max-w-[1306px] mx-auto px-8 flex justify-between pt-12 pb-14 mobile:mt-4 mobile:mb-7 mobile:flex-col mobile:gap-3'>
+    <div className='max-w-[1306px] mx-auto px-8 flex justify-between pt-12 pb-14 mobile:pt-4 mobile:pb-7 mobile:flex-col mobile:gap-3'>
       <Image src={FooterIcon} alt='GDSC Sogang Footer Icon' className='max-w-[446px] w-1/3 mobile:w-[220px]' />
       <span className='flex items-center gap-10 mobile:justify-between tablet:gap-2'>
-        <span className='flex flex-col gap-2 text-P3_KR text-gdsc-Black tablet:text-14 mobile:text-[10px]'>
+        <span className='flex flex-col gap-2 text-P3_KR text-gdsc-Black tablet:text-14 mobile:!text-[10px]'>
           <span className='flex items-center gap-2 mobile:gap-1'>
             <span className='w-[78px] tablet:w-[64px] mobile:w-[49px]'>Instagram</span>
             <span className='h-3 w-[1px] bg-gdsc-Black' />
