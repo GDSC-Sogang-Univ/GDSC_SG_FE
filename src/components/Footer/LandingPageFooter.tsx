@@ -7,20 +7,19 @@ import { JOIN_LINK } from '@/const/landing/btnLink';
 
 const LandingPageFooter = () => {
   return (
-    <div className='bg-[#f9f9f9]'>
-      
-      <div className='max-w-[1306px] mx-auto flex flex-col gap-11 mt-32 px-8 mb-20 mobile:my-5 mobile:px-4 mobile:gap-3'>
-          <span className='text-H4_KR text-gdsc-Black mobile:text-H_KR tablet:text-H5_KR mobile:text-14'>
-            GDG on Campus Sogang은 개발자부터 기획자, 디자이너까지
-            <br />
-            IT 제품과 서비스를 만들고자 하는 모든 서강대학교 학생들을 환영합니다.
-          </span>
-          <ButtonWithHrefLink hrefLink={JOIN_LINK}>Join Now</ButtonWithHrefLink>
+    <footer className='bg-[#f9f9f9]'>
+      <div className='max-w-[1306px] mx-auto flex flex-col gap-11 pt-32 px-8 pb-20 mobile:my-5 mobile:px-4 mobile:gap-3'>
+        <span className='text-H4_KR text-gdsc-Black mobile:text-H_KR tablet:text-H5_KR mobile:text-14'>
+          GDG on Campus Sogang은 개발자부터 기획자, 디자이너까지
+          <br />
+          IT 제품과 서비스를 만들고자 하는 모든 서강대학교 학생들을 환영합니다.
+        </span>
+        <ButtonWithHrefLink hrefLink={JOIN_LINK}>Join Now</ButtonWithHrefLink>
       </div>
 
       <div className='w-full border-t-[#767676] h-0.5 border-t' />
-      
-      <div className='max-w-[1306px] mx-auto px-8 flex justify-between mt-12 mb-14 mobile:mt-4 mobile:mb-7 mobile:flex-col mobile:gap-3'>
+
+      <div className='max-w-[1306px] mx-auto px-8 flex justify-between pt-12 pb-14 mobile:mt-4 mobile:mb-7 mobile:flex-col mobile:gap-3'>
         <Image src={FooterIcon} alt='GDSC Sogang Footer Icon' className='max-w-[446px] w-1/3 mobile:w-[220px]' />
         <span className='flex items-center gap-10 mobile:justify-between tablet:gap-2'>
           <span className='flex flex-col gap-2 text-P3_KR text-gdsc-Black tablet:text-14 mobile:text-[10px]'>
@@ -43,7 +42,7 @@ const LandingPageFooter = () => {
           </div>
         </span>
       </div>
-    </div>
+    </footer>
   );
 };
 
