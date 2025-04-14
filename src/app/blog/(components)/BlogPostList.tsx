@@ -28,11 +28,11 @@ const BlogPostList = ({ data }: Props) => {
         {/* view */}
         <div className='flex gap-6 tablet_h:hidden'>
           <CardIconBtn
-            onClick={() => router.push(`/blog?view=card&sort=${sortType}`)}
+            onClick={() => router.push(`${window.location.pathname}?view=card&sort=${sortType}`)}
             isSelected={viewType === 'card'}
           />
           <ListIconBtn
-            onClick={() => router.push(`/blog?view=list&sort=${sortType}`)}
+            onClick={() => router.push(`${window.location.pathname}?view=list&sort=${sortType}`)}
             isSelected={viewType === 'list'}
           />
         </div>
