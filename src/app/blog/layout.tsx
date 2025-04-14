@@ -1,6 +1,5 @@
+import BlogFooter from '@/components/Blog/Footer';
 import BlogHeader from '@/components/Blog/Header/BlogHeader';
-import LandingPageFooter from '@/components/Footer/LandingPageFooter';
-import SimpleFooter from '@/components/Footer/SimpleFooter';
 import { getPostTagList } from '@/utils/blog/getPostTagList';
 import { Metadata } from 'next';
 
@@ -24,7 +23,7 @@ async function BlogLayout({
     <div>
       <BlogHeader tagList={tags} />
       <main>{children}</main>
-      <LandingPageFooter />
+      <BlogFooter />
     </div>
   );
 }
