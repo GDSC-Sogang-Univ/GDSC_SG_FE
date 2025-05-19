@@ -9,7 +9,6 @@ import WhiteHeaderLogo from '@/assets/icon/blog_gdgsogang_logo_white.svg';
 import SearchIcon from '@/assets/icon/blog_search.svg';
 import HomepageButton from '../HomepageButton';
 import LoginButton from '../LoginButton';
-import { useSearchParams } from 'next/navigation';
 import MenuIcon from '@/assets/icon/blog_header_menu.svg';
 import CloseIcon from '@/assets/icon/blog_search_x.svg';
 
@@ -21,15 +20,6 @@ const BlogHeader = ({ tagList }: Props) => {
   const [isFocus, setIsFocus] = useState(false);
   const [keyword, setKeyword] = useState('');
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-
-  const searchParams = useSearchParams();
-  const searchKeyword = searchParams.get('q');
-
-  // useEffect(() => {
-  //   if (searchKeyword) {
-  //     setKeyword(searchKeyword);
-  //   } else setKeyword('');
-  // }, [searchKeyword]);
 
   return (
     <header className={`${isFocus ? 'bg-gdsc-Black/60 w-full h-full fixed top-0 left-0 z-50' : ''}`}>

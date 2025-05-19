@@ -3,9 +3,8 @@
 import xIcon from '@/assets/icon/blog_search_x.svg';
 import Image from 'next/image';
 import Link from 'next/link';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import SearchIcon from '@/assets/icon/blog_search.svg';
-import { useSearchParams } from 'next/navigation';
 
 interface Props {
   tagList: string[];
@@ -17,15 +16,6 @@ interface Props {
 const MobileSearchBar = ({ tagList }: Props) => {
   const [isFocus, setIsFocus] = useState(false);
   const [keyword, setKeyword] = useState('');
-
-  const searchParams = useSearchParams();
-  const searchKeyword = searchParams.get('q');
-
-  // useEffect(() => {
-  //   if (searchKeyword) {
-  //     setKeyword(searchKeyword);
-  //   } else setKeyword('');
-  // }, [searchKeyword]);
 
   return (
     <div className={`flex-col gap-4 hidden tablet_h:flex mb-5`}>
