@@ -74,9 +74,7 @@ const BlogPostList = ({ data }: Props) => {
                   author={post.author}
                   hearts={0}
                   comments={0}
-                  thumbnail={
-                    'https://encrypted-tbn1.gstatic.com/images?q=tbn:ANd9GcT-nkpZ6mzVDnmyfZkwRMRnrl2sUNxpX23a73sX6ZjEF82YVog7XZfu-k4TqGl3fQLMZRCe_AoWs5HPo__ktt4Ei_I8K-_wwftNhwNxbw'
-                  }
+                  thumbnail={post.thumbnail || '/og-image.png'}
                 />
               ) : null}
 
@@ -89,9 +87,7 @@ const BlogPostList = ({ data }: Props) => {
                   author={post.author}
                   hearts={0}
                   comments={0}
-                  thumbnail={
-                    'https://encrypted-tbn1.gstatic.com/images?q=tbn:ANd9GcT-nkpZ6mzVDnmyfZkwRMRnrl2sUNxpX23a73sX6ZjEF82YVog7XZfu-k4TqGl3fQLMZRCe_AoWs5HPo__ktt4Ei_I8K-_wwftNhwNxbw'
-                  }
+                  thumbnail={post.thumbnail || '/og-image.png'}
                   description={post.description}
                 />
               ) : null}
@@ -107,9 +103,7 @@ const BlogPostList = ({ data }: Props) => {
                 author={post.author}
                 hearts={6}
                 comments={14}
-                thumbnail={
-                  'https://encrypted-tbn1.gstatic.com/images?q=tbn:ANd9GcT-nkpZ6mzVDnmyfZkwRMRnrl2sUNxpX23a73sX6ZjEF82YVog7XZfu-k4TqGl3fQLMZRCe_AoWs5HPo__ktt4Ei_I8K-_wwftNhwNxbw'
-                }
+                thumbnail={post.thumbnail || '/og-image.png'}
                 description={post.description}
               />
             </li>
