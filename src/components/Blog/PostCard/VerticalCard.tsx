@@ -19,39 +19,44 @@ const VerticalCard = ({ href, category, title, date, author, hearts, comments, t
           {/* 포스트 타이틀 */}
           <div className='flex flex-col gap-2'>
             <p className='text-12'>{category.toLocaleUpperCase()}</p>
-            <h6 className='text-20 font-bold overflow-hidden line-clamp-3 min-h-[80px] text-ellipsis'>{title}</h6>
+            <h6 className='text-20 font-bold overflow-hidden line-clamp-3 text-ellipsis break-all min-h-[90px]'>
+              {title}
+            </h6>
           </div>
 
           {/* 포스트 디테일 */}
           <div className='text-14 flex justify-between items-center'>
             <div className='flex gap-1 items-center text-gdsc-Grey-900'>
-              <p>{dayjs(date).format('YYYY.MM.DD')}</p>
+              <p className='text-14'>{dayjs(date).format('YYYY.MM.DD')}</p>
               <div className='bg-gdsc-Grey-200 w-[1px] h-3' />
-              <p className='line-clamp-1'>{author}</p>
+              <p className='line-clamp-1 text-14'>{author}</p>
             </div>
 
             <div className='text-gdsc-Grey-800 flex items-center gap-2'>
               <div className='flex gap-[2px] items-center'>
                 <Image src={heartIcon} alt='좋아요 아이콘' />
-                <p>{hearts}</p>
+                <p className='text-14'>{hearts}</p>
               </div>
               <div className='bg-gdsc-Grey-200 w-[1px] h-3' />
               <div className='flex gap-[2px] items-center'>
                 <Image src={commentIcon} alt='댓글 아이콘' />
-                <p>{comments}</p>
+                <p className='text-14'>{comments}</p>
               </div>
             </div>
           </div>
         </div>
 
         {/* 이미지 영역 */}
-        <Image
-          src={thumbnail}
-          alt={title}
-          width={403}
-          height={152}
-          className='max-h-[152px] w-full h-full object-cover'
-        />
+        <div className='relative h-[152px]'>
+          <Image
+            src={thumbnail}
+            alt={title}
+            fill
+            className='w-full h-full'
+            priority
+            style={{ objectFit: 'cover', objectPosition: 'center' }}
+          />
+        </div>
       </div>
     </Link>
   );

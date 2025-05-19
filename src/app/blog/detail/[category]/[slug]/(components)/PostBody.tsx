@@ -28,6 +28,17 @@ const PostBody = ({ content }: { content: string }) => {
     }
   }, [mdxSource]);
 
+  useEffect(() => {
+    const link = document.createElement('link');
+    link.rel = 'stylesheet';
+    link.href = '/style/mdxBody.css'; // public 폴더 기준 경로
+    document.head.appendChild(link);
+
+    return () => {
+      document.head.removeChild(link);
+    };
+  }, []);
+
   if (!mdxSource || !MDXRemoteComponent) return <div>Loading...</div>;
 
   return (

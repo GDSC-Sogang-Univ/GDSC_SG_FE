@@ -76,6 +76,7 @@ const config: Config = {
         cp_mobile: { max: '800px' },
         tablet_v: { max: '1000px' },
         tablet_h: { max: '1300px' },
+        cp_card_h: { max: '1440px' },
       },
       spacing: {
         content: '90rem',
