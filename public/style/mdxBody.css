@@ -53,3 +53,7 @@ pre {
   margin: 16px 0;
   white-space: pre-wrap; /* 줄바꿈 가능 */
 }
+
+.hljs {
+  border-radius: 12px;
+}

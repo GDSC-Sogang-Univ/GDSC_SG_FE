@@ -19,7 +19,7 @@ const VerticalCard = ({ href, category, title, date, author, hearts, comments, t
           {/* 포스트 타이틀 */}
           <div className='flex flex-col gap-2'>
             <p className='text-12'>{category.toLocaleUpperCase()}</p>
-            <h6 className='text-20 font-bold overflow-hidden line-clamp-3 text-ellipsis break-all min-h-[90px]'>
+            <h6 className='text-20 leading-[30px] font-bold overflow-hidden line-clamp-3 text-ellipsis break-all h-[90px]'>
               {title}
             </h6>
           </div>
@@ -32,7 +32,7 @@ const VerticalCard = ({ href, category, title, date, author, hearts, comments, t
               <p className='line-clamp-1 text-14'>{author}</p>
             </div>
 
-            <div className='text-gdsc-Grey-800 flex items-center gap-2'>
+            <div className='text-gdsc-Grey-800 flex items-center gap-2 flex-shrink-0'>
               <div className='flex gap-[2px] items-center'>
                 <Image src={heartIcon} alt='좋아요 아이콘' />
                 <p className='text-14'>{hearts}</p>

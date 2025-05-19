@@ -7,18 +7,20 @@ import Image from 'next/image';
 
 export default function DetailPageComment() {
   const [comment, setComment] = useState('');
-  const DUMMYHEARTCNT = 10;
-  const DUMMYCOMMENTCNT = 3;
+  const DUMMYHEARTCNT = 0;
+  const DUMMYCOMMENTCNT = 0;
   return (
     <>
-      <div className='flex gap-[40px] items-center text-gdsc-Grey-600'>
-        <div className='flex gap-3'>
-          <Image src={heartIcon} alt='좋아요 아이콘' className='tablet_h:w-4 tablet_h:h-4' />
+      <div className='flex gap-[40px] items-center text-gdsc-Grey-600 cp_mobile:gap-7'>
+        <div className='flex gap-3 items-center'>
+          <button className='p-3 border border-gdsc-Grey-600 rounded-full w-12 h-12'>
+            <Image src={heartIcon} alt='좋아요 아이콘' />
+          </button>
           <div className='text-[18px]'>{DUMMYHEARTCNT}</div>
         </div>
         <div className='text-gdsc-Gray-200'>|</div>
-        <div className='flex gap-3'>
-          <Image src={commentIcon} alt='댓글 아이콘' className='tablet_h:w-4 tablet_h:h-4' />
+        <div className='flex gap-3 items-center'>
+          <Image src={commentIcon} alt='댓글 아이콘' />
           <div className='text-[18px]'>{DUMMYCOMMENTCNT}</div>
         </div>
       </div>

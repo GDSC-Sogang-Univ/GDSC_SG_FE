@@ -1,4 +1,5 @@
 import { PostType } from '@/types/blog';
+import Link from 'next/link';
 
 export default function DetailPageHeader({ post }: { post: PostType }) {
   return (
@@ -7,12 +8,13 @@ export default function DetailPageHeader({ post }: { post: PostType }) {
       <p className='text-[48px] font-bold text-gdsc-Black cp_mobile:text-[32px]'>{post.title}</p>
       <div className='flex gap-3'>
         {post.tags.map(tag => (
-          <div
-            className='px-6 py-2 rounded-full flex items-center justify-center text-gdsc-Red-300 border border-gdsc-Red-300 cp_mobile:text-[12px] cp_mobile:px-[14px] cp_mobile:py-[6px]'
+          <Link
+            href={`/blog/tag/${tag}`}
+            className='cursor-pointer px-6 py-2 rounded-full flex items-center justify-center text-gdsc-Red-300 border border-gdsc-Red-300 cp_mobile:text-[12px] cp_mobile:px-[14px] cp_mobile:py-[6px]'
             key={tag}
           >
             {tag}
-          </div>
+          </Link>
         ))}
       </div>
       <div className='mt-[36px] flex gap-6 text-gdsc-Grey-900'>

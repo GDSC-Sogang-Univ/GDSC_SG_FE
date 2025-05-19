@@ -59,7 +59,7 @@ const BlogPostList = ({ data }: Props) => {
 
       {/* card list */}
       <ul
-        className={`w-full ${viewType === 'card' && 'grid grid-cols-3 gap-10 cp_card_h:grid-cols-2'} ${viewType === 'list' && 'flex flex-col gap-12 cp_mobile:gap-5'} tablet_h:flex tablet_h:flex-col tablet_h:gap-10`}
+        className={`w-full ${viewType === 'card' && 'grid grid-cols-3 gap-10'} ${viewType === 'list' && 'flex flex-col gap-12 cp_mobile:gap-5'} tablet_h:flex tablet_h:flex-col tablet_h:gap-10`}
       >
         {data.map(post => (
           <Fragment key={post.slug}>
