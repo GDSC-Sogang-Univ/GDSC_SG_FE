@@ -1,0 +1,11 @@
+import EventBanner from '@/components/EventBanner';
+
+const SideWrapper = () => {
+  return (
+    <aside className='tablet_v:hidden w-1/4 max-w-[480px] border-r border-gdsc-Grey-100'>
+      <EventBanner />
+    </aside>
+  );
+};
+
+export default SideWrapper;
