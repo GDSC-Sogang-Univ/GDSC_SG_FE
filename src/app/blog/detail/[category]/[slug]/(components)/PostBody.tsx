@@ -3,7 +3,6 @@
 import { MDXRemoteSerializeResult } from 'next-mdx-remote';
 import Script from 'next/script';
 import { useEffect, useState } from 'react';
-import 'highlight.js/styles/vs2015.css';
 
 const PostBody = ({ content }: { content: string }) => {
   const [mdxSource, setMdxSource] = useState<MDXRemoteSerializeResult | null>(null);
@@ -23,6 +22,12 @@ const PostBody = ({ content }: { content: string }) => {
     fetchData();
   }, [content]);
 
+  useEffect(() => {
+    if (window.hljs) {
+      window.hljs.highlightAll();
+    }
+  }, [mdxSource]);
+
   if (!mdxSource || !MDXRemoteComponent) return <div>Loading...</div>;
 
   return (
@@ -36,7 +41,6 @@ const PostBody = ({ content }: { content: string }) => {
           }
         }}
       ></Script>
-
       <div>
         <MDXRemoteComponent {...mdxSource} />
       </div>

@@ -2,6 +2,7 @@ import BlogFooter from '@/components/Blog/Footer';
 import BlogHeader from '@/components/Blog/Header/BlogHeader';
 import { getPostTagList } from '@/utils/blog/getPostTagList';
 import { Metadata } from 'next';
+import 'highlight.js/styles/vs2015.css';
 
 export const metadata: Metadata = {
   title: 'GDG on Sogang 공식 블로그',

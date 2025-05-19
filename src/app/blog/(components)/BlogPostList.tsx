@@ -101,8 +101,8 @@ const BlogPostList = ({ data }: Props) => {
                 title={post.title}
                 date={post.date}
                 author={post.author}
-                hearts={6}
-                comments={14}
+                hearts={0}
+                comments={0}
                 thumbnail={post.thumbnail || '/og-image.png'}
                 description={post.description}
               />

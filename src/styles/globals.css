@@ -77,3 +77,8 @@ h5 {
 h6 {
   font-size: 1rem;
 }
+
+pre {
+  margin: 16px 0;
+  white-space: pre-wrap; /* 줄바꿈 가능 */
+}
