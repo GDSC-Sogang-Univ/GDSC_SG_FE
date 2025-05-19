@@ -13,7 +13,7 @@ export default function DetailPageComment() {
     <>
       <div className='flex gap-[40px] items-center text-gdsc-Grey-600 cp_mobile:gap-7'>
         <div className='flex gap-3 items-center'>
-          <button className='p-3 border border-gdsc-Grey-600 rounded-full w-12 h-12'>
+          <button disabled className='p-3 border border-gdsc-Grey-600 rounded-full w-12 h-12 cursor-not-allowed'>
             <Image src={heartIcon} alt='좋아요 아이콘' />
           </button>
           <div className='text-[18px]'>{DUMMYHEARTCNT}</div>
@@ -35,7 +35,10 @@ export default function DetailPageComment() {
           <div>
             <div className='text-gdsc-Grey-600'>{comment.length}/500</div>
           </div>
-          <button className='bg-gdsc-Black text-gdsc-White px-[20px] py-[10px] rounded-[32px] text-[18px] leading-relaxed'>
+          <button
+            disabled
+            className='cursor-not-allowed bg-gdsc-Grey-200 text-gdsc-White px-[20px] py-[10px] rounded-[32px] text-[18px] leading-relaxed'
+          >
             댓글 작성
           </button>
         </div>

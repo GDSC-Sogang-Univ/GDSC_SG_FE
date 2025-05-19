@@ -141,7 +141,7 @@ const PostDetailPage = async ({ params }: { params: { category: string; slug: st
         <DetailPageHeader post={post} />
         <DetailPageContents post={post} />
         <DetailPageComment />
-        <DetailPageCommentList comments={DUMMYCOMMENT} />
+        {/* <DetailPageCommentList comments={DUMMYCOMMENT} /> */}
 
         <section className='flex flex-col gap-6 cp_mobile:gap-4'>
           <p className='text-gdsc-Grey-900 text-24'>추천 게시물</p>
