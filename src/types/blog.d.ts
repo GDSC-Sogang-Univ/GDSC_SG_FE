@@ -7,6 +7,7 @@ export interface PostType {
   description: string;
   tags: string[];
   author: string;
+  thumbnail: string;
   content: string;
 }
 

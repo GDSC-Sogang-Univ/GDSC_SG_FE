@@ -4,7 +4,7 @@ import dayjs from 'dayjs';
 import matter from 'gray-matter';
 import { PostType } from '@/types/blog';
 
-const BASE_PATH = '/src/posts';
+const BASE_PATH = '/posts';
 const POSTS_PATH = path.join(process.cwd(), BASE_PATH);
 
 // MDX 파일 파싱 : abstract / detail 구분
@@ -26,7 +26,9 @@ export const parsePostAbstract = (postPath: string) => {
   // /blog/category1/title1
   const url = `/blog/${category}/${slug}`;
 
-  return { url, category, slug };
+  const thumbnail = `${BASE_PATH}/${category}/${slug}/thumbnail.png`;
+
+  return { url, category, slug, thumbnail };
 };
 
 // MDX Detail
