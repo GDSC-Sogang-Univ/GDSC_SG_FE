@@ -7,14 +7,16 @@ export default function DetailPageContents({ post }: { post: PostType }) {
     <section className='flex flex-col gap-6'>
       <div className='w-8 h-1 bg-gdsc-Grey-700'></div>
       <div className='w-full rounded-xl'>
-        <Image
-          src={post.thumbnail}
-          alt={post.title}
-          width={1200}
-          height={600}
-          className='w-full h-auto rounded-xl'
-          priority
-        />
+        {post.thumbnail && (
+          <Image
+            src={post.thumbnail || '/og-image.png'}
+            alt={post.title}
+            width={1200}
+            height={600}
+            className='w-full h-auto rounded-xl'
+            priority
+          />
+        )}
       </div>
       <PostBody content={post.content} />
     </section>
