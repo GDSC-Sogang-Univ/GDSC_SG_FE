@@ -2265,6 +2265,7 @@ __metadata:
     eslint-config-prettier: "npm:^10.0.1"
     glob: "npm:^11.0.1"
     gray-matter: "npm:^4.0.3"
+    highlight.js: "npm:^11.11.1"
     next: "npm:14.2.7"
     next-mdx-remote: "npm:^5.0.0"
     postcss: "npm:^8"
@@ -2637,6 +2638,13 @@ __metadata:
   dependencies:
     "@types/hast": "npm:^3.0.0"
   checksum: 10c0/b898bc9fe27884b272580d15260b6bbdabe239973a147e97fa98c45fa0ffec967a481aaa42291ec34fb56530dc2d484d473d7e2bae79f39c83f3762307edfea8
+  languageName: node
+  linkType: hard
+
+"highlight.js@npm:^11.11.1":
+  version: 11.11.1
+  resolution: "highlight.js@npm:11.11.1"
+  checksum: 10c0/40f53ac19dac079891fcefd5bd8a21cf2e8931fd47da5bd1dca73b7e4375c1defed0636fc39120c639b9c44119b7d110f7f0c15aa899557a5a1c8910f3c0144c
   languageName: node
   linkType: hard
 
