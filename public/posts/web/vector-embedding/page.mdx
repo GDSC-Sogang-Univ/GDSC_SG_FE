@@ -6,14 +6,13 @@ tags: ['테스트']
 author: 이진용
 ---
 
-
 `코드`
 
 ~~취소~~
 
 <u>언더라인</u>
 
-*기울어짐*
+_기울어짐_
 
 **볼드**
 
@@ -68,7 +67,7 @@ def embed_texts(texts):
 
     with torch.no_grad():
         outputs = model(input_ids, attention_mask=attention_mask)
-    
+
     embeddings = outputs.last_hidden_state.mean(dim=1)  # 문장의 평균 임베딩
     return embeddings.cpu().numpy()  # GPU에서 CPU로 데이터 이동
 
@@ -76,9 +75,9 @@ def embed_texts(texts):
 abstract_embeddings = embed_texts(abstracts)
 ```
 
-1. 문장 tokenize 
+1. 문장 tokenize
 
-2. 단어 vector화 
+2. 단어 vector화
 
 ### 검색
 
@@ -109,4 +108,4 @@ Enhanced surveillance systems using AI-based object tracking.
 Deep reinforcement learning for autonomous drone navigation.
 ```
 
-![](./Pasted_image_20241211153241.png)
+![](/posts/web/vector-embedding/Pasted_image_20241211153241.png)

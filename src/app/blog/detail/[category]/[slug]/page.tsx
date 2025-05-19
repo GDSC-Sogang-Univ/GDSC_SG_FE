@@ -148,9 +148,7 @@ const PostDetailPage = async ({ params }: { params: { category: string; slug: st
           {/* pc ver. */}
           <div className='grid grid-cols-2 gap-8 w-full cp_mobile:hidden'>
             <VerticalCard
-              thumbnail={
-                'https://encrypted-tbn1.gstatic.com/images?q=tbn:ANd9GcT-nkpZ6mzVDnmyfZkwRMRnrl2sUNxpX23a73sX6ZjEF82YVog7XZfu-k4TqGl3fQLMZRCe_AoWs5HPo__ktt4Ei_I8K-_wwftNhwNxbw'
-              }
+              thumbnail={allPost[randomInt1].thumbnail || '/og-image.png'}
               title={allPost[randomInt1].title}
               author={allPost[randomInt1].author}
               category={allPost[randomInt1].category}
@@ -160,9 +158,7 @@ const PostDetailPage = async ({ params }: { params: { category: string; slug: st
               href={`/blog/detail/${allPost[randomInt1].category}/${allPost[randomInt1].slug}`}
             />
             <VerticalCard
-              thumbnail={
-                'https://encrypted-tbn1.gstatic.com/images?q=tbn:ANd9GcT-nkpZ6mzVDnmyfZkwRMRnrl2sUNxpX23a73sX6ZjEF82YVog7XZfu-k4TqGl3fQLMZRCe_AoWs5HPo__ktt4Ei_I8K-_wwftNhwNxbw'
-              }
+              thumbnail={allPost[randomInt2].thumbnail || '/og-image.png'}
               title={allPost[randomInt2].title}
               author={allPost[randomInt2].author}
               category={allPost[randomInt2].category}
@@ -176,9 +172,7 @@ const PostDetailPage = async ({ params }: { params: { category: string; slug: st
           {/* mobile ver. */}
           <div className='hidden cp_mobile:flex flex-col gap-4'>
             <HorizonCard
-              thumbnail={
-                'https://encrypted-tbn1.gstatic.com/images?q=tbn:ANd9GcT-nkpZ6mzVDnmyfZkwRMRnrl2sUNxpX23a73sX6ZjEF82YVog7XZfu-k4TqGl3fQLMZRCe_AoWs5HPo__ktt4Ei_I8K-_wwftNhwNxbw'
-              }
+              thumbnail={allPost[randomInt1].thumbnail || '/og-image.png'}
               title={allPost[randomInt1].title}
               author={allPost[randomInt1].author}
               category={allPost[randomInt1].category}
@@ -188,9 +182,7 @@ const PostDetailPage = async ({ params }: { params: { category: string; slug: st
               href={`/blog/detail/${allPost[randomInt1].category}/${allPost[randomInt1].slug}`}
             />
             <HorizonCard
-              thumbnail={
-                'https://encrypted-tbn1.gstatic.com/images?q=tbn:ANd9GcT-nkpZ6mzVDnmyfZkwRMRnrl2sUNxpX23a73sX6ZjEF82YVog7XZfu-k4TqGl3fQLMZRCe_AoWs5HPo__ktt4Ei_I8K-_wwftNhwNxbw'
-              }
+              thumbnail={allPost[randomInt2].thumbnail || '/og-image.png'}
               title={allPost[randomInt2].title}
               author={allPost[randomInt2].author}
               category={allPost[randomInt2].category}
