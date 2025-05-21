@@ -51,7 +51,10 @@ h6 {
 
 pre {
   margin: 16px 0;
-  white-space: pre-wrap; /* 줄바꿈 가능 */
+  white-space: pre-wrap;
+  word-break: break-word;
+  overflow-wrap: break-word;
+  max-width: 100%;
 }
 
 .hljs {

@@ -93,7 +93,7 @@ const BlogHeader = ({ tagList }: Props) => {
             </form>
             {isFocus && (
               <div className='flex flex-wrap gap-5'>
-                {tagList.map(tag => (
+                {tagList.slice(0, 10).map(tag => (
                   <Link
                     key={tag}
                     onClick={() => {
