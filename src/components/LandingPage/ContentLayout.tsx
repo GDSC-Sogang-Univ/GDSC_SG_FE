@@ -75,9 +75,11 @@ const ContentLayout = (props: Props) => {
             </span>
             <div className={`${isVisible && 'animate-content-in-slow'} mobile:text-P4_KR`}>{children}</div>
           </span>
-          <div className={`flex gap-5 ${isVisible && 'animate-content-in-more-slow'}`}>
-            {props.btn1}
-            {props.btn2}
+          <div className={`flex gap-5 cp_mobile:flex-col ${isVisible && 'animate-content-in-more-slow'}`}>
+            <div className='flex gap-5'>
+              {props.btn1}
+              {props.btn2}
+            </div>
             {props.btn3}
           </div>
         </section>
@@ -98,11 +100,12 @@ const ContentLayout = (props: Props) => {
         )}
         <div className={`px-11 mobile:px-4 ${isVisible && 'animate-content-in-slow'}`}>{children}</div>
         <div className={`${isVisible && 'animate-content-in-more-slow'} pl-5 mobile:pl-2`}>
-          <ButtonWithHrefLink
-          className={`${props.hoverColor} mobile:!px-7`}
-          hrefLink={props.btnClickLink}
-          >
-            Learn more<span className='mobile:hidden'> about <span className='font-bold'>{props.btnBoldText}</span></span>
+          <ButtonWithHrefLink className={`${props.hoverColor} mobile:!px-7`} hrefLink={props.btnClickLink}>
+            Learn more
+            <span className='mobile:hidden'>
+              {' '}
+              about <span className='font-bold'>{props.btnBoldText}</span>
+            </span>
           </ButtonWithHrefLink>
         </div>
       </section>
