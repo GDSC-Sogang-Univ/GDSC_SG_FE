@@ -27,7 +27,7 @@ export default function DetailPageComment() {
       <section className='w-full flex flex-col gap-3'>
         <textarea
           className='w-full h-[118px] border border-gdsc-Grey-700 placeholder:text-gdsc-Gray-300 px-3 py-4 outline-none resize-none rounded-md'
-          placeholder='댓글을 입력해주세요.'
+          placeholder={`추후 추가 예정 기능입니다.\n보다 나은 서비스를 위해 준비 중이니, 조금만 기다려 주세요!`}
           value={comment}
           onChange={e => setComment(e.target.value)}
         ></textarea>
