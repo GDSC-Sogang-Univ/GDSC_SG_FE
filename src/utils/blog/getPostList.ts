@@ -3,7 +3,7 @@ import path from 'path';
 import { parsePost } from './parsePost';
 import { PostType } from '@/types/blog';
 
-const BASE_PATH = '/public/posts';
+const BASE_PATH = '/public/(posts)';
 const POSTS_PATH = path.join(process.cwd(), BASE_PATH);
 
 // 모든 MDX 파일 조회

@@ -60,3 +60,5 @@ next-env.d.ts
 
 .gitmessage.txt
 .prettierrc
+
+/public/(posts)/*
