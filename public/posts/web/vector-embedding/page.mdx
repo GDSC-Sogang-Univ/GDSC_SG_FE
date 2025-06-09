@@ -1,0 +1,111 @@
+---
+title: 벡터 임베딩(테스트)
+date: 2024/12/16
+description: 테스트 설명
+tags: ['테스트']
+author: 이진용
+---
+
+`코드`
+
+~~취소~~
+
+<u>언더라인</u>
+
+_기울어짐_
+
+**볼드**
+
+1. 리스트1
+
+2. 리스트2
+
+3. 리스트3
+
+- 불릿1
+
+- 불릿1
+
+> 💡 콜아웃
+
+> 인용
+
+[DIVIDER BLOCK NOT SUPPORTED]
+
+[ ] 체크박스
+
+### 논문 초록 벡터화
+
+```python
+from transformers import BertTokenizer, BertModel
+import torch
+from sklearn.metrics.pairwise import cosine_similarity
+import numpy as np
+
+# BERT 모델과 토크나이저 초기화
+tokenizer = BertTokenizer.from_pretrained('bert-base-uncased')
+model = BertModel.from_pretrained('bert-base-uncased')
+
+# GPU 설정
+device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
+model = model.to(device)
+
+# 논문 초록 텍스트 샘플
+abstracts = [
+    "Deep learning architectures and algorithms have dramatically improved the performance of artificial intelligence.",
+    "Natural language processing empowers computational systems to understand human language.",
+    "Quantum computing is a new paradigm that exploits the principles of quantum mechanics.",
+    "Climate change models are essential for understanding future environmental conditions.",
+    ...
+]
+
+# 논문 초록을 임베딩
+def embed_texts(texts):
+    encoded_inputs = tokenizer(texts, padding=True, truncation=True, return_tensors="pt")
+    input_ids = encoded_inputs['input_ids'].to(device)
+    attention_mask = encoded_inputs['attention_mask'].to(device)
+
+    with torch.no_grad():
+        outputs = model(input_ids, attention_mask=attention_mask)
+
+    embeddings = outputs.last_hidden_state.mean(dim=1)  # 문장의 평균 임베딩
+    return embeddings.cpu().numpy()  # GPU에서 CPU로 데이터 이동
+
+# 모든 논문 임베딩
+abstract_embeddings = embed_texts(abstracts)
+```
+
+1. 문장 tokenize
+
+2. 단어 vector화
+
+### 검색
+
+```python
+# 새로운 문장 임베딩
+new_sentence = "Autonomous drone navigation through AI"
+new_embedding = embed_texts([new_sentence])
+
+# 코사인 유사도 계산
+similarity_scores = cosine_similarity(new_embedding, abstract_embeddings)
+
+# 가장 유사한 논문의 인덱스를 상위 3개까지 찾기
+most_similar_indices = np.argsort(similarity_scores[0])[::-1][:3]
+
+# 가장 유사한 상위 3개의 논문 출력
+print("Top 3 most similar documents by BERT/cosine similarity:")
+for index in most_similar_indices:
+    print(abstracts[index])
+
+```
+
+### 결과
+
+```plain text
+Top 3 most similar documents by BERT/cosine similarity:
+Automated systems for monitoring agricultural fields using drone-captured images.
+Enhanced surveillance systems using AI-based object tracking.
+Deep reinforcement learning for autonomous drone navigation.
+```
+
+![](/posts/web/1/Pasted_image_20241211153241.png)

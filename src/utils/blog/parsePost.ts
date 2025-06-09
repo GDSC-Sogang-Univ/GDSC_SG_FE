@@ -4,7 +4,7 @@ import dayjs from 'dayjs';
 import matter from 'gray-matter';
 import { PostType } from '@/types/blog';
 
-const BASE_PATH = '/(posts)';
+const BASE_PATH = '/posts';
 const POSTS_PATH = path.join(process.cwd(), BASE_PATH);
 
 // MDX 파일 파싱 : abstract / detail 구분
@@ -27,7 +27,7 @@ export const parsePostAbstract = (postPath: string) => {
   const url = `/blog/${category}/${slug}`;
 
   const thumbnail = `${BASE_PATH}/${category}/${slug}/thumbnail.png`;
-  const thumbnailExists = fs.existsSync(path.join(process.cwd(), '/public/(posts)', category, slug, 'thumbnail.png'));
+  const thumbnailExists = fs.existsSync(path.join(process.cwd(), '/public/posts', category, slug, 'thumbnail.png'));
 
   return { url, category, slug, thumbnail: thumbnailExists ? thumbnail : '' };
 };
