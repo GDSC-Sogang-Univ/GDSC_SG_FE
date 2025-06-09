@@ -17,13 +17,11 @@ const SearchLayout = ({ postData, tags }: Props) => {
   const params = useSearchParams();
 
   useEffect(() => {
-    setKeyword(params.get('q') || '');
+    setKeyword(params.get('q')?.toLowerCase() || '');
   }, []);
 
   useEffect(() => {
-    const filteredPost = postData.filter(post =>
-      post.title.toLowerCase().includes(params.get('q')?.toLowerCase() ?? ''),
-    );
+    const filteredPost = postData.filter(post => post.title.toLowerCase().includes(keyword));
     setData(filteredPost);
   }, [keyword]);
 
