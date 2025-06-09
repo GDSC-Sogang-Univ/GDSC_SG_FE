@@ -1,8 +1,8 @@
-import BlogFooter from '@/components/Blog/Footer';
 import BlogHeader from '@/components/Blog/Header/BlogHeader';
 import { getPostTagList } from '@/utils/blog/getPostTagList';
 import { Metadata } from 'next';
 import 'highlight.js/styles/vs2015.css';
+import Footer from '@/components/Footer/Footer';
 
 export const metadata: Metadata = {
   title: 'GDG on Sogang 공식 블로그',
@@ -24,8 +24,8 @@ async function BlogLayout({
   return (
     <>
       <BlogHeader tagList={tags} />
-      <main className='min-h-dvh'>{children}</main>
-      <BlogFooter />
+      <main className='min-h-dvh mt-20 tablet_h:mt-[66px]'>{children}</main>
+      <Footer />
     </>
   );
 }

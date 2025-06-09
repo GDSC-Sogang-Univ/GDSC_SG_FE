@@ -21,21 +21,52 @@ const BlogHeader = ({ tagList }: Props) => {
   const [keyword, setKeyword] = useState('');
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
+  const [showHeader, setShowHeader] = useState(true);
+  const [lastScrollY, setLastScrollY] = useState(0);
+
+  const handleScroll = () => {
+    const currentScrollY = window.scrollY;
+
+    if (currentScrollY > lastScrollY && currentScrollY > 60) {
+      // 스크롤을 내릴 때, 헤더를 숨깁니다.
+      setShowHeader(false);
+    } else {
+      // 스크롤을 올릴 때, 헤더를 보이게 합니다.
+      setShowHeader(true);
+    }
+
+    setLastScrollY(currentScrollY);
+  };
+
+  useEffect(() => {
+    window.addEventListener('scroll', handleScroll);
+
+    // 컴포넌트가 언마운트될 때 이벤트 리스너를 제거합니다.
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+    };
+  }, [lastScrollY]);
+
   return (
     <header className={`${isFocus ? 'bg-gdsc-Black/60 w-full h-full fixed top-0 left-0 z-50' : ''}`}>
       <div
-        className={`${isFocus ? '!bg-gdsc-Red-500 !justify-start !items-start' : 'border-b'} flex items-center gap-14 justify-between px-16 py-4 bg-white border-gdsc-Grey-200 tablet_h:px-7 tablet_h:py-5 tablet_h:flex-col tablet_h:justify-normal tablet_h:gap-6`}
+        className={`${isFocus ? '!bg-gdsc-Red-500 !justify-start !items-start !gap-0' : 'border-b'} fixed top-0 left-0 right-0 z-20 transition-transform duration-100 ${showHeader ? 'transform-none' : '-translate-y-full'} bg-gdsc-White flex items-center gap-14 justify-between px-9 py-4 bg-white border-gdsc-Grey-100 tablet_h:px-6 tablet_h:py-5 tablet_h:flex-col tablet_h:justify-normal tablet_h:gap-6`}
       >
         <div className='tablet_h:w-full tablet_h:flex items-center justify-between'>
           {/* 로고 및 제목 */}
-          <Link href='/blog/' className='flex items-center gap-3 cp_mobile:gap-2'>
+          <Link
+            href='/blog/'
+            className='w-[230px] tablet_h:w-[164px] tablet_h:h-[18px] my-1 h-6 relative flex items-center gap-3 cp_mobile:gap-2 cp_mobile:w-[164px]'
+          >
             <Image
               src={isFocus ? WhiteHeaderLogo : HeaderLogo}
               alt='GDGoC Sogang logo'
-              className='w-[230px] cp_mobile:w-[164px]'
+              className='absolute w-full h-full'
+              width={230}
+              height={24}
             />
             <span
-              className={`${isFocus ? 'text-gdsc-White' : 'text-gdsc-Grey-800'} whitespace-nowrap text-24 tablet_h:text-16 tablet_h:font-normal`}
+              className={`${isFocus ? 'text-gdsc-White hidden' : 'text-gdsc-Grey-800'} ml-[242px] tablet_h:ml-[172px] whitespace-nowrap text-24 tablet_h:text-16 tablet_h:font-normal`}
             >
               공식 블로그
             </span>
@@ -75,7 +106,7 @@ const BlogHeader = ({ tagList }: Props) => {
                 value={keyword}
                 onChange={e => setKeyword(e.target.value)}
                 placeholder={isFocus ? '검색어를 입력해주세요' : '검색하기'}
-                className='focus:outline-none px-[40px] py-[8px] border border-gdsc-Grey-200 rounded-full w-full h-12'
+                className='focus:outline-none pl-12 pr-6 py-[8px] border border-gdsc-Grey-200 rounded-full w-full h-12'
                 required
               />
               {keyword && (
@@ -101,7 +132,7 @@ const BlogHeader = ({ tagList }: Props) => {
                       (document.activeElement as HTMLElement)?.blur();
                     }}
                     onMouseDown={e => e.preventDefault()}
-                    href={`/blog/tag/${tag}`}
+                    href={`/blog/tag?tag=${tag}`}
                     className='h-11 border border-gdsc-White rounded-3xl flex items-center px-6 text-gdsc-White hover:bg-gdsc-White/30'
                   >
                     {tag}
