@@ -73,9 +73,9 @@ jobs:
           role-session-name: gharolesession
           output-credentials: true
 
-      # - name: Download blog content from S3
-      #   run: |
-      #     aws s3 sync s3://${{ env.S3_POST_BUCKET_NAME }} ./public/
+      - name: Download blog content from S3
+        run: |
+          aws s3 sync s3://${{ env.S3_POST_BUCKET_NAME }} ./public/
 
       - name: Install Dependencies
         run: yarn install
