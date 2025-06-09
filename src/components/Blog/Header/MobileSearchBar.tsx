@@ -23,6 +23,8 @@ const MobileSearchBar = ({ tagList }: Props) => {
       <form
         onSubmit={e => {
           e.preventDefault();
+          e.stopPropagation();
+          console.log(keyword);
           window.location.href = `/blog/search?q=${keyword}`;
         }}
         onBlur={() => setIsFocus(false)}
