@@ -1,5 +1,3 @@
-import Link from 'next/link';
-
 interface RedButtonWithHrefLinkProps extends React.PropsWithChildren {
   hrefLink: string;
   className?: string;

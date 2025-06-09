@@ -1,5 +1,4 @@
 import Footer from '@/components/Footer/Footer';
-import LandingPageFooter from '@/components/Footer/LandingPageFooter';
 import BackgroundContent from '@/components/LandingPage/BackgroundContent';
 import ContentLayout from '@/components/LandingPage/ContentLayout';
 import PageWrapper from '@/components/LandingPage/PageWrapper';

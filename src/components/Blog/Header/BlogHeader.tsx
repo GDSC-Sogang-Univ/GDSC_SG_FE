@@ -132,7 +132,7 @@ const BlogHeader = ({ tagList }: Props) => {
                       (document.activeElement as HTMLElement)?.blur();
                     }}
                     onMouseDown={e => e.preventDefault()}
-                    href={`/blog/tag/${tag}`}
+                    href={`/blog/tag?tag=${tag}`}
                     className='h-11 border border-gdsc-White rounded-3xl flex items-center px-6 text-gdsc-White hover:bg-gdsc-White/30'
                   >
                     {tag}
