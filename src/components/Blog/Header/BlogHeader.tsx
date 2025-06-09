@@ -93,8 +93,7 @@ const BlogHeader = ({ tagList }: Props) => {
               onSubmit={e => {
                 e.preventDefault();
                 e.stopPropagation();
-                console.log(keyword);
-                window.location.href = `/blog/search?q=${keyword}`;
+                window.location.href = `/blog/search/?q=${keyword}`;
               }}
               onBlur={() => setIsFocus(false)}
               onFocus={() => setIsFocus(true)}
