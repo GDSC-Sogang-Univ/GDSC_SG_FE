@@ -24,7 +24,7 @@ async function BlogLayout({
   return (
     <>
       <BlogHeader tagList={tags} />
-      <main className='min-h-dvh'>{children}</main>
+      <main className='min-h-dvh mt-20 tablet_h:mt-[66px]'>{children}</main>
       <BlogFooter />
     </>
   );
