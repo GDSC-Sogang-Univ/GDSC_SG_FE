@@ -12,7 +12,7 @@ async function BlogMainPage() {
   return (
     <div className='flex'>
       <SideWrapper />
-      <div className='w-3/4 mx-auto tablet_v:w-full !max-w-[1440px] pt-9 pb-[76px] px-[76px] tablet_h:px-7 tablet_h:py-6 cp_mobile:px-5 cp_mobile:pt-6 cp_mobile:pb-12'>
+      <div className='w-4/5 mx-auto tablet_v:w-full !max-w-[1440px] pt-9 pb-[76px] px-[76px] tablet_h:px-7 tablet_h:py-6 cp_mobile:px-5 cp_mobile:pt-6 cp_mobile:pb-12'>
         <MobileSearchBar tagList={tags} />
         <Suspense fallback={<div>Loading...</div>}>
           <BlogPostList data={posts} />
