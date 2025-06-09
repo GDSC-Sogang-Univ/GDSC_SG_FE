@@ -1,13 +1,18 @@
 import Image from 'next/image';
 import Link from 'next/link';
-import FooterIcon from '@/assets/icon/landing_gdg_footer.svg';
+import FooterIcon from '../../../public/footer_logo.png';
 import InstagramIcon from '@/assets/icon/Logo_Instagram.svg';
 
 const Footer = () => {
   return (
     <footer className='w-full bg-[#f9f9f9] py-11 cp_mobile:py-4'>
       <div className='max-w-[1306px] mx-auto px-[72px] tablet_h:px-9 cp_mobile:px-6 flex justify-between cp_mobile:flex-col cp_mobile:gap-1 '>
-        <Image src={FooterIcon} alt='GDSC Sogang Footer Icon' className='w-[446px] tablet_h:w-[289px] tablet_h:h-12' />
+        <Image
+          priority
+          src={FooterIcon}
+          alt='GDSC Sogang Footer Icon'
+          className='w-[446px] tablet_h:w-[289px] tablet_h:h-12'
+        />
         {/* SNS Info  */}
         <div className='flex gap-10 tablet:gap-6 text-gdsc-Grey-600 tablet_h:!text-12 cp_mobile:flex-col cp_mobile:gap-0'>
           <span className='flex items-center gap-3 tablet:gap-2 mobile:gap-1'>

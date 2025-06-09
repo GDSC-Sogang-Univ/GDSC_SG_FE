@@ -4,7 +4,7 @@ import xIcon from '@/assets/icon/blog_search_x.svg';
 import Image from 'next/image';
 import Link from 'next/link';
 import { useEffect, useState } from 'react';
-import HeaderLogo from '@/assets/icon/blog_gdgsogang_logo.svg';
+import HeaderLogo from '../../../../public/blog_gdg_logo.png';
 import WhiteHeaderLogo from '@/assets/icon/blog_gdgsogang_logo_white.svg';
 import SearchIcon from '@/assets/icon/blog_search.svg';
 import HomepageButton from '../HomepageButton';
@@ -59,6 +59,7 @@ const BlogHeader = ({ tagList }: Props) => {
             className='w-[230px] tablet_h:w-[164px] tablet_h:h-[18px] my-1 h-6 relative flex items-center gap-3 cp_mobile:gap-2 cp_mobile:w-[164px]'
           >
             <Image
+              priority
               src={isFocus ? WhiteHeaderLogo : HeaderLogo}
               alt='GDGoC Sogang logo'
               className='absolute w-full h-full'
