@@ -6,6 +6,7 @@ import heartIcon from '@/assets/icon/blog_card_heart.svg';
 import commentIcon from '@/assets/icon/blog_card_comment.svg';
 import { PostCardProps } from '@/types/blog';
 import Link from 'next/link';
+import thumbnailImage from '../../../../public/blog_thumbnail.jpg';
 
 /**
  * 블로그 카드형 목록 post card
@@ -49,7 +50,7 @@ const VerticalCard = ({ href, category, title, date, author, hearts, comments, t
         {/* 이미지 영역 */}
         <div className='relative h-[152px]'>
           <Image
-            src={thumbnail}
+            src={thumbnail || thumbnailImage}
             alt={title}
             fill
             className='w-full h-full'

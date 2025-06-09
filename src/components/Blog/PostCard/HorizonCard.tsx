@@ -4,6 +4,7 @@ import heartIcon from '@/assets/icon/blog_card_heart.svg';
 import commentIcon from '@/assets/icon/blog_card_comment.svg';
 import { PostCardProps } from '@/types/blog';
 import Link from 'next/link';
+import thumbnailImage from '../../../../public/blog_thumbnail.jpg';
 
 /**
  * 블로그 리스트형 목록 post card
@@ -24,7 +25,7 @@ const HorizonCard = ({
       <div className='bg-gdsc-White overflow-hidden flex gap-3 cp_mobile:flex-col cp_mobile:gap-0'>
         {/* 이미지 영역 */}
         <Image
-          src={thumbnail}
+          src={thumbnail || thumbnailImage}
           alt={title}
           width={426}
           height={222}
