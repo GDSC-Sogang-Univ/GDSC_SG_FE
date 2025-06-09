@@ -6,7 +6,7 @@ export default function DetailPageHeader({ post }: { post: PostType }) {
     <div className='flex flex-col gap-3'>
       <p className='text-[24px] text-gdsc-Red-500'>{post.category}</p>
       <p className='text-[48px] font-bold text-gdsc-Black cp_mobile:text-[32px]'>{post.title}</p>
-      <div className='flex gap-3'>
+      <div className='flex gap-3 flex-wrap'>
         {post.tags.map(tag => (
           <Link
             href={`/blog/tag?tag=${tag}`}
