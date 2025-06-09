@@ -9,7 +9,7 @@ const bannerContent: BannerContent[] = [
 
 const EventBanner = () => {
   return (
-    <div className='px-16 py-9 flex flex-col gap-6 min-h-dvh tablet_h:px-7 tablet_h:py-6 tablet_h:gap-5'>
+    <div className='p-9 flex flex-col gap-6 min-h-dvh tablet_h:p-6 tablet_h:gap-5'>
       <p className='font-light text-gdsc-Grey-700 tablet_h:text-14'>가까운 행사</p>
       <section className='flex flex-col gap-9'>
         {bannerContent.map(content => {
