@@ -7,6 +7,7 @@ import { useEffect, useState } from 'react';
 const PostBody = ({ content }: { content: string }) => {
   const [mdxSource, setMdxSource] = useState<MDXRemoteSerializeResult | null>(null);
   const [MDXRemoteComponent, setMDXRemoteComponent] = useState<any>(null);
+  const [checkboxStates, setCheckboxStates] = useState<{ [key: string]: boolean }>({});
 
   useEffect(() => {
     const fetchData = async () => {
@@ -21,6 +22,53 @@ const PostBody = ({ content }: { content: string }) => {
 
     fetchData();
   }, [content]);
+
+  useEffect(() => {
+    if (mdxSource) {
+      // MDX 콘텐츠가 렌더링된 후 blockquote 처리
+      const blockquotes = document.querySelectorAll('blockquote');
+      blockquotes.forEach((blockquote) => {
+        const firstParagraph = blockquote.querySelector('p');
+        if (firstParagraph && firstParagraph.textContent?.startsWith('💡')) {
+          blockquote.classList.add('markdown-callout', 'markdown-callout-tip');
+        }
+      });
+
+      // 체크박스 처리
+      const paragraphs = document.querySelectorAll('p');
+      paragraphs.forEach((p) => {
+        const text = p.innerHTML;
+        const checkboxRegex = /\[([ x])\]/g;
+        const newText = text.replace(checkboxRegex, (match, state) => {
+          const checkboxId = `checkbox-${Math.random().toString(36).substr(2, 9)}`;
+          const isChecked = state === 'x';
+          setCheckboxStates(prev => ({ ...prev, [checkboxId]: isChecked }));
+          
+          return `<input type="checkbox" id="${checkboxId}" ${isChecked ? 'checked' : ''} 
+            style="margin-right: 8px;" 
+            onchange="window.handleCheckboxChange('${checkboxId}')" />`;
+        });
+        
+        if (newText !== text) {
+          p.innerHTML = newText;
+        }
+      });
+    }
+  }, [mdxSource]);
+
+  useEffect(() => {
+    // 체크박스 상태 변경 핸들러를 전역에 등록
+    (window as any).handleCheckboxChange = (checkboxId: string) => {
+      setCheckboxStates(prev => {
+        const newState = { ...prev, [checkboxId]: !prev[checkboxId] };
+        return newState;
+      });
+    };
+
+    return () => {
+      delete (window as any).handleCheckboxChange;
+    };
+  }, []);
 
   useEffect(() => {
     if (window.hljs) {
