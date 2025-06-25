@@ -5,7 +5,7 @@ import matter from 'gray-matter';
 import { PostType } from '@/types/blog';
 
 const BASE_PATH = '/posts';
-const POSTS_PATH = path.join(process.cwd(), BASE_PATH);
+// const POSTS_PATH = path.join(process.cwd(), BASE_PATH);
 
 // MDX 파일 파싱 : abstract / detail 구분
 export const parsePost = async (postPath: string): Promise<PostType> => {

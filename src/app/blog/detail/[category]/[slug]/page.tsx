@@ -121,16 +121,20 @@ const PostDetailPage = async ({ params }: { params: { category: string; slug: st
   const post = await getPostDetail(category, slug);
 
   const allPost = await getPostList();
+  
   let randomInt1;
   let randomInt2;
-  while (true) {
-    randomInt1 = Math.floor(Math.random() * allPost.length);
-    if (slug !== allPost[randomInt1].slug) break;
+  if(allPost.length >= 3){
+    while (true) {
+      randomInt1 = Math.floor(Math.random() * allPost.length);
+      if (slug !== allPost[randomInt1].slug) break;
+    }
+    while (true) {
+      randomInt2 = Math.floor(Math.random() * allPost.length);
+      if (randomInt1 !== randomInt2 && slug !== allPost[randomInt2].slug) break;
+    }
   }
-  while (true) {
-    randomInt2 = Math.floor(Math.random() * allPost.length);
-    if (randomInt1 !== randomInt2 && slug !== allPost[randomInt2].slug) break;
-  }
+  
 
   if (!post) {
     return <div>Not Found</div>;
@@ -143,7 +147,7 @@ const PostDetailPage = async ({ params }: { params: { category: string; slug: st
         <DetailPageComment />
         {/* <DetailPageCommentList comments={DUMMYCOMMENT} /> */}
 
-        <section className='flex flex-col gap-6 cp_mobile:gap-4'>
+        {randomInt1 && randomInt2 && <section className='flex flex-col gap-6 cp_mobile:gap-4'>
           <p className='text-gdsc-Grey-900 text-24'>추천 게시물</p>
           {/* pc ver. */}
           <div className='grid grid-cols-2 gap-8 w-full cp_mobile:hidden'>
@@ -192,7 +196,7 @@ const PostDetailPage = async ({ params }: { params: { category: string; slug: st
               href={`/blog/detail/${allPost[randomInt2].category}/${allPost[randomInt2].slug}`}
             />
           </div>
-        </section>
+        </section>}
       </section>
     </div>
   );
