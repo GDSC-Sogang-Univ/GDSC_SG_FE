@@ -6,10 +6,10 @@ export default function DetailPageHeader({ post }: { post: PostType }) {
     <div className='flex flex-col gap-3'>
       <p className='text-[24px] text-gdsc-Red-500'>{post.category}</p>
       <p className='text-[48px] font-bold text-gdsc-Black cp_mobile:text-[32px]'>{post.title}</p>
-      <div className='flex gap-3'>
+      <div className='flex gap-3 flex-wrap'>
         {post.tags.map(tag => (
           <Link
-            href={`/blog/tag/${tag}`}
+            href={`/blog/tag?tag=${tag}`}
             className='cursor-pointer px-6 py-2 rounded-full flex items-center justify-center text-gdsc-Red-300 border border-gdsc-Red-300 cp_mobile:text-[12px] cp_mobile:px-[14px] cp_mobile:py-[6px]'
             key={tag}
           >

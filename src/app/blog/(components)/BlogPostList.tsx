@@ -74,7 +74,7 @@ const BlogPostList = ({ data }: Props) => {
                   author={post.author}
                   hearts={0}
                   comments={0}
-                  thumbnail={post.thumbnail || '/og-image.png'}
+                  thumbnail={post.thumbnail}
                 />
               ) : null}
 
@@ -87,7 +87,7 @@ const BlogPostList = ({ data }: Props) => {
                   author={post.author}
                   hearts={0}
                   comments={0}
-                  thumbnail={post.thumbnail || '/og-image.png'}
+                  thumbnail={post.thumbnail}
                   description={post.description}
                 />
               ) : null}
@@ -103,7 +103,7 @@ const BlogPostList = ({ data }: Props) => {
                 author={post.author}
                 hearts={0}
                 comments={0}
-                thumbnail={post.thumbnail || '/og-image.png'}
+                thumbnail={post.thumbnail}
                 description={post.description}
               />
             </li>

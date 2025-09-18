@@ -121,16 +121,20 @@ const PostDetailPage = async ({ params }: { params: { category: string; slug: st
   const post = await getPostDetail(category, slug);
 
   const allPost = await getPostList();
+  
   let randomInt1;
   let randomInt2;
-  while (true) {
-    randomInt1 = Math.floor(Math.random() * allPost.length);
-    if (slug !== allPost[randomInt1].slug) break;
+  if(allPost.length >= 3){
+    while (true) {
+      randomInt1 = Math.floor(Math.random() * allPost.length);
+      if (slug !== allPost[randomInt1].slug) break;
+    }
+    while (true) {
+      randomInt2 = Math.floor(Math.random() * allPost.length);
+      if (randomInt1 !== randomInt2 && slug !== allPost[randomInt2].slug) break;
+    }
   }
-  while (true) {
-    randomInt2 = Math.floor(Math.random() * allPost.length);
-    if (randomInt1 !== randomInt2 && slug !== allPost[randomInt2].slug) break;
-  }
+  
 
   if (!post) {
     return <div>Not Found</div>;
@@ -143,12 +147,12 @@ const PostDetailPage = async ({ params }: { params: { category: string; slug: st
         <DetailPageComment />
         {/* <DetailPageCommentList comments={DUMMYCOMMENT} /> */}
 
-        <section className='flex flex-col gap-6 cp_mobile:gap-4'>
+        {randomInt1 && randomInt2 && <section className='flex flex-col gap-6 cp_mobile:gap-4'>
           <p className='text-gdsc-Grey-900 text-24'>추천 게시물</p>
           {/* pc ver. */}
           <div className='grid grid-cols-2 gap-8 w-full cp_mobile:hidden'>
             <VerticalCard
-              thumbnail={allPost[randomInt1].thumbnail || '/og-image.png'}
+              thumbnail={allPost[randomInt1].thumbnail}
               title={allPost[randomInt1].title}
               author={allPost[randomInt1].author}
               category={allPost[randomInt1].category}
@@ -158,7 +162,7 @@ const PostDetailPage = async ({ params }: { params: { category: string; slug: st
               href={`/blog/detail/${allPost[randomInt1].category}/${allPost[randomInt1].slug}`}
             />
             <VerticalCard
-              thumbnail={allPost[randomInt2].thumbnail || '/og-image.png'}
+              thumbnail={allPost[randomInt2].thumbnail}
               title={allPost[randomInt2].title}
               author={allPost[randomInt2].author}
               category={allPost[randomInt2].category}
@@ -172,7 +176,7 @@ const PostDetailPage = async ({ params }: { params: { category: string; slug: st
           {/* mobile ver. */}
           <div className='hidden cp_mobile:flex flex-col gap-4'>
             <HorizonCard
-              thumbnail={allPost[randomInt1].thumbnail || '/og-image.png'}
+              thumbnail={allPost[randomInt1].thumbnail}
               title={allPost[randomInt1].title}
               author={allPost[randomInt1].author}
               category={allPost[randomInt1].category}
@@ -182,7 +186,7 @@ const PostDetailPage = async ({ params }: { params: { category: string; slug: st
               href={`/blog/detail/${allPost[randomInt1].category}/${allPost[randomInt1].slug}`}
             />
             <HorizonCard
-              thumbnail={allPost[randomInt2].thumbnail || '/og-image.png'}
+              thumbnail={allPost[randomInt2].thumbnail}
               title={allPost[randomInt2].title}
               author={allPost[randomInt2].author}
               category={allPost[randomInt2].category}
@@ -192,7 +196,7 @@ const PostDetailPage = async ({ params }: { params: { category: string; slug: st
               href={`/blog/detail/${allPost[randomInt2].category}/${allPost[randomInt2].slug}`}
             />
           </div>
-        </section>
+        </section>}
       </section>
     </div>
   );

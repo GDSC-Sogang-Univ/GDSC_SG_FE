@@ -23,7 +23,8 @@ const MobileSearchBar = ({ tagList }: Props) => {
       <form
         onSubmit={e => {
           e.preventDefault();
-          window.location.href = `/blog/search?q=${keyword}`;
+          e.stopPropagation();
+          window.location.href = `/blog/search/?q=${keyword}`;
         }}
         onBlur={() => setIsFocus(false)}
         onFocus={() => setIsFocus(true)}
@@ -63,7 +64,7 @@ const MobileSearchBar = ({ tagList }: Props) => {
                 (document.activeElement as HTMLElement)?.blur();
               }}
               onMouseDown={e => e.preventDefault()}
-              href={`/blog/tag/${tag}`}
+              href={`/blog/tag?tag=${tag}`}
               className='h-[34px] border whitespace-nowrap border-gdsc-Grey-100 rounded-3xl flex items-center px-4 text-12 text-gdsc-Grey-700 hover:bg-gdsc-White/30'
             >
               {tag}
