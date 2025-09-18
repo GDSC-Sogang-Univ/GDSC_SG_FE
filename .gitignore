@@ -57,3 +57,8 @@ next-env.d.ts
 
 # Websotrm
 .idea/
+
+.gitmessage.txt
+.prettierrc
+
+/public/posts/*

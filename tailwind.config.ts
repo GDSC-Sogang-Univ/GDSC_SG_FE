@@ -44,10 +44,14 @@ const config: Config = {
           DEFAULT: '#111',
         },
         Grey: {
+          900: '#3E4A4F',
           800: '#506067',
+          700: '#5F747C',
           600: '#6F8A94',
           400: '#91AAB4',
           200: '#C1CFD4',
+          100: '#DAE2E5',
+          50: '#F1F3F4',
         },
         White: {
           DEFAULT: '#FFF',
@@ -60,15 +64,20 @@ const config: Config = {
       48: '3rem',
       32: '2rem',
       24: '1.5rem',
+      20: '1.25rem',
       18: '1.125rem',
       16: '1rem',
       14: '0.875rem',
       12: '0.75rem',
     },
     extend: {
-      screens:{
-        mobile: {max: '480px'},
-        tablet: {max: '768px'}
+      screens: {
+        mobile: { max: '480px' },
+        tablet: { max: '768px' },
+        cp_mobile: { max: '800px' },
+        tablet_v: { max: '1000px' },
+        tablet_h: { max: '1300px' },
+        cp_card_h: { max: '1440px' },
       },
       spacing: {
         content: '90rem',

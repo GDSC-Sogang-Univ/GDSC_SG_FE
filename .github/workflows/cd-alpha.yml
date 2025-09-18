@@ -12,11 +12,9 @@ on:
 env:
   AWS_REGION: ap-northeast-2
   AWS_ROLE: ${{ secrets.AWS_ROLE }}
-  S3_BUCKET_NAME: "gdg-web-static-stage"
-  S3_POST_BUCKET_NAME: "postuploadstack-postuploadbucket7b742dca-7ubgt0k1invx"
+  S3_BUCKET_NAME: 'gdg-web-static-stage'
+  S3_POST_BUCKET_NAME: 'postuploadstack-postuploadbucket7b742dca-7ubgt0k1invx'
   CLOUDFRONT_DISTRIBUTION_ID: ${{ secrets.CLOUDFRONT_STAGE_DISTRIBUTION_ID }}
-  SITE_URL: "{{ secrets.SITE_URL }}"
-
 
 jobs:
   prepare:
@@ -47,16 +45,16 @@ jobs:
       - name: Setup Node
         uses: actions/setup-node@v4
         with:
-          node-version: "20"
+          node-version: '20'
           cache: 'yarn'
           cache-dependency-path: '**/yarn.lock'
-          
+
       - name: Get yarn cache directory path
         id: yarn-cache-dir-path
-        run: | 
+        run: |
           dir=$(yarn config get cacheFolder || echo "${HOME}/.yarn/cache")
           echo "dir=$dir" >> $GITHUB_OUTPUT
-        
+
       - uses: actions/cache@v4
         id: yarn-cache # use this to check for `cache-hit` (`steps.yarn-cache.outputs.cache-hit != 'true'`)
         with:
@@ -65,7 +63,7 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-yarn-
             ${{ runner.os }}-
-      
+
       - name: Configure AWS Credentials
         id: aws-creds
         uses: aws-actions/configure-aws-credentials@v4
@@ -75,11 +73,10 @@ jobs:
           role-session-name: gharolesession
           output-credentials: true
 
-    #   기존 nextra 블로그를 사용할 때 사용, 이후 file기반 mdx 블로그 사용시 사용
-    #   - name: Download blog content from S3
-    #     run: |
-    #       aws s3 sync s3://${{ env.S3_POST_BUCKET_NAME }} ./app/blog
-    
+      - name: Download blog content from S3
+        run: |
+          aws s3 sync s3://${{ env.S3_POST_BUCKET_NAME }} ./public/
+
       - name: Install Dependencies
         run: yarn install
 
@@ -113,6 +110,10 @@ jobs:
           role-to-assume: ${{ env.AWS_ROLE }}
           role-session-name: gharolesession
           output-credentials: true
+
+      - name: Remove old files from S3
+        run: |
+          aws s3 rm s3://${{ env.S3_BUCKET_NAME }} --recursive
 
       - name: Upload to S3
         run: aws s3 sync ./out s3://${{ env.S3_BUCKET_NAME }}
