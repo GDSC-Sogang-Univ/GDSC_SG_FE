@@ -21,6 +21,15 @@ const BlogPostList = ({ data }: Props) => {
   const sortType = params.get('sort') ?? 'latest';
   const router = useRouter();
 
+  if (sortType == 'latest') {
+    data.sort((a, b) => {
+      const timeA = new Date(a.date).getTime();
+      const timeB = new Date(b.date).getTime();
+
+      return timeB - timeA;
+    });
+  }
+
   return (
     <div className='flex flex-col gap-6 w-full'>
       {/* btn control bar */}
