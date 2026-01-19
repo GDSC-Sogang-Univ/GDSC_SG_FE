@@ -1,6 +1,5 @@
 import fs from 'fs';
 import path from 'path';
-import dayjs from 'dayjs';
 import matter from 'gray-matter';
 import { PostType } from '@/types/blog';
 
@@ -26,10 +25,14 @@ export const parsePostAbstract = (postPath: string) => {
   // /blog/category1/title1
   const url = `/blog/${category}/${slug}`;
 
-  const thumbnail = `${BASE_PATH}/${category}/${slug}/thumbnail.png`;
-  const thumbnailExists = fs.existsSync(path.join(process.cwd(), '/public/posts', category, slug, 'thumbnail.png'));
+  const exts = ['png', 'jpg', 'jpeg', 'webp'];
+  const foundExt = exts.find(ext =>
+    fs.existsSync(path.join(process.cwd(), '/public/posts', category, slug, `thumbnail.${ext}`)),
+  );
 
-  return { url, category, slug, thumbnail: thumbnailExists ? thumbnail : '' };
+  const thumbnail = foundExt ? `${BASE_PATH}/${category}/${slug}/thumbnail.${foundExt}` : null;
+
+  return { url, category, slug, thumbnail: foundExt ? thumbnail : '' };
 };
 
 // MDX Detail
